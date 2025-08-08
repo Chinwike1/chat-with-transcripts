@@ -106,12 +106,8 @@ First, process your transcript data to create the vector embeddings:
 # Start the Mastra development server
 pnpm dev
 
-# In another terminal, trigger the workflow
-curl -X POST http://localhost:3000/api/workflows/transcripts-workflow \
-  -H "Content-Type: application/json" \
-  -d '{
-    "url": "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json"
-  }'
+# Then enter your transcript from the Mastra Workflow UI
+https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json
 ```
 
 **Expected Output**: The workflow will:
@@ -128,11 +124,7 @@ Once the workflow has processed the data, test the agent:
 
 ```bash
 # Send a query to the agent
-curl -X POST http://localhost:3000/api/agents/chat-with-transcripts-agent \
-  -H "Content-Type: application/json" \
-  -d '{
-    "message": "What are the key points about RAG implementation?"
-  }'
+Ask the agent questions about your uploaded transcripts e.g "What are the key points about RAG implementation?"
 ```
 
 **Expected Output**: The agent will:
