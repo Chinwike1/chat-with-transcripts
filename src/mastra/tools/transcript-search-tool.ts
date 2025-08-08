@@ -1,5 +1,4 @@
 import { openai } from '@ai-sdk/openai'
-import { createVectorQueryTool } from '@mastra/rag'
 import { createTool } from '@mastra/core/tools'
 import { z } from 'zod'
 
@@ -44,49 +43,6 @@ export const transcriptSearchTool = createTool({
       query: context.query,
       relevantContext: formattedResults.map((r) => r.text).join('\n\n'),
       sources: formattedResults,
-    }
-  },
-})
-
-export const speakerSearchTool = createTool({
-  id: 'speaker-search',
-  description:
-    'Search for content by specific speaker names in the transcripts',
-  inputSchema: z.object({
-    speaker: z.string().describe('The name of the speaker to search for'),
-    query: z
-      .string()
-      .optional()
-      .describe('Optional search query to filter speaker content'),
-  }),
-  execute: async ({ context, mastra }) => {
-    if (!mastra) throw new Error('Mastra instance not available')
-
-    const vectorStore = mastra.getVector('pg')
-
-    // filtered search for content by speaker
-    const embeddingResult = await openai
-      .embedding('text-embedding-3-small')
-      .doEmbed({ values: [context.query || context.speaker] })
-    const results = await vectorStore.query({
-      indexName: 'transcripts',
-      queryVector: embeddingResult.embeddings[0],
-      topK: 10,
-      filter: {
-        speakers_in_chunk: context.speaker,
-      },
-    })
-
-    return {
-      speaker: context.speaker,
-      results: results.map((result) => ({
-        text: result.metadata?.text || '',
-        timestamp_start: result.metadata?.timestamp_start || '',
-        timestamp_end: result.metadata?.timestamp_end || '',
-        speakers_in_chunk: result.metadata?.speakers_in_chunk || [],
-        episode_title: result.metadata?.episode_title || '',
-        score: result.score,
-      })),
     }
   },
 })
@@ -205,6 +161,49 @@ export const episodeInfoTool = createTool({
     return {
       episodes: Array.from(episodes.values()),
       total_episodes: episodes.size,
+    }
+  },
+})
+
+export const speakerSearchTool = createTool({
+  id: 'speaker-search',
+  description:
+    'Search for content by specific speaker names in the transcripts',
+  inputSchema: z.object({
+    speaker: z.string().describe('The name of the speaker to search for'),
+    query: z
+      .string()
+      .optional()
+      .describe('Optional search query to filter speaker content'),
+  }),
+  execute: async ({ context, mastra }) => {
+    if (!mastra) throw new Error('Mastra instance not available')
+
+    const vectorStore = mastra.getVector('pg')
+
+    // filtered search for content by speaker
+    const embeddingResult = await openai
+      .embedding('text-embedding-3-small')
+      .doEmbed({ values: [context.query || context.speaker] })
+    const results = await vectorStore.query({
+      indexName: 'transcripts',
+      queryVector: embeddingResult.embeddings[0],
+      topK: 10,
+      filter: {
+        speakers_in_chunk: context.speaker,
+      },
+    })
+
+    return {
+      speaker: context.speaker,
+      results: results.map((result) => ({
+        text: result.metadata?.text || '',
+        timestamp_start: result.metadata?.timestamp_start || '',
+        timestamp_end: result.metadata?.timestamp_end || '',
+        speakers_in_chunk: result.metadata?.speakers_in_chunk || [],
+        episode_title: result.metadata?.episode_title || '',
+        score: result.score,
+      })),
     }
   },
 })

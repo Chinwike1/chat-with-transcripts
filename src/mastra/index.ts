@@ -1,13 +1,13 @@
 import { Mastra } from '@mastra/core/mastra'
 import { PinoLogger } from '@mastra/loggers'
-import { LibSQLStore } from '@mastra/libsql'
 import { chatWithTranscriptsAgent } from './agents/chat-with-transcripts-agent'
 import {
-  transcriptsWorkflow,
   singleTranscriptWorkflow,
+  multipleTranscriptsWorkflow,
 } from './workflows/transcripts-workflow'
 import { PgVector, PostgresStore } from '@mastra/pg'
 
+// initialize pg vector storage
 const connectionString = process.env.POSTGRES_CONNECTION_STRING
 if (!connectionString) {
   throw new Error('POSTGRES_CONNECTION_STRING environment variable is required')
@@ -17,8 +17,8 @@ const pgStorage = new PostgresStore({ connectionString })
 
 export const mastra = new Mastra({
   workflows: {
-    transcriptsWorkflow,
     singleTranscriptWorkflow,
+    multipleTranscriptsWorkflow,
   },
   agents: { chatWithTranscriptsAgent },
   storage: pgStorage,

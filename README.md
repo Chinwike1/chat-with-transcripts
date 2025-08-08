@@ -4,7 +4,7 @@ A RAG (Retrieval-Augmented Generation) application built with Mastra that allows
 
 ## 🚀 Features
 
-- **Multi-Transcript Processing**: Process multiple transcript files simultaneously with batch processing
+- **Two Workflow Options**: Choose between single transcript processing or multiple transcript batch processing
 - **Transcript Processing**: Automatically chunks and embeds transcript data for efficient retrieval
 - **Vector Search**: Semantic search through transcript content using OpenAI embeddings
 - **Multi-Modal Queries**: Search by content, speaker, timestamp, or episode
@@ -13,19 +13,27 @@ A RAG (Retrieval-Augmented Generation) application built with Mastra that allows
 - **PostgreSQL Integration**: Robust vector storage with PostgreSQL and pgvector
 - **Incremental Updates**: Add new transcripts without deleting existing data
 
-## 📋 Prerequisites
+## 📚 Sample Transcripts for Testing
+
+Use these pre-prepared transcript URLs to test the system:
+
+- [**Production Ready RAG Workshop**](https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json)
+- [**Evals with Mastra Workshop**](https://gist.githubusercontent.com/Chinwike1/558e517bf7bde5015926657c033790a8/raw/6970c2d48cd181c9b3dd760779a33c814fad8f8c/evals_with_mastra_workshop_transcript.json)
+- [**Build Your First Agent Workshop**](https://gist.githubusercontent.com/Chinwike1/04d4ebcd0b9278f79af0fae3f530edc5/raw/2f374900b1984edbec9f834eb3dd8a56b91ac459/build_your_first_agent_mastra_workshop_transcript.json)
+
+## Prerequisites
 
 - **Node.js**: Version 20.9.0 or higher
 - **PostgreSQL**: Database with pgvector extension enabled
 - **OpenAI API Key**: For embeddings and chat completions
 - **pnpm**: Package manager (recommended)
 
-## 🔧 Installation
+## Installation
 
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Chinwike1/chat-with-transcripts
    cd chat-with-transcripts
    ```
 
@@ -41,7 +49,7 @@ A RAG (Retrieval-Augmented Generation) application built with Mastra that allows
    cp env.example .env
    ```
 
-## 🔑 API Keys & Configuration
+## API Keys & Configuration
 
 ### Required Environment Variables
 
@@ -75,7 +83,7 @@ POSTGRES_CONNECTION_STRING=postgresql://username:password@localhost:5432/databas
    - Create a database and user with appropriate permissions
    - Update the connection string in your `.env` file
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 chat-with-transcripts/
@@ -96,41 +104,52 @@ chat-with-transcripts/
 └── package.json
 ```
 
-## 🧪 Testing Cycle
+## Testing the Agent
 
-The recommended testing approach follows this sequence:
+### 1. Choose Your Workflow
 
-### 1. Run the Workflow (Data Processing)
+The system offers two workflow options for processing transcripts:
 
-First, process your transcript data to create the vector embeddings. The system supports both single and multiple transcript processing:
+#### Option A: Multiple Transcript Workflow (Recommended)
 
-#### Option A: Process Multiple Transcripts (Recommended)
+Process multiple transcripts simultaneously for batch operations. This is ideal when you have several transcripts to analyze together.
+
+#### Option B: Single Transcript Workflow
+
+Process one transcript at a time. Useful for testing or when you only need to analyze a single transcript.
+
+### 2. Run the Workflow (Data Processing)
+
+First, process your transcript data to create the vector embeddings:
+
+#### Option A: Process Multiple Transcripts
 
 ```bash
 # Start the Mastra development server
 pnpm dev
 
-# In another terminal, trigger the multi-transcript workflow
-curl -X POST http://localhost:3000/api/workflows/transcripts-workflow \
-  -H "Content-Type: application/json" \
-  -d '{
-    "urls": [
-      "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json",
-      "https://your-second-transcript-url.json",
-      "https://your-third-transcript-url.json"
-    ]
-  }'
+# Use the Mastra workflow UI to trigger the multi-transcript workflow
+# Copy and paste this JSON into the workflow input:
+{
+  "urls": [
+    "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json",
+    "https://gist.githubusercontent.com/Chinwike1/558e517bf7bde5015926657c033790a8/raw/6970c2d48cd181c9b3dd760779a33c814fad8f8c/evals_with_mastra_workshop_transcript.json",
+    "https://gist.githubusercontent.com/Chinwike1/04d4ebcd0b9278f79af0fae3f530edc5/raw/2f374900b1984edbec9f834eb3dd8a56b91ac459/build_your_first_agent_mastra_workshop_transcript.json"
+  ]
+}
 ```
 
-#### Option B: Process Single Transcript (Legacy)
+#### Option B: Process Single Transcript
 
 ```bash
-# For backward compatibility, you can still process a single transcript
-curl -X POST http://localhost:3000/api/workflows/single-transcript-workflow \
-  -H "Content-Type: application/json" \
-  -d '{
-    "url": "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json"
-  }'
+# Start the Mastra development server
+pnpm dev
+
+# Use the Mastra workflow UI to trigger the single transcript workflow
+# Copy and paste this JSON into the workflow input:
+{
+  "url": "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json"
+}
 ```
 
 **Expected Output**: The workflow will:
@@ -193,9 +212,9 @@ pnpm start
 pnpm tsc --noEmit
 ```
 
-## 🔧 Customization
+## Customization
 
-### Adding New Transcripts
+#### Adding New Transcripts
 
 1. **Prepare your transcript data** in the expected JSON format:
 
@@ -226,7 +245,7 @@ pnpm tsc --noEmit
 - **Search Parameters**: Adjust `topK` values in search tools
 - **Agent Instructions**: Update the agent's instructions in `chat-with-transcripts-agent.ts`
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -246,25 +265,6 @@ pnpm tsc --noEmit
    - Check the transcript URL is accessible
    - Verify the JSON format matches the expected schema
    - Review the console logs for detailed error messages
-
-## 📝 API Reference
-
-### Workflow Endpoints
-
-#### Multi-Transcript Workflow (Recommended)
-
-- **POST** `/api/workflows/transcripts-workflow`
-- **Body**: `{ "urls": ["url1", "url2", "url3"] }`
-
-#### Single Transcript Workflow (Legacy)
-
-- **POST** `/api/workflows/single-transcript-workflow`
-- **Body**: `{ "url": "transcript_url" }`
-
-### Agent Endpoint
-
-- **POST** `/api/agents/chat-with-transcripts-agent`
-- **Body**: `{ "message": "your_question" }`
 
 ## 🆘 Support
 
