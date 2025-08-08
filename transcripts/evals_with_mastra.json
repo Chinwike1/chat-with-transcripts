@@ -1,0 +1,3189 @@
+{
+  "metadata": {
+    "episode_title": "Evals with Mastra Workshop",
+    "total_speakers": ["Abhi"],
+    "source": "https://www.youtube.com/watch?v=yXjepCT8AU0"
+  },
+  "transcript": [
+    {
+      "timestamp": "00:52",
+      "speaker": "Abhi",
+      "text": "hey everyone thanks for joining us today going to get started real soon just got"
+    },
+    {
+      "timestamp": "00:58",
+      "speaker": "Abhi",
+      "text": "to figure out how to live stream this um to where it needs to be so"
+    },
+    {
+      "timestamp": "01:06",
+      "speaker": "Abhi",
+      "text": "um yeah just give me a sec i'll figure it out"
+    },
+    {
+      "timestamp": "01:33",
+      "speaker": "Abhi",
+      "text": "while we're waiting for a bit why don't you uh enter in the chat where you're from where you're calling from or you're"
+    },
+    {
+      "timestamp": "01:39",
+      "speaker": "Abhi",
+      "text": "joining from i mean um I see some people already saying what up hello"
+    },
+    {
+      "timestamp": "01:47",
+      "speaker": "Abhi",
+      "text": "i am calling from or doing this stream from Europe actually usually I do this"
+    },
+    {
+      "timestamp": "01:53",
+      "speaker": "Abhi",
+      "text": "in San Francisco but I'm actually in Belgium right now uh visiting Ward if"
+    },
+    {
+      "timestamp": "01:58",
+      "speaker": "Abhi",
+      "text": "you all know him and tomorrow and I don't know if y'all came to the last workshop that was the workflows one uh"
+    },
+    {
+      "timestamp": "02:05",
+      "speaker": "Abhi",
+      "text": "tomorrow headed over to Tony in Greece because he's getting married in case"
+    },
+    {
+      "timestamp": "02:11",
+      "speaker": "Abhi",
+      "text": "anyone wanted to know oh we got people from Finland i'm going there soon got"
+    },
+    {
+      "timestamp": "02:18",
+      "speaker": "Abhi",
+      "text": "people from Colombia wow gal hi from Munich sick hey another Belgium guy"
+    },
+    {
+      "timestamp": "02:25",
+      "speaker": "Abhi",
+      "text": "donavvel um Phoenix Texas washington DC oakland"
+    },
+    {
+      "timestamp": "02:32",
+      "speaker": "Abhi",
+      "text": "congrats to Tony thank you i guess I'll let him know what she said chicago San Diego hell yeah oo Canada central New"
+    },
+    {
+      "timestamp": "02:40",
+      "speaker": "Abhi",
+      "text": "York toronto India man we're going to have a great worldwide workshop today"
+    },
+    {
+      "timestamp": "02:48",
+      "speaker": "Abhi",
+      "text": "i might have to give up on the live stream because I don't have permission to live stream on Zoom i don't know if"
+    },
+    {
+      "timestamp": "02:53",
+      "speaker": "Abhi",
+      "text": "Shane did that on purpose but uh maybe he did"
+    },
+    {
+      "timestamp": "03:03",
+      "speaker": "Abhi",
+      "text": "let's see"
+    },
+    {
+      "timestamp": "03:11",
+      "speaker": "Abhi",
+      "text": "um"
+    },
+    {
+      "timestamp": "03:16",
+      "speaker": "Abhi",
+      "text": "we'll start in two minutes if not so I apologize for the delay here"
+    },
+    {
+      "timestamp": "03:46",
+      "speaker": "Abhi",
+      "text": "i say we get this show on the road maybe I can cancel the live stream that was happening and unschedule it or something"
+    },
+    {
+      "timestamp": "03:54",
+      "speaker": "Abhi",
+      "text": "i don't know whatever we live stream every day so if one thing's messed up what can you do"
+    },
+    {
+      "timestamp": "04:02",
+      "speaker": "Abhi",
+      "text": "let's unschedule it maybe"
+    },
+    {
+      "timestamp": "04:15",
+      "speaker": "Abhi",
+      "text": "well I say we get the show on the road okay"
+    },
+    {
+      "timestamp": "04:22",
+      "speaker": "Abhi",
+      "text": "forget about it let me just unschedu this so there's no confusion"
+    },
+    {
+      "timestamp": "04:32",
+      "speaker": "Abhi",
+      "text": "just gonna go with it all right"
+    },
+    {
+      "timestamp": "04:41",
+      "speaker": "Abhi",
+      "text": "cool so yeah welcome to the workshop today we're going to talk about evals um"
+    },
+    {
+      "timestamp": "04:47",
+      "speaker": "Abhi",
+      "text": "I have some slides I have some code I have some We're going to write some We're going to draw some diagrams and"
+    },
+    {
+      "timestamp": "04:52",
+      "speaker": "Abhi",
+      "text": "stuff i want to demystify evals for everyone um I know it's a"
+    },
+    {
+      "timestamp": "04:59",
+      "speaker": "Abhi",
+      "text": "honestly it's a very hot topic but it's funny enough not a lot of people actually do them so maybe the people"
+    },
+    {
+      "timestamp": "05:05",
+      "speaker": "Abhi",
+      "text": "here will learn something and then you know they'll start doing it so I'll share my screen"
+    },
+    {
+      "timestamp": "05:12",
+      "speaker": "Abhi",
+      "text": "and we shall get to it"
+    },
+    {
+      "timestamp": "05:20",
+      "speaker": "Abhi",
+      "text": "all right let me do this"
+    },
+    {
+      "timestamp": "05:26",
+      "speaker": "Abhi",
+      "text": "and here we go oops should start at the beginning my bad okay so yeah welcome if this is your"
+    },
+    {
+      "timestamp": "05:35",
+      "speaker": "Abhi",
+      "text": "first MRA workshop welcome i'll give a slight introduction evas is actually a"
+    },
+    {
+      "timestamp": "05:41",
+      "speaker": "Abhi",
+      "text": "very advanced topic so if this is your first workshop maybe you should stick around of course but there's also intro"
+    },
+    {
+      "timestamp": "05:49",
+      "speaker": "Abhi",
+      "text": "workshops like I said earlier we do live streams every day they're really fun and"
+    },
+    {
+      "timestamp": "05:54",
+      "speaker": "Abhi",
+      "text": "maybe you can come and ask ask questions and maybe that's another avenue for y'all to learn i am solo today um"
+    },
+    {
+      "timestamp": "06:03",
+      "speaker": "Abhi",
+      "text": "because if anyone didn't know there's the AI.engineer engineer um conference in San Francisco which has"
+    },
+    {
+      "timestamp": "06:11",
+      "speaker": "Abhi",
+      "text": "been epic um and Sam Sam is over there uh doing his thing and then Shane is"
+    },
+    {
+      "timestamp": "06:17",
+      "speaker": "Abhi",
+      "text": "taking some welldeserved PTO hanging out with his family but the show must go on"
+    },
+    {
+      "timestamp": "06:22",
+      "speaker": "Abhi",
+      "text": "as always so I'm here to teach everyone um so yeah we're MRA"
+    },
+    {
+      "timestamp": "06:28",
+      "speaker": "Abhi",
+      "text": "uh we are a Typescript we are the Typescript uh framework for building AI"
+    },
+    {
+      "timestamp": "06:34",
+      "speaker": "Abhi",
+      "text": "agents um and our workshop goal today is build and run evals with MRA pretty"
+    },
+    {
+      "timestamp": "06:41",
+      "speaker": "Abhi",
+      "text": "simple I would say um and I'm going to check on the chat and stuff while it's going because because I'm solo I have to"
+    },
+    {
+      "timestamp": "06:48",
+      "speaker": "Abhi",
+      "text": "I have to see like maybe what's going on i already see a question here where are"
+    },
+    {
+      "timestamp": "06:54",
+      "speaker": "Abhi",
+      "text": "the live streams uh they are on they're on Twitter and stuff if you follow us um"
+    },
+    {
+      "timestamp": "07:00",
+      "speaker": "Abhi",
+      "text": "we'll get to that in a second um so yeah I'm kind of balancing both but it's all good so what are we going to learn today"
+    },
+    {
+      "timestamp": "07:07",
+      "speaker": "Abhi",
+      "text": "we're going to learn overview of evals and AI applications i am very opinionated so you're going to hear some"
+    },
+    {
+      "timestamp": "07:13",
+      "speaker": "Abhi",
+      "text": "of my opinions and hopefully you agree with them uh we're going to talk about offtheshelf evals"
+    },
+    {
+      "timestamp": "07:20",
+      "speaker": "Abhi",
+      "text": "um and how you can use them are they worth using uh we're going to talk about"
+    },
+    {
+      "timestamp": "07:27",
+      "speaker": "Abhi",
+      "text": "how to use LLM as a judge which is kind of like a strategy in your evals we're"
+    },
+    {
+      "timestamp": "07:32",
+      "speaker": "Abhi",
+      "text": "going to talk about how to write custom evals that are connected to business results and then you can like build and"
+    },
+    {
+      "timestamp": "07:39",
+      "speaker": "Abhi",
+      "text": "run these uh live live test suites and stuff like that um and we'll talk about"
+    },
+    {
+      "timestamp": "07:45",
+      "speaker": "Abhi",
+      "text": "like whether to do this in CI or not so that's another big question that people"
+    },
+    {
+      "timestamp": "07:51",
+      "speaker": "Abhi",
+      "text": "ask um who are we or who are me or who am I um I'm Abby i'm the founder i'm a"
+    },
+    {
+      "timestamp": "07:58",
+      "speaker": "Abhi",
+      "text": "founder one of the founders and CTO of MRA uh previously I worked at a company"
+    },
+    {
+      "timestamp": "08:04",
+      "speaker": "Abhi",
+      "text": "called Gatsby Gatsby.js uh where I was a principal engineer um I also we got"
+    },
+    {
+      "timestamp": "08:09",
+      "speaker": "Abhi",
+      "text": "acquired by Nellifi so I also worked at Nellifi uh made moves over there as well"
+    },
+    {
+      "timestamp": "08:14",
+      "speaker": "Abhi",
+      "text": "uh fun fact about me I've never seen snow fall from the sky i was born and"
+    },
+    {
+      "timestamp": "08:20",
+      "speaker": "Abhi",
+      "text": "raised in Southern California and as Southern Californians do we go to"
+    },
+    {
+      "timestamp": "08:25",
+      "speaker": "Abhi",
+      "text": "the mountains where there's fake snow so I still haven't seen that um and I"
+    },
+    {
+      "timestamp": "08:31",
+      "speaker": "Abhi",
+      "text": "originally wanted 13K stars but we're actually on our way to 14K so if you"
+    },
+    {
+      "timestamp": "08:36",
+      "speaker": "Abhi",
+      "text": "want to connect with me and you can connect with me at Abby and we do the live streams like I said and they'll be"
+    },
+    {
+      "timestamp": "08:43",
+      "speaker": "Abhi",
+      "text": "uh streamed from both the Monsterra account my account Shane's account we just do like a simo stream so there's"
+    },
+    {
+      "timestamp": "08:49",
+      "speaker": "Abhi",
+      "text": "always a way to interact with us every day and then we do the workshops as well"
+    },
+    {
+      "timestamp": "08:54",
+      "speaker": "Abhi",
+      "text": "so you can also reach out on LinkedIn if you want i'm not a LinkedIn but a lot of people are so for sure and a lot of"
+    },
+    {
+      "timestamp": "09:02",
+      "speaker": "Abhi",
+      "text": "people came because I was inviting people on LinkedIn so that's a really cool uh place to also connect"
+    },
+    {
+      "timestamp": "09:09",
+      "speaker": "Abhi",
+      "text": "all right so the question is do you need evals"
+    },
+    {
+      "timestamp": "09:14",
+      "speaker": "Abhi",
+      "text": "um and you know from Greg Brockman evals are surprisingly often all you need i"
+    },
+    {
+      "timestamp": "09:21",
+      "speaker": "Abhi",
+      "text": "don't know if about that 100% but you do need some type of eval and let's like"
+    },
+    {
+      "timestamp": "09:28",
+      "speaker": "Abhi",
+      "text": "actually walk through this little diagram here so in a"
+    },
+    {
+      "timestamp": "09:34",
+      "speaker": "Abhi",
+      "text": "in engineering in all the software engineering that we do I think everyone is trying to get to a uh a positive"
+    },
+    {
+      "timestamp": "09:42",
+      "speaker": "Abhi",
+      "text": "feedback loop or adjust when the feedback loop is negative and also I"
+    },
+    {
+      "timestamp": "09:48",
+      "speaker": "Abhi",
+      "text": "don't sorry I just the chat uh distracted me"
+    },
+    {
+      "timestamp": "09:54",
+      "speaker": "Abhi",
+      "text": "um I'll have to like periodically do it instead of just get distracted by it so we are trying to always have a positive"
+    },
+    {
+      "timestamp": "10:01",
+      "speaker": "Abhi",
+      "text": "reinforcement loop right that's at least how we can move forward and feel good"
+    },
+    {
+      "timestamp": "10:06",
+      "speaker": "Abhi",
+      "text": "about engineering for example when we started learning all of us started"
+    },
+    {
+      "timestamp": "10:12",
+      "speaker": "Abhi",
+      "text": "learning software development I'm sure it was hard at some cases when there's a bug or there's you don't really know"
+    },
+    {
+      "timestamp": "10:18",
+      "speaker": "Abhi",
+      "text": "where to go because like you don't have a a quick loop that can like get you in"
+    },
+    {
+      "timestamp": "10:24",
+      "speaker": "Abhi",
+      "text": "the right path especially when front end stuff in the beginning was really hard but it had the quickest eval loop"
+    },
+    {
+      "timestamp": "10:32",
+      "speaker": "Abhi",
+      "text": "because you could refresh the browser and then the CSS changed and then you felt like oh snap I'm doing something"
+    },
+    {
+      "timestamp": "10:39",
+      "speaker": "Abhi",
+      "text": "you know or you know when you change the color to blue you can visually see that"
+    },
+    {
+      "timestamp": "10:44",
+      "speaker": "Abhi",
+      "text": "in the backend world unit tests are a good eval loop because you can write"
+    },
+    {
+      "timestamp": "10:50",
+      "speaker": "Abhi",
+      "text": "code you can run the test it fails you have this negative action that you can then write code and then improve it"
+    },
+    {
+      "timestamp": "10:57",
+      "speaker": "Abhi",
+      "text": "right like that is the whole loop with agents though in this whole AI stuff in"
+    },
+    {
+      "timestamp": "11:03",
+      "speaker": "Abhi",
+      "text": "general because things are not deterministic you don't necessarily know"
+    },
+    {
+      "timestamp": "11:08",
+      "speaker": "Abhi",
+      "text": "if you're doing something right or not because it may work for you but it doesn't work for your friend or it works"
+    },
+    {
+      "timestamp": "11:15",
+      "speaker": "Abhi",
+      "text": "on my machine but doesn't work in prod because the prompts are different or"
+    },
+    {
+      "timestamp": "11:20",
+      "speaker": "Abhi",
+      "text": "inputs are different etc this you can often see this already when you're using windsurf or cursor or copilot or any"
+    },
+    {
+      "timestamp": "11:28",
+      "speaker": "Abhi",
+      "text": "number of them or even lovable versus bolt new versus whatever like people are"
+    },
+    {
+      "timestamp": "11:34",
+      "speaker": "Abhi",
+      "text": "having different experiences using the same tools and that's just an interesting point right and so if"
+    },
+    {
+      "timestamp": "11:41",
+      "speaker": "Abhi",
+      "text": "everybody's having a different experience and you can't really test uh for 100% certainty what are you supposed"
+    },
+    {
+      "timestamp": "11:48",
+      "speaker": "Abhi",
+      "text": "to do you get into a I mean technically If you don't do anything about this you"
+    },
+    {
+      "timestamp": "11:53",
+      "speaker": "Abhi",
+      "text": "can release something that will probably just not work you know or maybe it works"
+    },
+    {
+      "timestamp": "11:59",
+      "speaker": "Abhi",
+      "text": "for a bit and the model changes and then you get screwed again right so let's"
+    },
+    {
+      "timestamp": "12:04",
+      "speaker": "Abhi",
+      "text": "walk through this you have these LLM invocations and every every invocation"
+    },
+    {
+      "timestamp": "12:10",
+      "speaker": "Abhi",
+      "text": "of the LLM emits traces if you're using MRA for sure can't really speak to I"
+    },
+    {
+      "timestamp": "12:15",
+      "speaker": "Abhi",
+      "text": "mean most frameworks do right but if you're doing this solo dooo you're going to have to figure out how to make sure"
+    },
+    {
+      "timestamp": "12:22",
+      "speaker": "Abhi",
+      "text": "you have traces in the whole system now traces help you understand what happened"
+    },
+    {
+      "timestamp": "12:28",
+      "speaker": "Abhi",
+      "text": "in an execution for an LLM the same prompt may or may not yield the same"
+    },
+    {
+      "timestamp": "12:34",
+      "speaker": "Abhi",
+      "text": "execution timeline that's why tracing is very important logging and tracing are"
+    },
+    {
+      "timestamp": "12:40",
+      "speaker": "Abhi",
+      "text": "logging is more for I think for for me right like I like to see the things that are happening traces can then decorate"
+    },
+    {
+      "timestamp": "12:48",
+      "speaker": "Abhi",
+      "text": "what's happening with uh we use open telemetry but you have this telemetry data unit tests are"
+    },
+    {
+      "timestamp": "12:56",
+      "speaker": "Abhi",
+      "text": "not the same world of unit test that we may all know unit tests kind of test"
+    },
+    {
+      "timestamp": "13:01",
+      "speaker": "Abhi",
+      "text": "behaviors in this world but even then you're not necessarily test and this is a thing we're going to get back to"
+    },
+    {
+      "timestamp": "13:08",
+      "speaker": "Abhi",
+      "text": "you're not testing for success you're testing for absolute failure right if"
+    },
+    {
+      "timestamp": "13:13",
+      "speaker": "Abhi",
+      "text": "you're and for example if you do a unit test and let's just say theoretically you say the score should be 70% and"
+    },
+    {
+      "timestamp": "13:21",
+      "speaker": "Abhi",
+      "text": "let's say 10 runs the score is 70% but one run the score is 69.5"
+    },
+    {
+      "timestamp": "13:28",
+      "speaker": "Abhi",
+      "text": "technically that is a failure given our old unit testing world of how we think"
+    },
+    {
+      "timestamp": "13:34",
+      "speaker": "Abhi",
+      "text": "about things but in this world that's not a failure because success is a range of values so maybe a unit test for"
+    },
+    {
+      "timestamp": "13:41",
+      "speaker": "Abhi",
+      "text": "success is not the right thing so essentially you want to automate these things over time um and you're"
+    },
+    {
+      "timestamp": "13:48",
+      "speaker": "Abhi",
+      "text": "going to create essentially a way to evaluate your your agent and what it"
+    },
+    {
+      "timestamp": "13:54",
+      "speaker": "Abhi",
+      "text": "does um and then over time even past that once you have enough data aka"
+    },
+    {
+      "timestamp": "13:59",
+      "speaker": "Abhi",
+      "text": "hundreds of thousands of data points you might be able to make specialized models"
+    },
+    {
+      "timestamp": "14:05",
+      "speaker": "Abhi",
+      "text": "um called SLMs small language models if that's what you need to do or you can do fine-tuning to make you know this whole"
+    },
+    {
+      "timestamp": "14:12",
+      "speaker": "Abhi",
+      "text": "thing better um there's just so many things that you can do post having eval data but most of us aren't there yet"
+    },
+    {
+      "timestamp": "14:18",
+      "speaker": "Abhi",
+      "text": "because how many people have 100k data points already and when you're just starting your project what the are"
+    },
+    {
+      "timestamp": "14:23",
+      "speaker": "Abhi",
+      "text": "you supposed to do right so this is something that is important but it's hard to see the importance if you don't"
+    },
+    {
+      "timestamp": "14:30",
+      "speaker": "Abhi",
+      "text": "have like a good loop to do it so what is the goal of eval it's to"
+    },
+    {
+      "timestamp": "14:37",
+      "speaker": "Abhi",
+      "text": "improve your AI's uh application's results over time and over time is the"
+    },
+    {
+      "timestamp": "14:42",
+      "speaker": "Abhi",
+      "text": "key word here because you're not getting it on day one but then when should you do it if not on day one right so there's"
+    },
+    {
+      "timestamp": "14:49",
+      "speaker": "Abhi",
+      "text": "like this whole question should I be doing eval i heard they're not really good until you have enough data etc etc"
+    },
+    {
+      "timestamp": "14:57",
+      "speaker": "Abhi",
+      "text": "etc so I'll walk through why you should do them um at least that's my opinion you should do them and you how to get to"
+    },
+    {
+      "timestamp": "15:03",
+      "speaker": "Abhi",
+      "text": "a quick feedback cycle um and then you can start iterating so there's different"
+    },
+    {
+      "timestamp": "15:08",
+      "speaker": "Abhi",
+      "text": "types of evals um unit tests which are you're trying to"
+    },
+    {
+      "timestamp": "15:13",
+      "speaker": "Abhi",
+      "text": "do this input output and verifying responses over a range of scores or"
+    },
+    {
+      "timestamp": "15:21",
+      "speaker": "Abhi",
+      "text": "testing for absolute failure in the sense that you know if you're if you I'll get into that more but like uh"
+    },
+    {
+      "timestamp": "15:28",
+      "speaker": "Abhi",
+      "text": "you're just testing for like the the danger case um metrics based eval um"
+    },
+    {
+      "timestamp": "15:34",
+      "speaker": "Abhi",
+      "text": "typically we like to call them uh code evals which is does not take any reasoning from an LLM it is purely a"
+    },
+    {
+      "timestamp": "15:42",
+      "speaker": "Abhi",
+      "text": "quantitative measurement or a qualitative measurement right you're writing a function given the inputs and"
+    },
+    {
+      "timestamp": "15:48",
+      "speaker": "Abhi",
+      "text": "outputs and you are creating the heristic yourself and that is totally fine we've been doing that for many"
+    },
+    {
+      "timestamp": "15:54",
+      "speaker": "Abhi",
+      "text": "years now right lastly is the interesting one judges or some people"
+    },
+    {
+      "timestamp": "15:60",
+      "speaker": "Abhi",
+      "text": "call these evaluators these provide feedback and then they actually give you a grade um and given that you can do a"
+    },
+    {
+      "timestamp": "16:10",
+      "speaker": "Abhi",
+      "text": "lot of things right now there are two types of judges you can have a human judge which is usually a user or an"
+    },
+    {
+      "timestamp": "16:17",
+      "speaker": "Abhi",
+      "text": "expert um and we'll talk about why that's important or you can have an LLM as a judge and they are trying to use"
+    },
+    {
+      "timestamp": "16:24",
+      "speaker": "Abhi",
+      "text": "the reasoning models to evaluate the inputs and outputs of the response so"
+    },
+    {
+      "timestamp": "16:31",
+      "speaker": "Abhi",
+      "text": "pretty cool stuff hard to grasp in the beginning but definitely uh very much a"
+    },
+    {
+      "timestamp": "16:38",
+      "speaker": "Abhi",
+      "text": "pillar of this AI application stuff that we do all right let's keep going"
+    },
+    {
+      "timestamp": "16:44",
+      "speaker": "Abhi",
+      "text": "so unit testing the end like they end up being very similar to software tests you"
+    },
+    {
+      "timestamp": "16:52",
+      "speaker": "Abhi",
+      "text": "could even generate test cases right using like what we call synthetic data"
+    },
+    {
+      "timestamp": "16:57",
+      "speaker": "Abhi",
+      "text": "aka just making up um really um and you can test different cases very much"
+    },
+    {
+      "timestamp": "17:04",
+      "speaker": "Abhi",
+      "text": "like how we test our unit tests today we will make like different cases sometimes a bug happens in production and you take"
+    },
+    {
+      "timestamp": "17:11",
+      "speaker": "Abhi",
+      "text": "that uh failure case into your test suite so you know that that one won't"
+    },
+    {
+      "timestamp": "17:16",
+      "speaker": "Abhi",
+      "text": "happen again it's a little harder in this world but it's still the same concept so that that type of stuff like"
+    },
+    {
+      "timestamp": "17:23",
+      "speaker": "Abhi",
+      "text": "the principles of that do not change your pass rate is super variable because"
+    },
+    {
+      "timestamp": "17:29",
+      "speaker": "Abhi",
+      "text": "LLMs are non-deterministic so you have to set the bar on what is okay for your application some"
+    },
+    {
+      "timestamp": "17:36",
+      "speaker": "Abhi",
+      "text": "applications are okay and think passing is 60% and that's totally fine um you"
+    },
+    {
+      "timestamp": "17:43",
+      "speaker": "Abhi",
+      "text": "know that's totally chill some some are even more stringent so their evals are way rougher but their system prompts are"
+    },
+    {
+      "timestamp": "17:49",
+      "speaker": "Abhi",
+      "text": "a lot more um structured etc they want a passing rate of 70% 80% etc i just don't"
+    },
+    {
+      "timestamp": "17:58",
+      "speaker": "Abhi",
+      "text": "know if you can get to 100% truly um but I guess we'll find out over the next couple months and years or maybe a AGI"
+    },
+    {
+      "timestamp": "18:06",
+      "speaker": "Abhi",
+      "text": "will just solve all of our problems so who knows you can typically run this in CI just like any other thing um it is"
+    },
+    {
+      "timestamp": "18:15",
+      "speaker": "Abhi",
+      "text": "expensive because you're you know especially if you're using like an LLM to do things to generate test cases it"
+    },
+    {
+      "timestamp": "18:20",
+      "speaker": "Abhi",
+      "text": "can get expensive and if you're doing this on every pull request think about the token use like this is different in"
+    },
+    {
+      "timestamp": "18:28",
+      "speaker": "Abhi",
+      "text": "some ways it's not necessarily free you have to pay for compute and the tokens if that's what you're doing um but you"
+    },
+    {
+      "timestamp": "18:35",
+      "speaker": "Abhi",
+      "text": "can also do this differently where uh you can essentially because an agent is"
+    },
+    {
+      "timestamp": "18:42",
+      "speaker": "Abhi",
+      "text": "full of for us workflows tools um"
+    },
+    {
+      "timestamp": "18:47",
+      "speaker": "Abhi",
+      "text": "networks uh memory etc you could also take these pieces of the puzzle and unit"
+    },
+    {
+      "timestamp": "18:53",
+      "speaker": "Abhi",
+      "text": "test them in a traditional software sense because the LLM is to is going to execute that tool or workflow or"
+    },
+    {
+      "timestamp": "19:00",
+      "speaker": "Abhi",
+      "text": "whatever but you can just uh test those in isolation much like we used to do all"
+    },
+    {
+      "timestamp": "19:06",
+      "speaker": "Abhi",
+      "text": "the time cool keep going here um so here's some"
+    },
+    {
+      "timestamp": "19:11",
+      "speaker": "Abhi",
+      "text": "examples so you have a task like get the weather and your sample inputs right your inputs"
+    },
+    {
+      "timestamp": "19:20",
+      "speaker": "Abhi",
+      "text": "are what is the weather in X city can you tell me the weather weather in and"
+    },
+    {
+      "timestamp": "19:26",
+      "speaker": "Abhi",
+      "text": "sometimes you spell weather wrong like wh e t h e r in city these are all"
+    },
+    {
+      "timestamp": "19:33",
+      "speaker": "Abhi",
+      "text": "supposed to be different inputs that you could possibly imagine from your user"
+    },
+    {
+      "timestamp": "19:38",
+      "speaker": "Abhi",
+      "text": "and your test is well I'm expecting the LLM to format the response to contain"
+    },
+    {
+      "timestamp": "19:45",
+      "speaker": "Abhi",
+      "text": "the city name uh oh my screen sharing was paused i don't know why what"
+    },
+    {
+      "timestamp": "19:51",
+      "speaker": "Abhi",
+      "text": "happened uh"
+    },
+    {
+      "timestamp": "19:57",
+      "speaker": "Abhi",
+      "text": "what happened there sorry give me a second here"
+    },
+    {
+      "timestamp": "20:07",
+      "speaker": "Abhi",
+      "text": "i don't know why it was paused"
+    },
+    {
+      "timestamp": "20:12",
+      "speaker": "Abhi",
+      "text": "you can still see it okay that's great sorry if anyone in the chat is my screen share paused cuz Zoom just like zoomed"
+    },
+    {
+      "timestamp": "20:18",
+      "speaker": "Abhi",
+      "text": "out of it so my bad if it is i don't know why"
+    },
+    {
+      "timestamp": "20:24",
+      "speaker": "Abhi",
+      "text": "looks fine okay that's weird the cursor is not moving okay let me"
+    },
+    {
+      "timestamp": "20:30",
+      "speaker": "Abhi",
+      "text": "stop sharing real quick and share again okay and am I and are we back um if you"
+    },
+    {
+      "timestamp": "20:37",
+      "speaker": "Abhi",
+      "text": "can just give me a signal in the chat do you see my cursor moving all good okay"
+    },
+    {
+      "timestamp": "20:43",
+      "speaker": "Abhi",
+      "text": "sorry about that i don't know what happened but um cool let me get back"
+    },
+    {
+      "timestamp": "20:49",
+      "speaker": "Abhi",
+      "text": "into this so I was saying that like the response may need to be hey I want the"
+    },
+    {
+      "timestamp": "20:54",
+      "speaker": "Abhi",
+      "text": "city name in the response and I want to know that my weather tool was called"
+    },
+    {
+      "timestamp": "20:60",
+      "speaker": "Abhi",
+      "text": "right so I need to know if the LLM executed the weather tool i want to make sure the tool the API had a status of"
+    },
+    {
+      "timestamp": "21:06",
+      "speaker": "Abhi",
+      "text": "200 and I want to know that it's going to be in Fahrenheit versus Celsius right"
+    },
+    {
+      "timestamp": "21:12",
+      "speaker": "Abhi",
+      "text": "um cool so that's like an example another example more complicated is like"
+    },
+    {
+      "timestamp": "21:18",
+      "speaker": "Abhi",
+      "text": "research a sales lead now types of like types of inputs for this where did John"
+    },
+    {
+      "timestamp": "21:24",
+      "speaker": "Abhi",
+      "text": "Smith work before Apple um if you just typed in Amazon or a company name like"
+    },
+    {
+      "timestamp": "21:30",
+      "speaker": "Abhi",
+      "text": "you need like these are all realistic things that users do when did Jane Smith start at Google"
+    },
+    {
+      "timestamp": "21:38",
+      "speaker": "Abhi",
+      "text": "that's cool um if you just put like a year that's interesting right like these"
+    },
+    {
+      "timestamp": "21:44",
+      "speaker": "Abhi",
+      "text": "are like you cannot imagine I mean we all can imagine because we've been been software engineers but we know that"
+    },
+    {
+      "timestamp": "21:50",
+      "speaker": "Abhi",
+      "text": "users do whatever they want right so it's kind of hard to come up with these inputs uh which is why synthetic data is"
+    },
+    {
+      "timestamp": "21:57",
+      "speaker": "Abhi",
+      "text": "interesting u but if you can then and sometimes you can just take all the inputs that are coming into your"
+    },
+    {
+      "timestamp": "22:04",
+      "speaker": "Abhi",
+      "text": "production uh application and then turn them into tests as well much like we do with errors and stuff and then the same"
+    },
+    {
+      "timestamp": "22:11",
+      "speaker": "Abhi",
+      "text": "type of result examples are you want to make sure that if John Smith worked at"
+    },
+    {
+      "timestamp": "22:17",
+      "speaker": "Abhi",
+      "text": "this place the answer has factual data or correctness you know you want to make"
+    },
+    {
+      "timestamp": "22:22",
+      "speaker": "Abhi",
+      "text": "sure if you're going to search someone or search a company that like I just said you want to make sure the tool"
+    },
+    {
+      "timestamp": "22:27",
+      "speaker": "Abhi",
+      "text": "calls are good they actually get executed when you want to and sometimes it's really hard to get a LLM to call a"
+    },
+    {
+      "timestamp": "22:33",
+      "speaker": "Abhi",
+      "text": "tool when you desperately need it so like these types of tests ahead of time are good and I'm going to keep going i"
+    },
+    {
+      "timestamp": "22:42",
+      "speaker": "Abhi",
+      "text": "also need to speed it up because uh we've had a lot of technical difficulties and I I'll try to go a"
+    },
+    {
+      "timestamp": "22:47",
+      "speaker": "Abhi",
+      "text": "little bit faster so tracing why is tracing important much like in other software applications traces allow you"
+    },
+    {
+      "timestamp": "22:54",
+      "speaker": "Abhi",
+      "text": "to see the input and output of everything that's happening this makes it easier to debug when things go wrong"
+    },
+    {
+      "timestamp": "22:59",
+      "speaker": "Abhi",
+      "text": "also it's kind of cool to see if you're doing a very complex task it's pretty cool to see all the things that the LLM"
+    },
+    {
+      "timestamp": "23:07",
+      "speaker": "Abhi",
+      "text": "does and it kind of seems like magic and that's pretty cool"
+    },
+    {
+      "timestamp": "23:13",
+      "speaker": "Abhi",
+      "text": "metrics so these are the different types of um like things you can test on so we"
+    },
+    {
+      "timestamp": "23:21",
+      "speaker": "Abhi",
+      "text": "uh support in MSRA we support a lot of metrics that uh you can just kind of"
+    },
+    {
+      "timestamp": "23:27",
+      "speaker": "Abhi",
+      "text": "import and use it could be quantitative um if you're trying to do some type of"
+    },
+    {
+      "timestamp": "23:32",
+      "speaker": "Abhi",
+      "text": "scoring on the response if you have like a structured object and you want to like take the keys and then do some type of"
+    },
+    {
+      "timestamp": "23:39",
+      "speaker": "Abhi",
+      "text": "function with that you can totally it's just code um NLP natural language"
+    },
+    {
+      "timestamp": "23:45",
+      "speaker": "Abhi",
+      "text": "processing which kind of like the predecessor to this if you want to do tone and like you know um other types of"
+    },
+    {
+      "timestamp": "23:53",
+      "speaker": "Abhi",
+      "text": "like uh you know positive connotations etc you"
+    },
+    {
+      "timestamp": "23:59",
+      "speaker": "Abhi",
+      "text": "can totally do that um but you got to be selective about what you're doing there is no like silver bullet that if I"
+    },
+    {
+      "timestamp": "24:07",
+      "speaker": "Abhi",
+      "text": "import this it's just going to always work you know it's really based on what"
+    },
+    {
+      "timestamp": "24:12",
+      "speaker": "Abhi",
+      "text": "you're doing but maybe in the C category of applications let's say a lot of if"
+    },
+    {
+      "timestamp": "24:18",
+      "speaker": "Abhi",
+      "text": "you're building a support bot maybe there are some shared evals there that uh or metrics I mean that are relevant"
+    },
+    {
+      "timestamp": "24:25",
+      "speaker": "Abhi",
+      "text": "that across those application types um and the most important thing is to monitor you need to know where you're"
+    },
+    {
+      "timestamp": "24:33",
+      "speaker": "Abhi",
+      "text": "scoring today and then as users come as volume comes you got to see how the"
+    },
+    {
+      "timestamp": "24:38",
+      "speaker": "Abhi",
+      "text": "score changes over time so this is very much like a a scientific experiment you"
+    },
+    {
+      "timestamp": "24:44",
+      "speaker": "Abhi",
+      "text": "know cool let's keep going so there are two types of judges a human judge and an"
+    },
+    {
+      "timestamp": "24:52",
+      "speaker": "Abhi",
+      "text": "LLM as a judge human judges are expensive because you if you usually a"
+    },
+    {
+      "timestamp": "24:58",
+      "speaker": "Abhi",
+      "text": "human judge is an expert in the field that you're working in for example like before MSRA Shane Sam and I were trying"
+    },
+    {
+      "timestamp": "25:05",
+      "speaker": "Abhi",
+      "text": "to build a CRM yet none of us have worked in a sales role or ever used Salesforce in our lives so if we were to"
+    },
+    {
+      "timestamp": "25:12",
+      "speaker": "Abhi",
+      "text": "continue building an AI CRM we would have either had to create LLM as judges but probably in the beginning hire some"
+    },
+    {
+      "timestamp": "25:19",
+      "speaker": "Abhi",
+      "text": "consultants to make sure that the you know the sales agent is working the way that the sales playbook goes so it's"
+    },
+    {
+      "timestamp": "25:27",
+      "speaker": "Abhi",
+      "text": "actually pretty easy though once you have that person because they can say something's good or not and they can"
+    },
+    {
+      "timestamp": "25:34",
+      "speaker": "Abhi",
+      "text": "like give proper feedback that's relevant and contextual that feeds back into the system prompt and maybe exposes"
+    },
+    {
+      "timestamp": "25:42",
+      "speaker": "Abhi",
+      "text": "new tools you need to make etc llm as a judge allows an LLM to judge this which"
+    },
+    {
+      "timestamp": "25:49",
+      "speaker": "Abhi",
+      "text": "means you have the same non-deterministic characteristic as your agent so you're gonna have to pump that"
+    },
+    {
+      "timestamp": "25:54",
+      "speaker": "Abhi",
+      "text": "thing up and probably spend enough as enough as much time as on the judge as"
+    },
+    {
+      "timestamp": "26:01",
+      "speaker": "Abhi",
+      "text": "your agent itself but it's cheaper in some ways because you don't have an"
+    },
+    {
+      "timestamp": "26:06",
+      "speaker": "Abhi",
+      "text": "upfront cost of human labor and if you can really figure it out you can get pretty good"
+    },
+    {
+      "timestamp": "26:12",
+      "speaker": "Abhi",
+      "text": "but you have to calibrate it and even judges may require their own judge right"
+    },
+    {
+      "timestamp": "26:18",
+      "speaker": "Abhi",
+      "text": "so this gets kind of meta but it's important um so let's talk about MSER real quick"
+    },
+    {
+      "timestamp": "26:24",
+      "speaker": "Abhi",
+      "text": "we are open source framework uh we help you build AI agents and everything in"
+    },
+    {
+      "timestamp": "26:29",
+      "speaker": "Abhi",
+      "text": "between or everything around that space uh what's included we have agents we"
+    },
+    {
+      "timestamp": "26:35",
+      "speaker": "Abhi",
+      "text": "have tools memory tracing we have workflows that have suspend and resume"
+    },
+    {
+      "timestamp": "26:42",
+      "speaker": "Abhi",
+      "text": "and all those different types of things we have eval support as well we have"
+    },
+    {
+      "timestamp": "26:47",
+      "speaker": "Abhi",
+      "text": "storage rag a local dev playground pretty much all the things you need to kind of like make moves um in this space"
+    },
+    {
+      "timestamp": "26:57",
+      "speaker": "Abhi",
+      "text": "and so now I I want to talk about the eval loop and how quickly can you get"
+    },
+    {
+      "timestamp": "27:02",
+      "speaker": "Abhi",
+      "text": "into the eval loop so with that I'm going to stop sharing this and I'm going"
+    },
+    {
+      "timestamp": "27:09",
+      "speaker": "Abhi",
+      "text": "to share my excaladra which is not very exciting but we will draw some stuff so"
+    },
+    {
+      "timestamp": "27:18",
+      "speaker": "Abhi",
+      "text": "let me see here where is my screen"
+    },
+    {
+      "timestamp": "27:26",
+      "speaker": "Abhi",
+      "text": "here it is okay so first off the whole like this whole eval"
+    },
+    {
+      "timestamp": "27:33",
+      "speaker": "Abhi",
+      "text": "loop is super important like we said because you want to make sure you get better over time so first I'm just going"
+    },
+    {
+      "timestamp": "27:40",
+      "speaker": "Abhi",
+      "text": "to draw a box here that's just the agent let me make this extra large this is an"
+    },
+    {
+      "timestamp": "27:46",
+      "speaker": "Abhi",
+      "text": "agent and you deploy this to production whatever it exists however you want to"
+    },
+    {
+      "timestamp": "27:53",
+      "speaker": "Abhi",
+      "text": "deploy it maybe you put a UI in front of it whatever but what's happening is this"
+    },
+    {
+      "timestamp": "27:59",
+      "speaker": "Abhi",
+      "text": "agent is going to be getting inputs which is in the form of these user"
+    },
+    {
+      "timestamp": "28:05",
+      "speaker": "Abhi",
+      "text": "prompts right input or you know user prompts"
+    },
+    {
+      "timestamp": "28:13",
+      "speaker": "Abhi",
+      "text": "and within this execution it could a lot of things could happen right you may"
+    },
+    {
+      "timestamp": "28:18",
+      "speaker": "Abhi",
+      "text": "have a bunch of tool calls that happen you know"
+    },
+    {
+      "timestamp": "28:25",
+      "speaker": "Abhi",
+      "text": "maybe it's doing like web research and stuff so these tool calls then are calling some other functions in your"
+    },
+    {
+      "timestamp": "28:32",
+      "speaker": "Abhi",
+      "text": "application right so let's just call these like functions that are executing"
+    },
+    {
+      "timestamp": "28:37",
+      "speaker": "Abhi",
+      "text": "and they have a chance of failing or not of course you could also call"
+    },
+    {
+      "timestamp": "28:44",
+      "speaker": "Abhi",
+      "text": "workflows if you're using MSRA especially this is very helpful and these are like deterministic code"
+    },
+    {
+      "timestamp": "28:52",
+      "speaker": "Abhi",
+      "text": "execution that you can do but the LLM still has to choose to call it and some"
+    },
+    {
+      "timestamp": "28:57",
+      "speaker": "Abhi",
+      "text": "things maybe have already been um synced into memory"
+    },
+    {
+      "timestamp": "29:02",
+      "speaker": "Abhi",
+      "text": "and so if that's the case then maybe there's no tool call at all it's just based on context um and if this is your"
+    },
+    {
+      "timestamp": "29:10",
+      "speaker": "Abhi",
+      "text": "application like this then what's going to happen is you're"
+    },
+    {
+      "timestamp": "29:16",
+      "speaker": "Abhi",
+      "text": "going to yield a result so the output is"
+    },
+    {
+      "timestamp": "29:23",
+      "speaker": "Abhi",
+      "text": "you know output could be many things it could be text and especially if you're doing some multi I don't even want to go"
+    },
+    {
+      "timestamp": "29:29",
+      "speaker": "Abhi",
+      "text": "into the multimodal thing today because that makes things even crazier but you're not always the input is not"
+    },
+    {
+      "timestamp": "29:36",
+      "speaker": "Abhi",
+      "text": "always a text and the output is not always text it could be objects it could be videos it could be images it could be"
+    },
+    {
+      "timestamp": "29:44",
+      "speaker": "Abhi",
+      "text": "voice or sound right everything is possible these days"
+    },
+    {
+      "timestamp": "29:51",
+      "speaker": "Abhi",
+      "text": "and the input could also be any number of these things right so that's the game"
+    },
+    {
+      "timestamp": "29:57",
+      "speaker": "Abhi",
+      "text": "we're playing so now you're in day zero you just shipped this architecture"
+    },
+    {
+      "timestamp": "30:03",
+      "speaker": "Abhi",
+      "text": "you're collecting your inputs and outputs and maybe on day one given the volume things are looking pretty good"
+    },
+    {
+      "timestamp": "30:09",
+      "speaker": "Abhi",
+      "text": "you have zero evals at this point because who cares you're just trying to ship stuff and um you know iterate"
+    },
+    {
+      "timestamp": "30:17",
+      "speaker": "Abhi",
+      "text": "but and like you know and what you're doing at this point right when you don't write evals and you're looking at these"
+    },
+    {
+      "timestamp": "30:23",
+      "speaker": "Abhi",
+      "text": "inputs well for many people you're not even saving the inputs and outputs so you wouldn't even know how it's"
+    },
+    {
+      "timestamp": "30:28",
+      "speaker": "Abhi",
+      "text": "performing let's say you did let's say you use MRA 2 so you're like storing all this stuff"
+    },
+    {
+      "timestamp": "30:34",
+      "speaker": "Abhi",
+      "text": "you can then at this point you are the first evaluator right cuz you're looking at the data and you're like \"Oh man this"
+    },
+    {
+      "timestamp": "30:40",
+      "speaker": "Abhi",
+      "text": "sucks or it's it's going well.\" And if you're the human expert of your own product that's even better because maybe"
+    },
+    {
+      "timestamp": "30:48",
+      "speaker": "Abhi",
+      "text": "you can push off evals for a bit and you're the one who can iterate um and usually this is how development works"
+    },
+    {
+      "timestamp": "30:54",
+      "speaker": "Abhi",
+      "text": "with evals too where you can start like kind of thinking about what the eval"
+    },
+    {
+      "timestamp": "30:60",
+      "speaker": "Abhi",
+      "text": "will be you can test what you know like you can test inputs and outputs that"
+    },
+    {
+      "timestamp": "31:05",
+      "speaker": "Abhi",
+      "text": "maybe you're not an expert on but you know what they should be and then you can start doing some human eval stuff"
+    },
+    {
+      "timestamp": "31:11",
+      "speaker": "Abhi",
+      "text": "actually most people are doing human evals when they test uh their projects"
+    },
+    {
+      "timestamp": "31:16",
+      "speaker": "Abhi",
+      "text": "or if you're in a playground or you're in chat and anytime you see something you it's unexpected you're doing an eval"
+    },
+    {
+      "timestamp": "31:23",
+      "speaker": "Abhi",
+      "text": "cuz you know oh well if I ask a weather agent hey what's the weather in Brussels"
+    },
+    {
+      "timestamp": "31:29",
+      "speaker": "Abhi",
+      "text": "and it's freaking raining and it says it's sunny i'm a human eval like it's definitely raining right now it's not"
+    },
+    {
+      "timestamp": "31:35",
+      "speaker": "Abhi",
+      "text": "sunny boom i can already do that but here's the problem at scale that's not going to work"
+    },
+    {
+      "timestamp": "31:41",
+      "speaker": "Abhi",
+      "text": "so what you want to do and this is also costs money by the way what you want to"
+    },
+    {
+      "timestamp": "31:48",
+      "speaker": "Abhi",
+      "text": "do is you want to add evals to your agent and what we call these is live"
+    },
+    {
+      "timestamp": "31:54",
+      "speaker": "Abhi",
+      "text": "evals um as opposed to running them in CI why don't you run them"
+    },
+    {
+      "timestamp": "32:01",
+      "speaker": "Abhi",
+      "text": "it's almost like uh sorry let me just do this better but after the output is sent"
+    },
+    {
+      "timestamp": "32:07",
+      "speaker": "Abhi",
+      "text": "because you don't want to block on uh returning results to the user you do an asynchronous thing where after this is"
+    },
+    {
+      "timestamp": "32:15",
+      "speaker": "Abhi",
+      "text": "run you run a set of evals"
+    },
+    {
+      "timestamp": "32:20",
+      "speaker": "Abhi",
+      "text": "and maybe in the future like maybe in day zero maybe you just run an eval for every input and output you get for the"
+    },
+    {
+      "timestamp": "32:27",
+      "speaker": "Abhi",
+      "text": "first day and you are collecting data at this point but then maybe you want to sample it in the future just like"
+    },
+    {
+      "timestamp": "32:33",
+      "speaker": "Abhi",
+      "text": "honeycomb or all the other tools we use with some sampling rate and that way"
+    },
+    {
+      "timestamp": "32:38",
+      "speaker": "Abhi",
+      "text": "it's happening off the execution path but you're still collecting uh live data"
+    },
+    {
+      "timestamp": "32:45",
+      "speaker": "Abhi",
+      "text": "now all this live data goes into a database so let me zoom out of here all"
+    },
+    {
+      "timestamp": "32:51",
+      "speaker": "Abhi",
+      "text": "these evals get written to the database so let's say we're using Postgress or something and if you're using MRA this"
+    },
+    {
+      "timestamp": "32:58",
+      "speaker": "Abhi",
+      "text": "happens automatically but hey if you're not that's cool you're going to have to put the data somewhere so this is like"
+    },
+    {
+      "timestamp": "33:03",
+      "speaker": "Abhi",
+      "text": "your eval results okay so now you have your eval results"
+    },
+    {
+      "timestamp": "33:08",
+      "speaker": "Abhi",
+      "text": "and they will contain the input the output and whatever score or how you"
+    },
+    {
+      "timestamp": "33:14",
+      "speaker": "Abhi",
+      "text": "wanted to score this and then what you're going to have to do is another thing which is called annotation"
+    },
+    {
+      "timestamp": "33:22",
+      "speaker": "Abhi",
+      "text": "so this is the next kind of phase of this you have a now let's say you have a day's worth of data you have a bunch of"
+    },
+    {
+      "timestamp": "33:27",
+      "speaker": "Abhi",
+      "text": "data in here now you can run something called annotation annotation is"
+    },
+    {
+      "timestamp": "33:33",
+      "speaker": "Abhi",
+      "text": "essentially you saying and let me just make draw better kind of look a view of"
+    },
+    {
+      "timestamp": "33:38",
+      "speaker": "Abhi",
+      "text": "this let's say this is like a table of all the the data you have like a spreadsheet let's say and some people"
+    },
+    {
+      "timestamp": "33:45",
+      "speaker": "Abhi",
+      "text": "put their eval data in Google sheets so I I wouldn't put it past anyone to do that um"
+    },
+    {
+      "timestamp": "33:52",
+      "speaker": "Abhi",
+      "text": "far far have done more um so now you're in this thing and you want to pick good"
+    },
+    {
+      "timestamp": "33:60",
+      "speaker": "Abhi",
+      "text": "and bad examples so let's say this first one I said good and this next one is bad"
+    },
+    {
+      "timestamp": "34:08",
+      "speaker": "Abhi",
+      "text": "right and when you're annotating you want to say good why right good because bad"
+    },
+    {
+      "timestamp": "34:14",
+      "speaker": "Abhi",
+      "text": "because so now what you've done is created another table of things which are your"
+    },
+    {
+      "timestamp": "34:21",
+      "speaker": "Abhi",
+      "text": "annotations so let's say we have another DB table let me just put this in the"
+    },
+    {
+      "timestamp": "34:27",
+      "speaker": "Abhi",
+      "text": "same thing so this is like our Postgress now we have our eval annotations so now"
+    },
+    {
+      "timestamp": "34:34",
+      "speaker": "Abhi",
+      "text": "you have let's say like you know the some extra commentary on what happened"
+    },
+    {
+      "timestamp": "34:41",
+      "speaker": "Abhi",
+      "text": "because these do have input output and let's say score on each row"
+    },
+    {
+      "timestamp": "34:47",
+      "speaker": "Abhi",
+      "text": "the best the good the good outcomes will the you want the good outcomes and"
+    },
+    {
+      "timestamp": "34:56",
+      "speaker": "Abhi",
+      "text": "like the really good responses and the really shitty ones you want to annotate those because what this does is"
+    },
+    {
+      "timestamp": "35:04",
+      "speaker": "Abhi",
+      "text": "completes the loop right from here you have these things these annotations that"
+    },
+    {
+      "timestamp": "35:11",
+      "speaker": "Abhi",
+      "text": "can then be fed back and sorry it doesn't look like a cool loop but it is"
+    },
+    {
+      "timestamp": "35:16",
+      "speaker": "Abhi",
+      "text": "uh let me put this an arrow you want to put this back and maybe you're changing"
+    },
+    {
+      "timestamp": "35:21",
+      "speaker": "Abhi",
+      "text": "your system instructions maybe you're encoding these into your system instructions or maybe you learn some"
+    },
+    {
+      "timestamp": "35:28",
+      "speaker": "Abhi",
+      "text": "stuff that needs to tweak these tools and workflows and other things to to make things better so as you can see it"
+    },
+    {
+      "timestamp": "35:34",
+      "speaker": "Abhi",
+      "text": "doesn't look like a great loop but the input comes in it does its thing output"
+    },
+    {
+      "timestamp": "35:39",
+      "speaker": "Abhi",
+      "text": "goes out asynchronously i'm running my evals I'm storing them and then I'm"
+    },
+    {
+      "timestamp": "35:45",
+      "speaker": "Abhi",
+      "text": "annotating them and then I'm feeding that uh the learnings back into the LLM"
+    },
+    {
+      "timestamp": "35:52",
+      "speaker": "Abhi",
+      "text": "cool so that's the eval loop as at least as as we see it and there's also other"
+    },
+    {
+      "timestamp": "35:57",
+      "speaker": "Abhi",
+      "text": "things you could do and there's definitely products out there that help you run an eval loop laying smith laying"
+    },
+    {
+      "timestamp": "36:03",
+      "speaker": "Abhi",
+      "text": "fuse laying watch laying trace laying everything these days um and monster"
+    },
+    {
+      "timestamp": "36:08",
+      "speaker": "Abhi",
+      "text": "helps you do this too okay let's go back to the slideshow"
+    },
+    {
+      "timestamp": "36:16",
+      "speaker": "Abhi",
+      "text": "almost to the code part and I'm running out of time so I really need to speed up here um oh we're at the code part great"
+    },
+    {
+      "timestamp": "36:23",
+      "speaker": "Abhi",
+      "text": "so first I'll just show we're going to create some eval i've already pre-anded"
+    },
+    {
+      "timestamp": "36:28",
+      "speaker": "Abhi",
+      "text": "like Emerald Legosi right like I'm here with the with the code i'll just show you different ones and I'll show you a"
+    },
+    {
+      "timestamp": "36:34",
+      "speaker": "Abhi",
+      "text": "custom judge and then we can do some questions i think that's probably where we're at um so yeah let's get on with it"
+    },
+    {
+      "timestamp": "36:44",
+      "speaker": "Abhi",
+      "text": "so let me actually share my code"
+    },
+    {
+      "timestamp": "36:50",
+      "speaker": "Abhi",
+      "text": "here it is we'll start with tone"
+    },
+    {
+      "timestamp": "36:55",
+      "speaker": "Abhi",
+      "text": "um and let me zoom this in a little bit more and so for each one of these I've"
+    },
+    {
+      "timestamp": "37:02",
+      "speaker": "Abhi",
+      "text": "created an agent and I've created like a test we'll run the test and I'll kind of walk through everything here um so here"
+    },
+    {
+      "timestamp": "37:09",
+      "speaker": "Abhi",
+      "text": "it's a very simple agent so maybe look at the chat to see"
+    },
+    {
+      "timestamp": "37:16",
+      "speaker": "Abhi",
+      "text": "um we have a question here so our eval added into the agent's prompt we'll get"
+    },
+    {
+      "timestamp": "37:22",
+      "speaker": "Abhi",
+      "text": "into that so be right there so excuse me"
+    },
+    {
+      "timestamp": "37:27",
+      "speaker": "Abhi",
+      "text": "so I have a simple agent here you are an assistant that provides information about quantum tech quantum computing"
+    },
+    {
+      "timestamp": "37:33",
+      "speaker": "Abhi",
+      "text": "company btailed and informative in your responses technically this agent doesn't"
+    },
+    {
+      "timestamp": "37:38",
+      "speaker": "Abhi",
+      "text": "really do much right um but and it's using GPT40 this is all using MRA we"
+    },
+    {
+      "timestamp": "37:45",
+      "speaker": "Abhi",
+      "text": "have these things called offthe-shelf evals uh which are either NLP metrics or"
+    },
+    {
+      "timestamp": "37:51",
+      "speaker": "Abhi",
+      "text": "LLM as judge that you can use offtheshelf is pretty good to get familiar with evals and tone consistency"
+    },
+    {
+      "timestamp": "37:58",
+      "speaker": "Abhi",
+      "text": "it may be important to some um especially if you're doing customer service or whatever and so you can set"
+    },
+    {
+      "timestamp": "38:06",
+      "speaker": "Abhi",
+      "text": "up this tone consistency metric it's literally calling an NLP function from like node NLP which can do uh that type"
+    },
+    {
+      "timestamp": "38:13",
+      "speaker": "Abhi",
+      "text": "of sentiment analysis on the response and that's it all you got to do next um"
+    },
+    {
+      "timestamp": "38:20",
+      "speaker": "Abhi",
+      "text": "if you wanted to do this live you could pass evals in here and"
+    },
+    {
+      "timestamp": "38:28",
+      "speaker": "Abhi",
+      "text": "then it would do exactly what I said that asynchronous loop after that but in this case I'm not going to do that"
+    },
+    {
+      "timestamp": "38:34",
+      "speaker": "Abhi",
+      "text": "because we have a test that we're going to run so let's go to the test so this is my tone consistency tests um"
+    },
+    {
+      "timestamp": "38:41",
+      "speaker": "Abhi",
+      "text": "I have three different test cases which I want to know um like what would the"
+    },
+    {
+      "timestamp": "38:48",
+      "speaker": "Abhi",
+      "text": "tone would be on those so first one what quantum computing services do you offer"
+    },
+    {
+      "timestamp": "38:53",
+      "speaker": "Abhi",
+      "text": "can you explain quantum entanglement in simple terms and then I'm having some trouble it keeps crashing so I don't"
+    },
+    {
+      "timestamp": "39:00",
+      "speaker": "Abhi",
+      "text": "want to skip this so for each test"
+    },
+    {
+      "timestamp": "39:05",
+      "speaker": "Abhi",
+      "text": "um I'm going to generate a like use my agent i imported it right from here so"
+    },
+    {
+      "timestamp": "39:12",
+      "speaker": "Abhi",
+      "text": "my tone consistency agent and I'm going to call generate on our agents we have"
+    },
+    {
+      "timestamp": "39:17",
+      "speaker": "Abhi",
+      "text": "two methods generate and stream i just chose to generate because I'm not streaming anything right now and I pass"
+    },
+    {
+      "timestamp": "39:23",
+      "speaker": "Abhi",
+      "text": "these queries in and they're going to give me a response in text because that's what I'm doing right now and I"
+    },
+    {
+      "timestamp": "39:29",
+      "speaker": "Abhi",
+      "text": "can take my metric which we defined here and I'm going to call measure right"
+    },
+    {
+      "timestamp": "39:35",
+      "speaker": "Abhi",
+      "text": "measure is going to give me a score for it so I'll take the query what the response is and I'm going to measure"
+    },
+    {
+      "timestamp": "39:41",
+      "speaker": "Abhi",
+      "text": "tone consistency on it so that's what I'm doing"
+    },
+    {
+      "timestamp": "39:47",
+      "speaker": "Abhi",
+      "text": "uh there will be a recording sent after this if you were wondering so thanks for"
+    },
+    {
+      "timestamp": "39:53",
+      "speaker": "Abhi",
+      "text": "the question um it's hard to do these things by yourself i didn't realize uh"
+    },
+    {
+      "timestamp": "39:59",
+      "speaker": "Abhi",
+      "text": "because it's it's hard to keep track of things um but we press on so let me get into my terminal here i will run also if"
+    },
+    {
+      "timestamp": "40:08",
+      "speaker": "Abhi",
+      "text": "you don't use warp you should it's a great terminal and they should sponsor me but they don't so it's okay um I'm"
+    },
+    {
+      "timestamp": "40:15",
+      "speaker": "Abhi",
+      "text": "going to run pmpp test or mpm sorry mpm run test on source agents"
+    },
+    {
+      "timestamp": "40:25",
+      "speaker": "Abhi",
+      "text": "source master agent"
+    },
+    {
+      "timestamp": "40:33",
+      "speaker": "Abhi",
+      "text": "yep let me just go into that folder actually this zoom thing is pissing me off i got"
+    },
+    {
+      "timestamp": "40:39",
+      "speaker": "Abhi",
+      "text": "to move this okay so CD into Maense"
+    },
+    {
+      "timestamp": "40:50",
+      "speaker": "Abhi",
+      "text": "and we're going to mpm run test on the tone test.ts"
+    },
+    {
+      "timestamp": "40:58",
+      "speaker": "Abhi",
+      "text": "so it's running uh I don't have any debug logs or anything have to wait and"
+    },
+    {
+      "timestamp": "41:04",
+      "speaker": "Abhi",
+      "text": "see what's going on because it has to then it has to generate for each test a"
+    },
+    {
+      "timestamp": "41:09",
+      "speaker": "Abhi",
+      "text": "response and then it has to call the tone consistency thing it log stuff i'll"
+    },
+    {
+      "timestamp": "41:16",
+      "speaker": "Abhi",
+      "text": "I'll go through this in a second um this repo Oh the terminal is not showing"
+    },
+    {
+      "timestamp": "41:23",
+      "speaker": "Abhi",
+      "text": "up my bad or is it okay okay okay uh let me stop sharing i"
+    },
+    {
+      "timestamp": "41:30",
+      "speaker": "Abhi",
+      "text": "don't know why can you guys see my terminal now"
+    },
+    {
+      "timestamp": "41:36",
+      "speaker": "Abhi",
+      "text": "let me double check the chat here yep okay sorry back"
+    },
+    {
+      "timestamp": "41:43",
+      "speaker": "Abhi",
+      "text": "back in it and yeah this repo will be available after as well so yeah sorry"
+    },
+    {
+      "timestamp": "41:49",
+      "speaker": "Abhi",
+      "text": "sorry about the the I'm spazzing I guess okay let's go through uh what happened"
+    },
+    {
+      "timestamp": "41:56",
+      "speaker": "Abhi",
+      "text": "also so I guess you you saw the IDE i just ran mpm run test so you didn't"
+    },
+    {
+      "timestamp": "42:02",
+      "speaker": "Abhi",
+      "text": "really miss out on much except for me fumbling but um here you can see the"
+    },
+    {
+      "timestamp": "42:07",
+      "speaker": "Abhi",
+      "text": "query what quantum computing services do you offer quantum tech offers a range of"
+    },
+    {
+      "timestamp": "42:12",
+      "speaker": "Abhi",
+      "text": "blah blah blah blah blah and then it gives me all this stuff honestly whether that's true or not we don't you know"
+    },
+    {
+      "timestamp": "42:18",
+      "speaker": "Abhi",
+      "text": "it's not true obviously cuz how does the LLM know what Quantum Tech is i just made that up but we're not testing"
+    },
+    {
+      "timestamp": "42:24",
+      "speaker": "Abhi",
+      "text": "for that we're testing for tone right so this is all the stuff that it said and then we have a tone info response"
+    },
+    {
+      "timestamp": "42:33",
+      "speaker": "Abhi",
+      "text": "sentiment is zero it's fine um reference sentiment 04 if you really have to know"
+    },
+    {
+      "timestamp": "42:39",
+      "speaker": "Abhi",
+      "text": "these NLP values for it to be to make a difference the tone score is 95%"
+    },
+    {
+      "timestamp": "42:45",
+      "speaker": "Abhi",
+      "text": "i don't know how it actually really determine that because these NL NLP things are a little black boxy but if"
+    },
+    {
+      "timestamp": "42:51",
+      "speaker": "Abhi",
+      "text": "you trust it that's pretty good and you might I might be hinting at why"
+    },
+    {
+      "timestamp": "42:57",
+      "speaker": "Abhi",
+      "text": "I don't really like offthe-shelf evals but that's just me uh the next one entanglement you know same kind of thing"
+    },
+    {
+      "timestamp": "43:04",
+      "speaker": "Abhi",
+      "text": "98% wow how tone the tone was super consistent in this one um okay sure and"
+    },
+    {
+      "timestamp": "43:12",
+      "speaker": "Abhi",
+      "text": "then the last one is you know they're saying some stuff but the tone is like"
+    },
+    {
+      "timestamp": "43:19",
+      "speaker": "Abhi",
+      "text": "79% um because maybe they're too robotic right so is this a good metric to use"
+    },
+    {
+      "timestamp": "43:27",
+      "speaker": "Abhi",
+      "text": "maybe maybe if you just want to play around with EV valves this is good i don't think this is actually good"
+    },
+    {
+      "timestamp": "43:33",
+      "speaker": "Abhi",
+      "text": "personally but um we press on so that was tone let's do another one that is a"
+    },
+    {
+      "timestamp": "43:41",
+      "speaker": "Abhi",
+      "text": "little bit more interesting which is answer relevancy so let's look at that"
+    },
+    {
+      "timestamp": "43:47",
+      "speaker": "Abhi",
+      "text": "so I have two different versions of this that we'll go through so first is I"
+    },
+    {
+      "timestamp": "43:53",
+      "speaker": "Abhi",
+      "text": "create same type of thing i'm creating an agent down here it doesn't do anything yet but it is an answer"
+    },
+    {
+      "timestamp": "43:59",
+      "speaker": "Abhi",
+      "text": "relevancy agent it's using 40 i could use a better reasoning model too and you might have to uh and which we we are in"
+    },
+    {
+      "timestamp": "44:06",
+      "speaker": "Abhi",
+      "text": "a different one but um the the model's capabilities for reasoning um about the"
+    },
+    {
+      "timestamp": "44:12",
+      "speaker": "Abhi",
+      "text": "inputs and out inputs and outputs are important that's why these things get expensive because reasoning models cost"
+    },
+    {
+      "timestamp": "44:18",
+      "speaker": "Abhi",
+      "text": "more so just saying um but in this case you're a helpful customer support agent for Tech Gadget Inc you should answer"
+    },
+    {
+      "timestamp": "44:25",
+      "speaker": "Abhi",
+      "text": "questions about our products and services if you don't know the answer admit it and offer it to escalate to a human sure so we have answer relevancy"
+    },
+    {
+      "timestamp": "44:34",
+      "speaker": "Abhi",
+      "text": "this is actually a LLM as a judge metric"
+    },
+    {
+      "timestamp": "44:39",
+      "speaker": "Abhi",
+      "text": "i can pass in a model so I'm using 03 mini here and you can give it certain um"
+    },
+    {
+      "timestamp": "44:45",
+      "speaker": "Abhi",
+      "text": "properties scale is like I want to I want the score that it outputs to between zero and one and then"
+    },
+    {
+      "timestamp": "44:52",
+      "speaker": "Abhi",
+      "text": "uncertainty weight you can add uncertainty like a little like uh give right so um because it is not all this"
+    },
+    {
+      "timestamp": "45:00",
+      "speaker": "Abhi",
+      "text": "is very random um and let me check the chat here real quick"
+    },
+    {
+      "timestamp": "45:07",
+      "speaker": "Abhi",
+      "text": "uh the qu one quick question on the last one is comparing the tone between the three queries relative to each other um"
+    },
+    {
+      "timestamp": "45:14",
+      "speaker": "Abhi",
+      "text": "no no it was doing each one individually just as an iteration like this one and this one and this one um it's just"
+    },
+    {
+      "timestamp": "45:21",
+      "speaker": "Abhi",
+      "text": "purely taking the text passing it through the NLP tone function and getting a value so you really have to"
+    },
+    {
+      "timestamp": "45:27",
+      "speaker": "Abhi",
+      "text": "interpret that like it's like that's why it's not a good metric cuz how do you interpret tone really from a text or"
+    },
+    {
+      "timestamp": "45:34",
+      "speaker": "Abhi",
+      "text": "maybe I'm the only one who struggles with that um but anyway so this answer relevancy is an LLM judge uh type metric"
+    },
+    {
+      "timestamp": "45:43",
+      "speaker": "Abhi",
+      "text": "pass in a model and under the hood it's supposed it's going to take um it's"
+    },
+    {
+      "timestamp": "45:48",
+      "speaker": "Abhi",
+      "text": "going to take the input and output and it's you're going to give it some context and then it's going to say hey"
+    },
+    {
+      "timestamp": "45:55",
+      "speaker": "Abhi",
+      "text": "is this answer even relevant you know um so in this case there's nothing going on"
+    },
+    {
+      "timestamp": "46:00",
+      "speaker": "Abhi",
+      "text": "here it's just using its the the baked in data let's go look at the tests real quick same thing i got three different"
+    },
+    {
+      "timestamp": "46:07",
+      "speaker": "Abhi",
+      "text": "questions here and um it's gonna say like hey is this is"
+    },
+    {
+      "timestamp": "46:14",
+      "speaker": "Abhi",
+      "text": "the answer relevant to the question right cuz what if I said like hey you know when will the tech gadget thing be"
+    },
+    {
+      "timestamp": "46:21",
+      "speaker": "Abhi",
+      "text": "released and it tells me that x200 was released like I asked for x300 bro so"
+    },
+    {
+      "timestamp": "46:26",
+      "speaker": "Abhi",
+      "text": "what what are you doing right so answer relevancy a lot of people use this metric by the way and I think it's"
+    },
+    {
+      "timestamp": "46:32",
+      "speaker": "Abhi",
+      "text": "pretty good um but you have to tweak that uncertainty weight and once again"
+    },
+    {
+      "timestamp": "46:37",
+      "speaker": "Abhi",
+      "text": "it's kind of like very custom to what you're doing but this is another good one if you want to like explore what LLM"
+    },
+    {
+      "timestamp": "46:42",
+      "speaker": "Abhi",
+      "text": "as a judge means and how it works and stuff so same kind of deal though"
+    },
+    {
+      "timestamp": "46:47",
+      "speaker": "Abhi",
+      "text": "um we are going to generate and we're going to measure and we're going to print it out cool so let's do"
+    },
+    {
+      "timestamp": "46:54",
+      "speaker": "Abhi",
+      "text": "that let me not skip this because that would be dumb and let's run the answer"
+    },
+    {
+      "timestamp": "47:03",
+      "speaker": "Abhi",
+      "text": "answer relevancy test test.ts"
+    },
+    {
+      "timestamp": "47:09",
+      "speaker": "Abhi",
+      "text": "this one will take a little bit longer so if you got some questions we can ask them it's using 03 mini so it should"
+    },
+    {
+      "timestamp": "47:14",
+      "speaker": "Abhi",
+      "text": "take some uh it should take some time here but I guess we're one out one done"
+    },
+    {
+      "timestamp": "47:20",
+      "speaker": "Abhi",
+      "text": "two to go or maybe no we still have three to go so if you have any questions"
+    },
+    {
+      "timestamp": "47:26",
+      "speaker": "Abhi",
+      "text": "just drop them in the chat and uh yeah we'll have to just sit here idly"
+    },
+    {
+      "timestamp": "47:32",
+      "speaker": "Abhi",
+      "text": "together while it does its thing oh we have a failure great that's good"
+    },
+    {
+      "timestamp": "47:47",
+      "speaker": "Abhi",
+      "text": "i wish I had some knockknock jokes or something or elevator music or something"
+    },
+    {
+      "timestamp": "47:52",
+      "speaker": "Abhi",
+      "text": "oh we got second one now let's go for the third where are we"
+    },
+    {
+      "timestamp": "47:60",
+      "speaker": "Abhi",
+      "text": "going to be in the third one come on yo speed it up"
+    },
+    {
+      "timestamp": "48:09",
+      "speaker": "Abhi",
+      "text": "oh and it timed out i guess it would have took longer than 30 seconds i don't really care about that last one because"
+    },
+    {
+      "timestamp": "48:15",
+      "speaker": "Abhi",
+      "text": "we have enough here to to work on so let's go through the first one how do I"
+    },
+    {
+      "timestamp": "48:21",
+      "speaker": "Abhi",
+      "text": "reset my tech gadget X200 to factory settings the response is it made up some"
+    },
+    {
+      "timestamp": "48:27",
+      "speaker": "Abhi",
+      "text": "stuff we're not really testing hallucination here but just saying that and the answer uh"
+    },
+    {
+      "timestamp": "48:35",
+      "speaker": "Abhi",
+      "text": "I logged right here the reason i probably should have put a space between these but with LLM as a judge you get"
+    },
+    {
+      "timestamp": "48:43",
+      "speaker": "Abhi",
+      "text": "the input the output a score so it judges as a score of one which is good because the scale is 0 to one so I guess"
+    },
+    {
+      "timestamp": "48:50",
+      "speaker": "Abhi",
+      "text": "it's 100% we're killing it but and then it gives the reason right so the score is one because every part of the answer"
+    },
+    {
+      "timestamp": "48:57",
+      "speaker": "Abhi",
+      "text": "directly addresses the user's inquiry by explaining each step even though they're"
+    },
+    {
+      "timestamp": "49:02",
+      "speaker": "Abhi",
+      "text": "not it may not be real right but there isn't any extraneous information okay"
+    },
+    {
+      "timestamp": "49:07",
+      "speaker": "Abhi",
+      "text": "cool second one when will the new tech gadget X300 be released i'm sorry but I don't"
+    },
+    {
+      "timestamp": "49:15",
+      "speaker": "Abhi",
+      "text": "have the exact release date for the Tech Gadget X300 it doesn't however I can"
+    },
+    {
+      "timestamp": "49:20",
+      "speaker": "Abhi",
+      "text": "escalate your you know this is like that thing in the system prompt is if you don't know then you escalate the"
+    },
+    {
+      "timestamp": "49:26",
+      "speaker": "Abhi",
+      "text": "question though which is funny is like how did it know about the X200 if the X200 didn't exist how did it not know"
+    },
+    {
+      "timestamp": "49:32",
+      "speaker": "Abhi",
+      "text": "but maybe it didn't feel comfortable giving me an answer right so then the score is 33% interesting or 33 it says"
+    },
+    {
+      "timestamp": "49:40",
+      "speaker": "Abhi",
+      "text": "while the response acknowledges the query right so it it's kind of somewhat relevant because we acknowledge the"
+    },
+    {
+      "timestamp": "49:45",
+      "speaker": "Abhi",
+      "text": "query it fails to provide release information so it's not the answer is not truly relevant and then this one do"
+    },
+    {
+      "timestamp": "49:55",
+      "speaker": "Abhi",
+      "text": "you offer international shipping yes it does blah blah blah blah blah the score is 67 because the first part of the"
+    },
+    {
+      "timestamp": "50:02",
+      "speaker": "Abhi",
+      "text": "response clearly answers that international shipping is offered which is directly relevant however the"
+    },
+    {
+      "timestamp": "50:08",
+      "speaker": "Abhi",
+      "text": "additional information about shipping costs and all this other is not so answer relevancy is very strict right"
+    },
+    {
+      "timestamp": "50:15",
+      "speaker": "Abhi",
+      "text": "and some people want their response to be brief you don't want to be adding"
+    },
+    {
+      "timestamp": "50:20",
+      "speaker": "Abhi",
+      "text": "paragraphs of un unnecessary stuff also if you're in cursor right and when you"
+    },
+    {
+      "timestamp": "50:26",
+      "speaker": "Abhi",
+      "text": "ask the uh the cursor agent to do something and it does 17 other files and"
+    },
+    {
+      "timestamp": "50:31",
+      "speaker": "Abhi",
+      "text": "stuff I don't know if that thing is very much answer relevant right it's it it what it did and what you wanted it to do"
+    },
+    {
+      "timestamp": "50:38",
+      "speaker": "Abhi",
+      "text": "or there's a there's a gap and as you can see though um let me go back to the test cases here"
+    },
+    {
+      "timestamp": "50:45",
+      "speaker": "Abhi",
+      "text": "i was just looking for everything that was greater than zero right so not too big a deal um cool there's some"
+    },
+    {
+      "timestamp": "50:53",
+      "speaker": "Abhi",
+      "text": "questions let me go here i have a question from Colin Matthews"
+    },
+    {
+      "timestamp": "50:60",
+      "speaker": "Abhi",
+      "text": "any opinions on 0ero to one scoring versus abstract number based on adding"
+    },
+    {
+      "timestamp": "51:06",
+      "speaker": "Abhi",
+      "text": "for positive behavior subtracting for negative behavior or other patterns um"
+    },
+    {
+      "timestamp": "51:11",
+      "speaker": "Abhi",
+      "text": "I'm going to talk about that in a bit with the custom stuff that I'm actually building to um and then so I'll get to"
+    },
+    {
+      "timestamp": "51:20",
+      "speaker": "Abhi",
+      "text": "that in a sec and then Morett uh in a case like this where it didn't know about a certain gadget would it make"
+    },
+    {
+      "timestamp": "51:26",
+      "speaker": "Abhi",
+      "text": "sense to write an eval which checks if the agent called a certain tool or would the strategy be to test if the answer"
+    },
+    {
+      "timestamp": "51:32",
+      "speaker": "Abhi",
+      "text": "mentions the gadget regardless if it came from a tool or not yes that's what you would want so if I go back to answer"
+    },
+    {
+      "timestamp": "51:39",
+      "speaker": "Abhi",
+      "text": "relevancy let me give it a tool that gives gives it information oops what am I doing so let me do this"
+    },
+    {
+      "timestamp": "51:48",
+      "speaker": "Abhi",
+      "text": "do this i have a tool here called get releases so it should make something"
+    },
+    {
+      "timestamp": "51:53",
+      "speaker": "Abhi",
+      "text": "better and I'm going to change the system prompt to be actually good um or"
+    },
+    {
+      "timestamp": "51:59",
+      "speaker": "Abhi",
+      "text": "better you know and I'm going to put this here i'm going put the tools in and we're going to run the test again but"
+    },
+    {
+      "timestamp": "52:06",
+      "speaker": "Abhi",
+      "text": "let me also cuz I don't want that thing to time out let's just put like a this"
+    },
+    {
+      "timestamp": "52:11",
+      "speaker": "Abhi",
+      "text": "much and we're going to run this again"
+    },
+    {
+      "timestamp": "52:18",
+      "speaker": "Abhi",
+      "text": "i might not have time for hallucination but it's all the same kind of business right hallucination tests if like the"
+    },
+    {
+      "timestamp": "52:25",
+      "speaker": "Abhi",
+      "text": "context and all this is like actually I'll go through it real quick and then we'll get into custom and then we might"
+    },
+    {
+      "timestamp": "52:32",
+      "speaker": "Abhi",
+      "text": "have to go a little bit over given all the stuff so I apologize for that um this will be recorded though i'm going"
+    },
+    {
+      "timestamp": "52:37",
+      "speaker": "Abhi",
+      "text": "to keep going until the content's over but if you have to leave that's totally fine um"
+    },
+    {
+      "timestamp": "52:43",
+      "speaker": "Abhi",
+      "text": "while this is running I'll start the next one so we can save some time um"
+    },
+    {
+      "timestamp": "52:49",
+      "speaker": "Abhi",
+      "text": "we'll go to hallucination same kind of business right i create an agent it doesn't do much i create a hallucination"
+    },
+    {
+      "timestamp": "52:55",
+      "speaker": "Abhi",
+      "text": "metric which is an LLM as a judge you pass in a model i use GPT40 cuz I didn't"
+    },
+    {
+      "timestamp": "53:01",
+      "speaker": "Abhi",
+      "text": "want to wait so long cuz the last one takes forever um and then for this is interesting hallucination is a really"
+    },
+    {
+      "timestamp": "53:07",
+      "speaker": "Abhi",
+      "text": "good this is one of the off-the-shelf evals that I love because we're always testing for hallucination and don't we"
+    },
+    {
+      "timestamp": "53:14",
+      "speaker": "Abhi",
+      "text": "all get pissed when this thing hallucinates on us i would recommend you at least do this and kind of tweak it um"
+    },
+    {
+      "timestamp": "53:20",
+      "speaker": "Abhi",
+      "text": "if you all don't know we run an MC we have an MCP doc server that you can install into cursor and windsurf and"
+    },
+    {
+      "timestamp": "53:27",
+      "speaker": "Abhi",
+      "text": "then use it to write code but it half the time in the beginning it just hallucinated on what information was"
+    },
+    {
+      "timestamp": "53:34",
+      "speaker": "Abhi",
+      "text": "necessary to write that code so we actually use this hallucination metric"
+    },
+    {
+      "timestamp": "53:39",
+      "speaker": "Abhi",
+      "text": "and how you how it really works you give it a scale but you want to give it context and this context is super"
+    },
+    {
+      "timestamp": "53:46",
+      "speaker": "Abhi",
+      "text": "important for the measurement right given the inputs and outputs and given the context does it do the right thing"
+    },
+    {
+      "timestamp": "53:53",
+      "speaker": "Abhi",
+      "text": "um and is what it's responding not like is it true like is it factually"
+    },
+    {
+      "timestamp": "53:59",
+      "speaker": "Abhi",
+      "text": "true given what context you gave the measurement um so that's cool we'll run"
+    },
+    {
+      "timestamp": "54:04",
+      "speaker": "Abhi",
+      "text": "that in a So it looks like they all passed this time ain't that interesting well yeah"
+    },
+    {
+      "timestamp": "54:12",
+      "speaker": "Abhi",
+      "text": "because I gave it the right information it could make tool calls you know um even though for example I"
+    },
+    {
+      "timestamp": "54:19",
+      "speaker": "Abhi",
+      "text": "didn't add any information about how to do this tech gadget thing but it knows about the release dates and in this time"
+    },
+    {
+      "timestamp": "54:28",
+      "speaker": "Abhi",
+      "text": "it did better at answer relevancy on the international shipping question that's"
+    },
+    {
+      "timestamp": "54:34",
+      "speaker": "Abhi",
+      "text": "why dude okay was it 33% right now it's 0 75 i didn't change anything about that"
+    },
+    {
+      "timestamp": "54:40",
+      "speaker": "Abhi",
+      "text": "that's why unit tests like this are whack because you shouldn't be testing for success you should be testing for"
+    },
+    {
+      "timestamp": "54:45",
+      "speaker": "Abhi",
+      "text": "absolute failure if it could jump like that in that range right obviously this"
+    },
+    {
+      "timestamp": "54:50",
+      "speaker": "Abhi",
+      "text": "this is a hypothetical situation i'm putting this uh problem in a box right now but dude like the fact that it could"
+    },
+    {
+      "timestamp": "54:57",
+      "speaker": "Abhi",
+      "text": "change in a swing like that means you should only be testing for less than X"
+    },
+    {
+      "timestamp": "55:02",
+      "speaker": "Abhi",
+      "text": "because that's means something is gravely gone wrong hope that makes sense"
+    },
+    {
+      "timestamp": "55:07",
+      "speaker": "Abhi",
+      "text": "um and let's now let's run the hallucination test here so same kind of"
+    },
+    {
+      "timestamp": "55:12",
+      "speaker": "Abhi",
+      "text": "deal as all the other tests i have some test cases i have a lot of test cases here let me get rid of some so this goes"
+    },
+    {
+      "timestamp": "55:18",
+      "speaker": "Abhi",
+      "text": "faster and then same kind of deal hallucination measurement um so I'll do"
+    },
+    {
+      "timestamp": "55:25",
+      "speaker": "Abhi",
+      "text": "that"
+    },
+    {
+      "timestamp": "55:34",
+      "speaker": "Abhi",
+      "text": "okay while this is running I'll move to the next one so we're more efficient here"
+    },
+    {
+      "timestamp": "55:40",
+      "speaker": "Abhi",
+      "text": "so I was leading this whole workshop up to this because I my opinion is offtheshelf is whack um I don't think"
+    },
+    {
+      "timestamp": "55:47",
+      "speaker": "Abhi",
+      "text": "people should be doing them because in some cases they're good maybe hallucination but as we can see like"
+    },
+    {
+      "timestamp": "55:55",
+      "speaker": "Abhi",
+      "text": "does it really like is it truly testing what you want to test i personally think"
+    },
+    {
+      "timestamp": "56:00",
+      "speaker": "Abhi",
+      "text": "people should create their own custom metrics that are based on what your business you're the you're the one"
+    },
+    {
+      "timestamp": "56:06",
+      "speaker": "Abhi",
+      "text": "writing the application right so you're probably the best one to know and to write this metric how do you do this the"
+    },
+    {
+      "timestamp": "56:13",
+      "speaker": "Abhi",
+      "text": "first thing you need is a judge so I have one here um and my judge is kind of hefty um but you can So how the how you"
+    },
+    {
+      "timestamp": "56:21",
+      "speaker": "Abhi",
+      "text": "do this um and we have docs and stuff on this but I'm going to show you now you can import the MRA agent judge from the"
+    },
+    {
+      "timestamp": "56:29",
+      "speaker": "Abhi",
+      "text": "eval package and you have to write instructions just like an agent as you can see I wrote um I wrote different"
+    },
+    {
+      "timestamp": "56:37",
+      "speaker": "Abhi",
+      "text": "type of instructions i don't like LLM using numbers maybe because I studied mathematics in college i don't know but"
+    },
+    {
+      "timestamp": "56:43",
+      "speaker": "Abhi",
+      "text": "I just don't feel right it calculating numbers for me i do feel right about it"
+    },
+    {
+      "timestamp": "56:48",
+      "speaker": "Abhi",
+      "text": "giving something a qualitative label for example and so in this case I have"
+    },
+    {
+      "timestamp": "56:54",
+      "speaker": "Abhi",
+      "text": "different things that I care about i care about correctness completeness clarity empathy which is hard to gauge"
+    },
+    {
+      "timestamp": "57:02",
+      "speaker": "Abhi",
+      "text": "honestly um and a lot of models don't even pass emotional intelligence but let's not even go there actionability um"
+    },
+    {
+      "timestamp": "57:09",
+      "speaker": "Abhi",
+      "text": "and within those I want to grade them on a poor good and excellent"
+    },
+    {
+      "timestamp": "57:15",
+      "speaker": "Abhi",
+      "text": "and here I have some examples that would have come from annotation by the way in"
+    },
+    {
+      "timestamp": "57:20",
+      "speaker": "Abhi",
+      "text": "in a real scenario or could come from annotation um a poor one is like your"
+    },
+    {
+      "timestamp": "57:26",
+      "speaker": "Abhi",
+      "text": "warranty is valid for 5 years but it's actually 2 years your device comes with a 2-year warranty that's like good i"
+    },
+    {
+      "timestamp": "57:33",
+      "speaker": "Abhi",
+      "text": "guess it's it's factually correct your device is covered by a 2-year manufacturer warranty which includes"
+    },
+    {
+      "timestamp": "57:39",
+      "speaker": "Abhi",
+      "text": "parts labor it gives more information right so that's an excellent response and then the same for all these other"
+    },
+    {
+      "timestamp": "57:46",
+      "speaker": "Abhi",
+      "text": "ones right like I just have examples what poor good and excellent would mean"
+    },
+    {
+      "timestamp": "57:52",
+      "speaker": "Abhi",
+      "text": "for each of those categories and then we have an evaluate function"
+    },
+    {
+      "timestamp": "57:58",
+      "speaker": "Abhi",
+      "text": "here which you can create a eval prompt right based on the customer query and"
+    },
+    {
+      "timestamp": "58:05",
+      "speaker": "Abhi",
+      "text": "the response from my agent please evaluate the dimensions only using these"
+    },
+    {
+      "timestamp": "58:11",
+      "speaker": "Abhi",
+      "text": "ratings poor good excellent so then I will want a structured object back of"
+    },
+    {
+      "timestamp": "58:18",
+      "speaker": "Abhi",
+      "text": "the ratings the examples and the recommendations"
+    },
+    {
+      "timestamp": "58:23",
+      "speaker": "Abhi",
+      "text": "then I pass these kind of things into my um my judge agent right this is still an"
+    },
+    {
+      "timestamp": "58:30",
+      "speaker": "Abhi",
+      "text": "agent it's a LLM as a judge agent is like a primitive masher that's why we called it an agent here um uh yeah then"
+    },
+    {
+      "timestamp": "58:37",
+      "speaker": "Abhi",
+      "text": "you pass this eval prompt which has the inputs and outputs in and your kind of"
+    },
+    {
+      "timestamp": "58:43",
+      "speaker": "Abhi",
+      "text": "structure and this is going to give you um a ratings object in this case"
+    },
+    {
+      "timestamp": "58:50",
+      "speaker": "Abhi",
+      "text": "and so this is where and you'll if you read a lot of white papers too when they're doing these type of evals"
+    },
+    {
+      "timestamp": "58:55",
+      "speaker": "Abhi",
+      "text": "there's a normalization period um after you collect this information where you"
+    },
+    {
+      "timestamp": "59:00",
+      "speaker": "Abhi",
+      "text": "take the ratings and you convert them into numbers because now you can put"
+    },
+    {
+      "timestamp": "59:06",
+      "speaker": "Abhi",
+      "text": "your quantitative uh uh opinion on it so for me I was like hey you know 2.5 is"
+    },
+    {
+      "timestamp": "59:12",
+      "speaker": "Abhi",
+      "text": "good poor 7.5 is good and excellent is 10 so then I can actually put some"
+    },
+    {
+      "timestamp": "59:18",
+      "speaker": "Abhi",
+      "text": "numbers behind it and I'm the one who made up the numbers so that's why it matters to me and then if you want to"
+    },
+    {
+      "timestamp": "59:24",
+      "speaker": "Abhi",
+      "text": "get a reason so you have to have the input the output and the scores here you"
+    },
+    {
+      "timestamp": "59:30",
+      "speaker": "Abhi",
+      "text": "can say hey these are all the scores for all the things and this my overall score"
+    },
+    {
+      "timestamp": "59:36",
+      "speaker": "Abhi",
+      "text": "please give me like uh the reason why it was scored this way and that's how you"
+    },
+    {
+      "timestamp": "59:42",
+      "speaker": "Abhi",
+      "text": "finally generate a reason you can format it and sorry this is my converting to"
+    },
+    {
+      "timestamp": "59:48",
+      "speaker": "Abhi",
+      "text": "rating thing if it's less than five it's poor less than eight good etc so you can"
+    },
+    {
+      "timestamp": "59:54",
+      "speaker": "Abhi",
+      "text": "convert back and forth between these um I know we have 1 minute left so I'm"
+    },
+    {
+      "timestamp": "59:60",
+      "speaker": "Abhi",
+      "text": "going to run this one but I got to go check on that hallucination one so all of them fa or one of them failed"
+    },
+    {
+      "timestamp": "60:07",
+      "speaker": "Abhi",
+      "text": "probably because of a timeout great that's okay so let's just go through one"
+    },
+    {
+      "timestamp": "60:12",
+      "speaker": "Abhi",
+      "text": "here how has quantum tech uh evolved since their quantum computer quantum"
+    },
+    {
+      "timestamp": "60:18",
+      "speaker": "Abhi",
+      "text": "tech has made significant strides in the development of blah blah blah blah blah"
+    },
+    {
+      "timestamp": "60:23",
+      "speaker": "Abhi",
+      "text": "let's look at the reason um where is that here so this score to"
+    },
+    {
+      "timestamp": "60:29",
+      "speaker": "Abhi",
+      "text": "one because score is one because all statements in the output are either unsupported"
+    },
+    {
+      "timestamp": "60:35",
+      "speaker": "Abhi",
+      "text": "um and one is not good i think one means hallucination um or contradict the context which is"
+    },
+    {
+      "timestamp": "60:43",
+      "speaker": "Abhi",
+      "text": "probably true i just don't have time to go back and show it to you um let me answer some questions and I'll run the"
+    },
+    {
+      "timestamp": "60:48",
+      "speaker": "Abhi",
+      "text": "last one um okay"
+    },
+    {
+      "timestamp": "60:53",
+      "speaker": "Abhi",
+      "text": "how did you structure your docs for rag with MCP any specific approach that worked better sorry not really relevant"
+    },
+    {
+      "timestamp": "60:59",
+      "speaker": "Abhi",
+      "text": "to this but that's okay um we did we like structured it by path and then like"
+    },
+    {
+      "timestamp": "61:04",
+      "speaker": "Abhi",
+      "text": "topic and you can actually look at the docs MCP server for inspiration if that"
+    },
+    {
+      "timestamp": "61:09",
+      "speaker": "Abhi",
+      "text": "u you know is good for you next one is is there a significant difference"
+    },
+    {
+      "timestamp": "61:15",
+      "speaker": "Abhi",
+      "text": "between using the MRA agent judge class and a regular MRA agent as an evaluator"
+    },
+    {
+      "timestamp": "61:20",
+      "speaker": "Abhi",
+      "text": "um no it's a convenience and honestly this is Eval's V1 i'm cooking Eval's V2"
+    },
+    {
+      "timestamp": "61:26",
+      "speaker": "Abhi",
+      "text": "right here which will be way cooler than this um but this is what we have right now so there isn't a big difference"
+    },
+    {
+      "timestamp": "61:32",
+      "speaker": "Abhi",
+      "text": "maybe syntactic sugar in a way and TypeScript and but this will get better and more cohesive"
+    },
+    {
+      "timestamp": "61:38",
+      "speaker": "Abhi",
+      "text": "okay I'm going to do we're going to do the final drop the mic uh demo and I"
+    },
+    {
+      "timestamp": "61:44",
+      "speaker": "Abhi",
+      "text": "have a agent here or sorry I showed you the judge this is my metric"
+    },
+    {
+      "timestamp": "61:51",
+      "speaker": "Abhi",
+      "text": "it's like I just made like a customer quality metric that takes the judge and this orchestrates everything so Ray"
+    },
+    {
+      "timestamp": "61:58",
+      "speaker": "Abhi",
+      "text": "Rayanch you would ask like could you do this yourself totally dude you could totally do this yourself with a regular"
+    },
+    {
+      "timestamp": "62:04",
+      "speaker": "Abhi",
+      "text": "agent uh we just made these classes for some convenience to give structure to this but like for example I created this"
+    },
+    {
+      "timestamp": "62:11",
+      "speaker": "Abhi",
+      "text": "measure method that exists on the class calculating a score um so this is"
+    },
+    {
+      "timestamp": "62:17",
+      "speaker": "Abhi",
+      "text": "convenience stuff to help give like a framework around it um and then I have my customer this is a test i'm not going"
+    },
+    {
+      "timestamp": "62:24",
+      "speaker": "Abhi",
+      "text": "to run these for per se but I do have an agent in here that I want to run i think"
+    },
+    {
+      "timestamp": "62:30",
+      "speaker": "Abhi",
+      "text": "it's this one um agents customer support here it is so"
+    },
+    {
+      "timestamp": "62:37",
+      "speaker": "Abhi",
+      "text": "here's my customer support agent it has some BS system prompt it has"
+    },
+    {
+      "timestamp": "62:45",
+      "speaker": "Abhi",
+      "text": "company context because I'm doing hallucination and it also has my customer quality metric and in this case"
+    },
+    {
+      "timestamp": "62:53",
+      "speaker": "Abhi",
+      "text": "I put them on my agent itself so when I test it it's going to do this eval run"
+    },
+    {
+      "timestamp": "63:00",
+      "speaker": "Abhi",
+      "text": "asynchronously and so I'm going to run go back go back"
+    },
+    {
+      "timestamp": "63:06",
+      "speaker": "Abhi",
+      "text": "go back mpm rundev this will start oh I already have it"
+    },
+    {
+      "timestamp": "63:12",
+      "speaker": "Abhi",
+      "text": "running that's my bad here I'll just pretend pretend like you didn't see that and it's starting up the dev server we"
+    },
+    {
+      "timestamp": "63:19",
+      "speaker": "Abhi",
+      "text": "have a dev server um when you run MRA dev it turns that MRA class for example"
+    },
+    {
+      "timestamp": "63:26",
+      "speaker": "Abhi",
+      "text": "here it turns this into a hono server which then we serve a playground from it which pretty cool um and if I go to it"
+    },
+    {
+      "timestamp": "63:35",
+      "speaker": "Abhi",
+      "text": "you'll see that I have my agent here and I'm just going to ask it some BS"
+    },
+    {
+      "timestamp": "63:40",
+      "speaker": "Abhi",
+      "text": "questions and we'll just see how it goes like um"
+    },
+    {
+      "timestamp": "63:45",
+      "speaker": "Abhi",
+      "text": "when is quantum tech going to"
+    },
+    {
+      "timestamp": "63:52",
+      "speaker": "Abhi",
+      "text": "um actually let me think about this why does quantum tech suck uh your agent"
+    },
+    {
+      "timestamp": "64:01",
+      "speaker": "Abhi",
+      "text": "always hallucinates and leads me astray"
+    },
+    {
+      "timestamp": "64:09",
+      "speaker": "Abhi",
+      "text": "okay so it's doing its thing you know honestly if this was a support agent I"
+    },
+    {
+      "timestamp": "64:15",
+      "speaker": "Abhi",
+      "text": "would stop reading right now you know but for the sake of quantum tech and our customer support metric we will wait for"
+    },
+    {
+      "timestamp": "64:22",
+      "speaker": "Abhi",
+      "text": "it and so this is the response right now in Ma Playground you have this eval tab"
+    },
+    {
+      "timestamp": "64:29",
+      "speaker": "Abhi",
+      "text": "you're going to see the tone consistency showed up right away cuz that shit's for free actually you're writing a function"
+    },
+    {
+      "timestamp": "64:34",
+      "speaker": "Abhi",
+      "text": "and you can already see that the score was 67 now remember I talked about that"
+    },
+    {
+      "timestamp": "64:40",
+      "speaker": "Abhi",
+      "text": "spreadsheet of data well we technically gave you a spreadsheet here in the playground that stores what happened so"
+    },
+    {
+      "timestamp": "64:47",
+      "speaker": "Abhi",
+      "text": "you have the time stamp the instructions so like this was the system prompt at the time that you ran this inputs"
+    },
+    {
+      "timestamp": "64:54",
+      "speaker": "Abhi",
+      "text": "outputs and the score as we know NLP or these uh NLP metrics don't have"
+    },
+    {
+      "timestamp": "65:00",
+      "speaker": "Abhi",
+      "text": "reasoning makes sense there's no LLM involved now in the background now"
+    },
+    {
+      "timestamp": "65:05",
+      "speaker": "Abhi",
+      "text": "there's probably some more metrics yep I called it so let's talk about look at answer"
+    },
+    {
+      "timestamp": "65:12",
+      "speaker": "Abhi",
+      "text": "relevancy first and here's another good point about this if I change my system prompt and I learn"
+    },
+    {
+      "timestamp": "65:18",
+      "speaker": "Abhi",
+      "text": "things I still want to see the evolution of my system prompt right i have the data for it also what if I regress i"
+    },
+    {
+      "timestamp": "65:26",
+      "speaker": "Abhi",
+      "text": "need to know what the system prompt was at a certain time this is where like a prompt CMS will come in handy"
+    },
+    {
+      "timestamp": "65:31",
+      "speaker": "Abhi",
+      "text": "i'm not I'm not saying we have one or will have one but maybe we will um and then you can see the score here um it"
+    },
+    {
+      "timestamp": "65:39",
+      "speaker": "Abhi",
+      "text": "doesn't really matter about the score because it's all made up but it's like whose line is it anyway um hallucination"
+    },
+    {
+      "timestamp": "65:45",
+      "speaker": "Abhi",
+      "text": "will look very it's obviously took things that are not in the context um"
+    },
+    {
+      "timestamp": "65:51",
+      "speaker": "Abhi",
+      "text": "that's fine but let's actually look at my customer quality metric um so"
+    },
+    {
+      "timestamp": "65:57",
+      "speaker": "Abhi",
+      "text": "correctness rating excellent quantum tech is a company focused on developing"
+    },
+    {
+      "timestamp": "66:03",
+      "speaker": "Abhi",
+      "text": "quantum Yep that's true that's true to improve you know completeness so I can"
+    },
+    {
+      "timestamp": "66:09",
+      "speaker": "Abhi",
+      "text": "see right it's going through each one that I that I created I'm the one who cares about this okay so then you can"
+    },
+    {
+      "timestamp": "66:15",
+      "speaker": "Abhi",
+      "text": "see like why was it a complete answer and the rating was good so here are some examples from the response to improve it"
+    },
+    {
+      "timestamp": "66:22",
+      "speaker": "Abhi",
+      "text": "the cool thing is I wanted to know how to improve it even though it might be like wrong at least it's like a good"
+    },
+    {
+      "timestamp": "66:28",
+      "speaker": "Abhi",
+      "text": "first step to improve something um and say oh okay the response could more directly address the customer specific"
+    },
+    {
+      "timestamp": "66:34",
+      "speaker": "Abhi",
+      "text": "complaint I can go back to the system prompt I can go do some things to tweak this clarity cool it got excellent and"
+    },
+    {
+      "timestamp": "66:44",
+      "speaker": "Abhi",
+      "text": "empathy good whatever but I converted those I normalized what I wanted in this"
+    },
+    {
+      "timestamp": "66:49",
+      "speaker": "Abhi",
+      "text": "qualitative label to a quantitative score 88% now if we didn't know this was all BS"
+    },
+    {
+      "timestamp": "66:56",
+      "speaker": "Abhi",
+      "text": "right 88% pretty good and if I had a real agent that I really cared about and a lot of you do too you can then feel"
+    },
+    {
+      "timestamp": "67:04",
+      "speaker": "Abhi",
+      "text": "good about the metric and that's the whole point because these um actionable"
+    },
+    {
+      "timestamp": "67:09",
+      "speaker": "Abhi",
+      "text": "uh improving reasons can then you can then iterate now and I can go back to my system prompt i can go change some stuff"
+    },
+    {
+      "timestamp": "67:17",
+      "speaker": "Abhi",
+      "text": "because look how shitty this one is right i can change it i can make it better i run the same input again in the"
+    },
+    {
+      "timestamp": "67:22",
+      "speaker": "Abhi",
+      "text": "playground or if I'm in production I can even do this too and I'm starting to"
+    },
+    {
+      "timestamp": "67:27",
+      "speaker": "Abhi",
+      "text": "collect all this data and then go from there okay so that is all I have time"
+    },
+    {
+      "timestamp": "67:33",
+      "speaker": "Abhi",
+      "text": "for i'll answer some questions for those who want to stick around and then we're good thank you so much for um attending"
+    },
+    {
+      "timestamp": "67:41",
+      "speaker": "Abhi",
+      "text": "so uh yeah questions in the chat please i'm here way harder to do this by yourself"
+    },
+    {
+      "timestamp": "67:47",
+      "speaker": "Abhi",
+      "text": "so thanks for having the patience and you know listening to me talk for an hour"
+    },
+    {
+      "timestamp": "67:58",
+      "speaker": "Abhi",
+      "text": "any questions"
+    },
+    {
+      "timestamp": "68:04",
+      "speaker": "Abhi",
+      "text": "thank you oh Craig said \"Thank you great stuff i now have a working eval.\" Sick"
+    },
+    {
+      "timestamp": "68:09",
+      "speaker": "Abhi",
+      "text": "dude wow i did something important today yes any other questions or I'll just let"
+    },
+    {
+      "timestamp": "68:16",
+      "speaker": "Abhi",
+      "text": "everyone go um going once going twice"
+    },
+    {
+      "timestamp": "68:22",
+      "speaker": "Abhi",
+      "text": "going three times okay well that was it then thank you so much for attending i"
+    },
+    {
+      "timestamp": "68:29",
+      "speaker": "Abhi",
+      "text": "will see you next time um I will share I think in the event actually I'll just"
+    },
+    {
+      "timestamp": "68:35",
+      "speaker": "Abhi",
+      "text": "share it now why not um I'll put it in the chat here"
+    },
+    {
+      "timestamp": "68:43",
+      "speaker": "Abhi",
+      "text": "but I think yeah I mean it's it's public so it's chilling"
+    },
+    {
+      "timestamp": "68:51",
+      "speaker": "Abhi",
+      "text": "evals"
+    },
+    {
+      "timestamp": "68:56",
+      "speaker": "Abhi",
+      "text": "there it is and we'll also assume we send the"
+    },
+    {
+      "timestamp": "69:03",
+      "speaker": "Abhi",
+      "text": "recording as well um wait I need to send that to everyone sorry there you go so"
+    },
+    {
+      "timestamp": "69:08",
+      "speaker": "Abhi",
+      "text": "that's the code that we walked through um oh we have a question so if you want"
+    },
+    {
+      "timestamp": "69:13",
+      "speaker": "Abhi",
+      "text": "to stick around for this from Colin Matthews any tips for tracing issues if eval drop and more than one underlying"
+    },
+    {
+      "timestamp": "69:20",
+      "speaker": "Abhi",
+      "text": "element changed oh boy that's a tough one um if dep so in this case you need"
+    },
+    {
+      "timestamp": "69:28",
+      "speaker": "Abhi",
+      "text": "to make sure that you're the the elements that changed have their own tests because you don't want to get"
+    },
+    {
+      "timestamp": "69:34",
+      "speaker": "Abhi",
+      "text": "biseect this right you want to just figure out it's got to be these one points but then if the model changed and"
+    },
+    {
+      "timestamp": "69:40",
+      "speaker": "Abhi",
+      "text": "now you're receiving and this has happened to a bunch one some of our customers like when like the model changed they changed the model and all"
+    },
+    {
+      "timestamp": "69:47",
+      "speaker": "Abhi",
+      "text": "their emails went out of whack because the first couple days after a model release things are not so peachy right"
+    },
+    {
+      "timestamp": "69:54",
+      "speaker": "Abhi",
+      "text": "so they needed to know is it the tools is it my code is it things that I wrote"
+    },
+    {
+      "timestamp": "69:59",
+      "speaker": "Abhi",
+      "text": "is it the model so you have to have like tests around everything which is a big ask right now because you know a lot of"
+    },
+    {
+      "timestamp": "70:05",
+      "speaker": "Abhi",
+      "text": "us are just figuring this thing out um but it's a good tip to start getting into the mindset of what could go wrong"
+    },
+    {
+      "timestamp": "70:12",
+      "speaker": "Abhi",
+      "text": "in the trace and do I have coverage on all of it thanks for the question Colin"
+    },
+    {
+      "timestamp": "70:18",
+      "speaker": "Abhi",
+      "text": "that's a really good question all right everyone i think that will be"
+    },
+    {
+      "timestamp": "70:24",
+      "speaker": "Abhi",
+      "text": "unless you have another one um I could be here all day i'm just kidding um I'm gonna go now thank you so much have a"
+    },
+    {
+      "timestamp": "70:30",
+      "speaker": "Abhi",
+      "text": "great day catch you on live streams we do it every day catch you at the next workshop uh really appreciate it bye"
+    }
+  ]
+}

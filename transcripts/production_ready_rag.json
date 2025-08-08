@@ -1,0 +1,2614 @@
+{
+  "metadata": {
+    "episode_title": "Build Production Ready RAG apps with Mastra",
+    "total_speakers": ["Shane", "Nick"],
+    "source": "https://www.youtube.com/watch?v=ad2aEYh4g_Q"
+  },
+  "transcript": [
+    {
+      "timestamp": "00:15",
+      "speaker": "Shane",
+      "text": "all right everybody hopefully we are live now i"
+    },
+    {
+      "timestamp": "00:22",
+      "speaker": "Shane",
+      "text": "believe we are uh thanks for attending and we're going to be talking"
+    },
+    {
+      "timestamp": "00:28",
+      "speaker": "Shane",
+      "text": "a little bit about rag today so appreciate you all joining us i'm going to share my screen and we're going to"
+    },
+    {
+      "timestamp": "00:34",
+      "speaker": "Shane",
+      "text": "kick this off and if you are kind of funneling in I made a mistake in not turning the chat"
+    },
+    {
+      "timestamp": "00:40",
+      "speaker": "Shane",
+      "text": "on i apologize for that you can use the Q&A if you have questions we're also"
+    },
+    {
+      "timestamp": "00:45",
+      "speaker": "Shane",
+      "text": "live streaming on YouTube and on my my X account and the MRA X account so if you"
+    },
+    {
+      "timestamp": "00:51",
+      "speaker": "Shane",
+      "text": "have questions you can just reply there as well and we'll monitor those and we"
+    },
+    {
+      "timestamp": "00:56",
+      "speaker": "Shane",
+      "text": "will talk about RAG today so"
+    },
+    {
+      "timestamp": "01:03",
+      "speaker": "Shane",
+      "text": "let's go ahead and get"
+    },
+    {
+      "timestamp": "01:21",
+      "speaker": "Shane",
+      "text": "started all right so our goal today is to build rag applications with MRA so"
+    },
+    {
+      "timestamp": "01:27",
+      "speaker": "Shane",
+      "text": "we're going to learn a bunch about Rag if you have questions uh yes there is a"
+    },
+    {
+      "timestamp": "01:33",
+      "speaker": "Shane",
+      "text": "this will be recorded this will be on our YouTube channel almost immediately after and we'll also send out a link to"
+    },
+    {
+      "timestamp": "01:40",
+      "speaker": "Shane",
+      "text": "that once this session is over if you can't find our channel on YouTube it should just be master-ai so if you just"
+    },
+    {
+      "timestamp": "01:47",
+      "speaker": "Shane",
+      "text": "go to youtube.comra-ai you should be able to find it uh let me Should be something"
+    },
+    {
+      "timestamp": "01:55",
+      "speaker": "Shane",
+      "text": "like that if you go"
+    },
+    {
+      "timestamp": "01:60",
+      "speaker": "Shane",
+      "text": "there and this is what we're going to learn today we're going to talk about some common rag concepts we're going to"
+    },
+    {
+      "timestamp": "02:05",
+      "speaker": "Shane",
+      "text": "talk about chunking embedding models retrieval reranking we'll talk a little bit about fine-tuning strategies and use"
+    },
+    {
+      "timestamp": "02:12",
+      "speaker": "Shane",
+      "text": "the use of synthetic data and then we'll go through and talk about rag and how it's used within MRA so we'll learn a"
+    },
+    {
+      "timestamp": "02:19",
+      "speaker": "Shane",
+      "text": "little bit about the highle concepts and then actually dig into practical applications using MRA so whether you've"
+    },
+    {
+      "timestamp": "02:25",
+      "speaker": "Shane",
+      "text": "used MRA or not you hopefully will get something from this so talking about who we are so with"
+    },
+    {
+      "timestamp": "02:32",
+      "speaker": "Shane",
+      "text": "me I have Nick he's one of the founding engineers of Mastra he"
+    },
+    {
+      "timestamp": "02:37",
+      "speaker": "Shane",
+      "text": "was previously I guess Nick are you able to see my screen"
+    },
+    {
+      "timestamp": "02:39",
+      "speaker": "Nick",
+      "text": "yep I can see it"
+    },
+    {
+      "timestamp": "02:43",
+      "speaker": "Shane",
+      "text": "bunch issues i'm seeing someone in the Q&A say that they're having issues i"
+    },
+    {
+      "timestamp": "02:49",
+      "speaker": "Shane",
+      "text": "guess if you are having issues seeing the screen please raise your hand and we'll know if it's just one"
+    },
+    {
+      "timestamp": "02:56",
+      "speaker": "Shane",
+      "text": "person right now it looks like it's just one person that's not able to see the screen for whatever"
+    },
+    {
+      "timestamp": "03:02",
+      "speaker": "Shane",
+      "text": "reason rajath I'm not sure why you're not able to see it seems like everyone else can oh maybe a few others"
+    },
+    {
+      "timestamp": "03:10",
+      "speaker": "Shane",
+      "text": "interesting okay well this seems like maybe a Zoom issue but let me try resharing"
+    },
+    {
+      "timestamp": "03:30",
+      "speaker": "Shane",
+      "text": "swap to the right"
+    },
+    {
+      "timestamp": "03:36",
+      "speaker": "Shane",
+      "text": "there interesting all right well let's try just doing"
+    },
+    {
+      "timestamp": "03:42",
+      "speaker": "Shane",
+      "text": "a try this again i don't know why you weren't able to see some people weren't able to see it when some were but let's"
+    },
+    {
+      "timestamp": "03:50",
+      "speaker": "Shane",
+      "text": "we'll try all we can do is try again so raise your hand now please if you cannot"
+    },
+    {
+      "timestamp": "03:56",
+      "speaker": "Shane",
+      "text": "see my screen"
+    },
+    {
+      "timestamp": "04:02",
+      "speaker": "Shane",
+      "text": "huh that is interesting let me try sharing my whole desktop once and just see if that that'll do"
+    },
+    {
+      "timestamp": "04:12",
+      "speaker": "Shane",
+      "text": "it okay we're going to try this it We're having some fun and having some"
+    },
+    {
+      "timestamp": "04:17",
+      "speaker": "Shane",
+      "text": "technical issues which is great but we do want to learn about rag so if you"
+    },
+    {
+      "timestamp": "04:22",
+      "speaker": "Shane",
+      "text": "cannot see my screen now raise your hand"
+    },
+    {
+      "timestamp": "04:28",
+      "speaker": "Shane",
+      "text": "could be an OS sharing permissions issue is someone someone's asked"
+    },
+    {
+      "timestamp": "04:38",
+      "speaker": "Shane",
+      "text": "seems like a lot of people are able to see it which is just really strange hey Nick can you go to like YouTube and"
+    },
+    {
+      "timestamp": "04:45",
+      "speaker": "Shane",
+      "text": "just see if you can if we're on the YouTube channel and if it's displaying live if you can see it"
+    },
+    {
+      "timestamp": "04:46",
+      "speaker": "Nick",
+      "text": "yeah let me double check right now"
+    },
+    {
+      "timestamp": "04:52",
+      "speaker": "Shane",
+      "text": "yeah so we're going to go ahead and keep going we're going to check you know if you for some reason are not able to see it in this"
+    },
+    {
+      "timestamp": "04:57",
+      "speaker": "Shane",
+      "text": "meeting we'll we can send you to the live stream hopefully and you should be able to see it there um either on our"
+    },
+    {
+      "timestamp": "05:04",
+      "speaker": "Shane",
+      "text": "our company X account or the MSRA YouTube account but I'll go ahead and get going so Nick is he was previously a"
+    },
+    {
+      "timestamp": "05:11",
+      "speaker": "Shane",
+      "text": "software engineer at Netlifi he's pretty excited about Rag he's kind of a he's uh we like to say Nick is our wrangler of"
+    },
+    {
+      "timestamp": "05:18",
+      "speaker": "Shane",
+      "text": "rag our emissary of evals as those are the two big things uh he really he"
+    },
+    {
+      "timestamp": "05:23",
+      "speaker": "Shane",
+      "text": "really works on we also some say he's the sultan of support because he dives in helps so many uh so many customers"
+    },
+    {
+      "timestamp": "05:29",
+      "speaker": "Shane",
+      "text": "out in our discord so many names but rag is the hat he is wearing"
+    },
+    {
+      "timestamp": "05:35",
+      "speaker": "Shane",
+      "text": "today and myself I'm a founder of MRA chief"
+    },
+    {
+      "timestamp": "05:41",
+      "speaker": "Shane",
+      "text": "product officer formerly I was an ine and product at Gatsby and Netlefi I built a service called audio feed I've"
+    },
+    {
+      "timestamp": "05:48",
+      "speaker": "Shane",
+      "text": "been doing open source stuff for a long time but feel free to connect with me on Twitter or LinkedIn so let's talk a"
+    },
+    {
+      "timestamp": "05:55",
+      "speaker": "Shane",
+      "text": "little bit about rag so this is kind of a rough diagram of how ragg works Essentially you kind of have two tracks"
+    },
+    {
+      "timestamp": "06:02",
+      "speaker": "Shane",
+      "text": "that you know you have like the knowledge base if on the bottom here where you you're basically taking some"
+    },
+    {
+      "timestamp": "06:10",
+      "speaker": "Shane",
+      "text": "kind of data that's most likely proprietary data to you or your company you're doing some chunking and then"
+    },
+    {
+      "timestamp": "06:15",
+      "speaker": "Shane",
+      "text": "embedding those using an embedding model and storing it in some kind of vector database then when you get input from a"
+    },
+    {
+      "timestamp": "06:23",
+      "speaker": "Shane",
+      "text": "user you're embedding that user input you're doing a retrieval on that vector"
+    },
+    {
+      "timestamp": "06:28",
+      "speaker": "Shane",
+      "text": "database and then you're passing in the relevant chunks or the relevant information to an LLM to then get"
+    },
+    {
+      "timestamp": "06:36",
+      "speaker": "Shane",
+      "text": "output so that's kind of the rough really simple explanation of how rag works obviously there's a lot of detail"
+    },
+    {
+      "timestamp": "06:42",
+      "speaker": "Shane",
+      "text": "that goes into each of those things choosing embedding models what vector DBs how how to do uh retrieval"
+    },
+    {
+      "timestamp": "06:49",
+      "speaker": "Shane",
+      "text": "potentially reranking but high level that that's this kind of simplified"
+    },
+    {
+      "timestamp": "06:55",
+      "speaker": "Shane",
+      "text": "overview of what rag what a retrieval with rag is so rag is essentially an AI"
+    },
+    {
+      "timestamp": "07:02",
+      "speaker": "Shane",
+      "text": "architecture that combines information retrieval with generative models so you can get better accuracy right it's about"
+    },
+    {
+      "timestamp": "07:07",
+      "speaker": "Shane",
+      "text": "getting the right data into the LLM calls so it's for retrieving external documents or data at the time the user's"
+    },
+    {
+      "timestamp": "07:14",
+      "speaker": "Shane",
+      "text": "querying for something and it helps us get around"
+    },
+    {
+      "timestamp": "07:19",
+      "speaker": "Shane",
+      "text": "kind of context window limitations it also it's it's more than that i know a lot of people think that with larger"
+    },
+    {
+      "timestamp": "07:25",
+      "speaker": "Shane",
+      "text": "context window maybe rag is dead this isn't always this isn't necessarily true because there's times where you maybe"
+    },
+    {
+      "timestamp": "07:31",
+      "speaker": "Shane",
+      "text": "don't want to pass tons of context into the context window or you have enough information where even large context windows start to run out"
+    },
+    {
+      "timestamp": "07:39",
+      "speaker": "Shane",
+      "text": "um and for those it looks like maybe it's a it was a mobile issue if you join you know this some person that joined on"
+    },
+    {
+      "timestamp": "07:46",
+      "speaker": "Shane",
+      "text": "their laptop it was fine so thank you for that"
+    },
+    {
+      "timestamp": "07:51",
+      "speaker": "Shane",
+      "text": "um so it looks like everyone's most people are able to see it"
+    },
+    {
+      "timestamp": "08:01",
+      "speaker": "Shane",
+      "text": "now so chunking is basically the process of just taking these larger documents"
+    },
+    {
+      "timestamp": "08:07",
+      "speaker": "Shane",
+      "text": "imagine it's like a giant word doc or a web page or something and you're breaking it up into chunks smaller"
+    },
+    {
+      "timestamp": "08:13",
+      "speaker": "Shane",
+      "text": "pieces and then when you do retrieval you're actually operating at that chunk"
+    },
+    {
+      "timestamp": "08:18",
+      "speaker": "Shane",
+      "text": "level so rather than getting the entire document you're saying well this is like a relevant chunk a piece of that"
+    },
+    {
+      "timestamp": "08:24",
+      "speaker": "Shane",
+      "text": "document in maybe in the case of like a a paper it'd be like a paragraph right like this paragraph is relevant to the"
+    },
+    {
+      "timestamp": "08:30",
+      "speaker": "Shane",
+      "text": "user's query so then but this does mean that how you decide to chunk your documents"
+    },
+    {
+      "timestamp": "08:37",
+      "speaker": "Shane",
+      "text": "is important and there's some people that think you know when you're dealing with rag like"
+    },
+    {
+      "timestamp": "08:44",
+      "speaker": "Shane",
+      "text": "depending on how you chunk that's like your prop almost like your chunking strategy is like your proprietary information for if rag is if your rag"
+    },
+    {
+      "timestamp": "08:51",
+      "speaker": "Shane",
+      "text": "results are going to be good or not so chunking can be very important i've heard a lot of our customers talk about"
+    },
+    {
+      "timestamp": "08:56",
+      "speaker": "Shane",
+      "text": "how they've spent a lot of time trying out different chunking strategies to and then down the line the retrieval"
+    },
+    {
+      "timestamp": "09:03",
+      "speaker": "Shane",
+      "text": "improves because of it and so some just basic best practices"
+    },
+    {
+      "timestamp": "09:09",
+      "speaker": "Shane",
+      "text": "you kind of want to balance chunk size if you're too large your chunks are going to have too much unrelated"
+    },
+    {
+      "timestamp": "09:14",
+      "speaker": "Shane",
+      "text": "information and so you're not you're getting a whole bunch of extra stuff when you're doing your retrieval but if"
+    },
+    {
+      "timestamp": "09:19",
+      "speaker": "Shane",
+      "text": "it's too small you don't have enough context to really answer the question so retrieval is a little bit less useful so"
+    },
+    {
+      "timestamp": "09:26",
+      "speaker": "Shane",
+      "text": "you really need to think through like what kind of data are you pulling in and build chunk sizes around you know what's"
+    },
+    {
+      "timestamp": "09:33",
+      "speaker": "Shane",
+      "text": "kind of semantically meaningful so if in the case of you know like a large paper"
+    },
+    {
+      "timestamp": "09:38",
+      "speaker": "Shane",
+      "text": "you it might be paragraphs it might be sections or chapters chapters are probably too long but depending on how"
+    },
+    {
+      "timestamp": "09:44",
+      "speaker": "Shane",
+      "text": "how much information is there so you do have to kind of play around with that depending on the the types of information"
+    },
+    {
+      "timestamp": "09:51",
+      "speaker": "Shane",
+      "text": "and then you do want to you know store additional metadata with each chunk maybe like what web page did this come"
+    },
+    {
+      "timestamp": "09:56",
+      "speaker": "Shane",
+      "text": "from or what you know who's the author or any other types of metadata you might store with that or you might want to"
+    },
+    {
+      "timestamp": "10:02",
+      "speaker": "Shane",
+      "text": "also retrieve when you get that chunk and then you can overlap chunks or retrieve neighboring chunks which is a"
+    },
+    {
+      "timestamp": "10:08",
+      "speaker": "Shane",
+      "text": "common strategy so it's like you don't just retrieve the one chunk you retrieve the chunks around it so you generate a little bit more"
+    },
+    {
+      "timestamp": "10:14",
+      "speaker": "Shane",
+      "text": "context there are a bunch of embedding models so these are essentially just ML"
+    },
+    {
+      "timestamp": "10:20",
+      "speaker": "Shane",
+      "text": "models that convert text into a numerical vector or representation that"
+    },
+    {
+      "timestamp": "10:26",
+      "speaker": "Shane",
+      "text": "tries to capture the semantic meaning of you know words sentences or documents the idea here so if I search for puppy I"
+    },
+    {
+      "timestamp": "10:34",
+      "speaker": "Shane",
+      "text": "should probably also retrieve chunks that use the word dog right they're semantically pretty similar even though"
+    },
+    {
+      "timestamp": "10:39",
+      "speaker": "Shane",
+      "text": "they're not the keyword is not exactly the same um and this kind of allows for"
+    },
+    {
+      "timestamp": "10:45",
+      "speaker": "Shane",
+      "text": "that semantic retrieval and there's a whole bunch of different embedding models i asked there's a question around"
+    },
+    {
+      "timestamp": "10:51",
+      "speaker": "Shane",
+      "text": "um potential like local embedding models we I think we used in Ma we ship with"
+    },
+    {
+      "timestamp": "10:57",
+      "speaker": "Shane",
+      "text": "fast embed i don't know that that's necessarily the best one it's just one of the smallest ones that's like pretty good to get started with so there are"
+    },
+    {
+      "timestamp": "11:04",
+      "speaker": "Shane",
+      "text": "some uh local models and Nick you probably have more context on some of those other ones uh you know we do hear"
+    },
+    {
+      "timestamp": "11:11",
+      "speaker": "Shane",
+      "text": "a lot of people just using OpenAI as embedding models we hear a lot of people that eventually try to use cohhere and"
+    },
+    {
+      "timestamp": "11:18",
+      "speaker": "Shane",
+      "text": "have seen slightly better results with that but it does depend on what you're trying to do and then retrieval techniques is you"
+    },
+    {
+      "timestamp": "11:26",
+      "speaker": "Shane",
+      "text": "know just another thing with rag is people think of rag and they think it has to be a vector database and that's"
+    },
+    {
+      "timestamp": "11:33",
+      "speaker": "Shane",
+      "text": "what we're talking about mostly today but sometimes just keyword-based retrieval is still just useful or"
+    },
+    {
+      "timestamp": "11:38",
+      "speaker": "Shane",
+      "text": "sometimes you need a mixture a hybrid approach so it doesn't have to just be a vector"
+    },
+    {
+      "timestamp": "11:44",
+      "speaker": "Shane",
+      "text": "database and a semantic search rag just means retrieval augmented generation so"
+    },
+    {
+      "timestamp": "11:50",
+      "speaker": "Shane",
+      "text": "whatever you do to do the retrieval part and then you pass that context into the LLM that's rag now the most common use"
+    },
+    {
+      "timestamp": "11:58",
+      "speaker": "Shane",
+      "text": "case or the thing that most people talk about when they think of rag is you know vector retrieval but it doesn't have to be so you know there's kind of exact"
+    },
+    {
+      "timestamp": "12:05",
+      "speaker": "Shane",
+      "text": "keyword-based retrieval there's semantic search and there's hybrid search which is maybe you use a mixture of both to"
+    },
+    {
+      "timestamp": "12:11",
+      "speaker": "Shane",
+      "text": "get the best results and then after you've actually retrieved the chunks you often want to"
+    },
+    {
+      "timestamp": "12:18",
+      "speaker": "Shane",
+      "text": "go through this ranking process and the reason is because you might uh it it's"
+    },
+    {
+      "timestamp": "12:25",
+      "speaker": "Shane",
+      "text": "cheaper or faster to get a bunch of chunks that are somewhat relevant and then you can kind of go through after"
+    },
+    {
+      "timestamp": "12:32",
+      "speaker": "Shane",
+      "text": "you've taken maybe thousands of chunks narrowed it down to 10 or 15 then you kind of rerank and pick the top five so"
+    },
+    {
+      "timestamp": "12:39",
+      "speaker": "Shane",
+      "text": "then you can do a little bit more of a intensive operation using a little bit better model to do the ranking and you"
+    },
+    {
+      "timestamp": "12:45",
+      "speaker": "Shane",
+      "text": "but you're not doing it over a large amount of chunks it's just a small amount of chunks but you are doing a re-ranking to then pick the best most"
+    },
+    {
+      "timestamp": "12:51",
+      "speaker": "Shane",
+      "text": "accurate chunks and it's important to know that it improves relevance and quality but it does increase cost and"
+    },
+    {
+      "timestamp": "12:58",
+      "speaker": "Shane",
+      "text": "latency right it's an extra step but if uh you if retrieval quality is important"
+    },
+    {
+      "timestamp": "13:04",
+      "speaker": "Shane",
+      "text": "then reranking is a very important step"
+    },
+    {
+      "timestamp": "13:11",
+      "speaker": "Shane",
+      "text": "and so fine-tuning a lot of people ask questions of you know if I already have all this data why don't I just do some"
+    },
+    {
+      "timestamp": "13:17",
+      "speaker": "Shane",
+      "text": "fine-tuning on the model itself using that data uh and you might want this if"
+    },
+    {
+      "timestamp": "13:24",
+      "speaker": "Shane",
+      "text": "you're generic embedding and reranking models don't achieve high enough precision most of the time this is for"
+    },
+    {
+      "timestamp": "13:29",
+      "speaker": "Shane",
+      "text": "very specialized use cases though so the general advice we give is you should"
+    },
+    {
+      "timestamp": "13:36",
+      "speaker": "Shane",
+      "text": "probably be measuring retrieval and generation accuracy you should have pretty good evals and metrics on whether"
+    },
+    {
+      "timestamp": "13:41",
+      "speaker": "Shane",
+      "text": "that's good before you invest the cost in fine-tuning and the reason is because you need a really large amount of data"
+    },
+    {
+      "timestamp": "13:48",
+      "speaker": "Shane",
+      "text": "i've heard varying accounts of you know one person said you need hundreds of thousands of data points some have said"
+    },
+    {
+      "timestamp": "13:53",
+      "speaker": "Shane",
+      "text": "you can start to get some results with 10,000 plus data points but you need a lot of data uh you know or or chunks to"
+    },
+    {
+      "timestamp": "14:01",
+      "speaker": "Shane",
+      "text": "really start to improve the quality you can generate some synthetic data a lot of people are"
+    },
+    {
+      "timestamp": "14:08",
+      "speaker": "Shane",
+      "text": "you know have used you know you have some data you generate more and that can help with fine-tuning and improving the"
+    },
+    {
+      "timestamp": "14:13",
+      "speaker": "Shane",
+      "text": "model so you don't necessarily need you know your knowledge base and rag setup"
+    },
+    {
+      "timestamp": "14:18",
+      "speaker": "Shane",
+      "text": "you can kind of just have the model know that context but again you should be measuring retrieval and generation"
+    },
+    {
+      "timestamp": "14:24",
+      "speaker": "Shane",
+      "text": "before you actually try that because it is expensive it's very timeconuming let's talk a little bit"
+    },
+    {
+      "timestamp": "14:29",
+      "speaker": "Shane",
+      "text": "about Maestra because we are going to show how rag works in Ma but a lot of this stuff is applicable whether you're"
+    },
+    {
+      "timestamp": "14:35",
+      "speaker": "Shane",
+      "text": "using master or not master is the open source AI agent framework for TypeScript"
+    },
+    {
+      "timestamp": "14:40",
+      "speaker": "Shane",
+      "text": "we have agents with tools memory and tracing we have more deterministic workflows with human in the loop so you"
+    },
+    {
+      "timestamp": "14:46",
+      "speaker": "Shane",
+      "text": "can suspend and resume and a very simple API you know we have"
+    },
+    {
+      "timestamp": "14:52",
+      "speaker": "Shane",
+      "text": "eval kind of a framework for building evals we have storage for rag pipelines and vector retrieval and we have kind of"
+    },
+    {
+      "timestamp": "14:59",
+      "speaker": "Shane",
+      "text": "it's all bundled and accessible through a local development playground our goal with Mashra is to be opinionated to get"
+    },
+    {
+      "timestamp": "15:06",
+      "speaker": "Shane",
+      "text": "you further faster but also flexible so you can kind of decide and use the parts"
+    },
+    {
+      "timestamp": "15:12",
+      "speaker": "Shane",
+      "text": "that you want or override things if you need them so we get you going quickly but we don't lock you into any one"
+    },
+    {
+      "timestamp": "15:18",
+      "speaker": "Shane",
+      "text": "specific pattern and then now we're going to hand"
+    },
+    {
+      "timestamp": "15:24",
+      "speaker": "Shane",
+      "text": "it over to Nick we're going to talk through uh actually doing some of the stuff in Ma with Rag we're going to talk"
+    },
+    {
+      "timestamp": "15:30",
+      "speaker": "Shane",
+      "text": "through chunking embedding retrieval reranking and then we'll talk you know how to actually have an agent use a a"
+    },
+    {
+      "timestamp": "15:38",
+      "speaker": "Shane",
+      "text": "tool to actually get vector results and and you know actually change the agent response based on the data that the"
+    },
+    {
+      "timestamp": "15:44",
+      "speaker": "Shane",
+      "text": "agent's able to look up on its own so with that Nick I will hand it over to you"
+    },
+    {
+      "timestamp": "15:52",
+      "speaker": "Nick",
+      "text": "great thank you i will share my screen right now"
+    },
+    {
+      "timestamp": "15:57",
+      "speaker": "Nick",
+      "text": "so I to best show these examples I've created a repo um that basically"
+    },
+    {
+      "timestamp": "16:03",
+      "speaker": "Nick",
+      "text": "contains all the examples and just a basic guide on what each thing each"
+    },
+    {
+      "timestamp": "16:08",
+      "speaker": "Nick",
+      "text": "um each step does and uh we can share this with you after uh the workshop um"
+    },
+    {
+      "timestamp": "16:15",
+      "speaker": "Nick",
+      "text": "so first I will just go through our first example which is I've uh sorted"
+    },
+    {
+      "timestamp": "16:20",
+      "speaker": "Nick",
+      "text": "all the examples in order um so our first example would be uh the basic"
+    },
+    {
+      "timestamp": "16:26",
+      "speaker": "Nick",
+      "text": "character chunking and basically what this does is it's a very simple way to chunk uh content so we'll just it really"
+    },
+    {
+      "timestamp": "16:34",
+      "speaker": "Nick",
+      "text": "is just based on character count um so what our this chunking will do is take"
+    },
+    {
+      "timestamp": "16:39",
+      "speaker": "Nick",
+      "text": "that string and in 20 characters it'll split the chunks based on 20 characters"
+    },
+    {
+      "timestamp": "16:45",
+      "speaker": "Nick",
+      "text": "now this is a good way to um you know just just show how to chunk your"
+    },
+    {
+      "timestamp": "16:51",
+      "speaker": "Nick",
+      "text": "document um and I can show you that in uh action right now let me make this"
+    },
+    {
+      "timestamp": "16:58",
+      "speaker": "Nick",
+      "text": "smaller actually that's a little too small this"
+    },
+    {
+      "timestamp": "17:05",
+      "speaker": "Nick",
+      "text": "cool so now I'm going to just run this script and just show you how it exactly"
+    },
+    {
+      "timestamp": "17:11",
+      "speaker": "Nick",
+      "text": "outputs so now you can see here it takes this document and it splits it based on"
+    },
+    {
+      "timestamp": "17:17",
+      "speaker": "Nick",
+      "text": "that character count so our original document was this is a simple text document that will be split into chunks"
+    },
+    {
+      "timestamp": "17:24",
+      "speaker": "Nick",
+      "text": "based on character count um and we split that into we have a a hard limit of 20"
+    },
+    {
+      "timestamp": "17:31",
+      "speaker": "Nick",
+      "text": "characters so it'll split based on 20 characters for each um and then once it"
+    },
+    {
+      "timestamp": "17:38",
+      "speaker": "Nick",
+      "text": "uh splits on the the the 20 characters it'll make a new chunk um and then we see the end of the chunk that we get"
+    },
+    {
+      "timestamp": "17:45",
+      "speaker": "Nick",
+      "text": "this array of chunks um from our output now this is a good way to do chunks when"
+    },
+    {
+      "timestamp": "17:51",
+      "speaker": "Nick",
+      "text": "you're starting out but it kind of does lose some um logical grouping it's very"
+    },
+    {
+      "timestamp": "17:58",
+      "speaker": "Nick",
+      "text": "brute force so it's not it's hard to uh if you want to have like some logical"
+    },
+    {
+      "timestamp": "18:04",
+      "speaker": "Nick",
+      "text": "flow for your chunks you probably want to consider some other strategies which"
+    },
+    {
+      "timestamp": "18:09",
+      "speaker": "Nick",
+      "text": "we shall uh show in the next one um but this is recursive chunking now recursive"
+    },
+    {
+      "timestamp": "18:14",
+      "speaker": "Nick",
+      "text": "chunking will respect like certain logical groups like code structure or"
+    },
+    {
+      "timestamp": "18:21",
+      "speaker": "Nick",
+      "text": "document structure now for this example um we have two functions right now um"
+    },
+    {
+      "timestamp": "18:27",
+      "speaker": "Nick",
+      "text": "and based on how you chunk it these will be split into two separate chunks so"
+    },
+    {
+      "timestamp": "18:33",
+      "speaker": "Nick",
+      "text": "like this each function will be a separate chunk and I can show you that as"
+    },
+    {
+      "timestamp": "18:39",
+      "speaker": "Nick",
+      "text": "well make so let me know if you wanted me to make this bigger actually I'll make this bigger right now so you can"
+    },
+    {
+      "timestamp": "18:44",
+      "speaker": "Nick",
+      "text": "easily see it and move that"
+    },
+    {
+      "timestamp": "18:47",
+      "speaker": "Shane",
+      "text": "yeah maybe a few a few clicks of zoom please"
+    },
+    {
+      "timestamp": "18:49",
+      "speaker": "Nick",
+      "text": "okay yeah let me do that whoops one one more than you're comfortable with"
+    },
+    {
+      "timestamp": "18:57",
+      "speaker": "Shane",
+      "text": "i'll make that a little bigger"
+    },
+    {
+      "timestamp": "18:59",
+      "speaker": "Nick",
+      "text": "cool and I shall run"
+    },
+    {
+      "timestamp": "19:03",
+      "speaker": "Nick",
+      "text": "this so let me make this smaller too so you can easily see it all"
+    },
+    {
+      "timestamp": "19:10",
+      "speaker": "Nick",
+      "text": "right all right well this looks good now if I run this example as you can see"
+    },
+    {
+      "timestamp": "19:16",
+      "speaker": "Nick",
+      "text": "it's split into two code chunks and one is one function of the process data and"
+    },
+    {
+      "timestamp": "19:23",
+      "speaker": "Nick",
+      "text": "the other one is the transform now the way our cursive tracking works is that it"
+    },
+    {
+      "timestamp": "19:29",
+      "speaker": "Nick",
+      "text": "will take a size and it will ensure that"
+    },
+    {
+      "timestamp": "19:34",
+      "speaker": "Nick",
+      "text": "um the the data that fits within that size is properly um in the same uh"
+    },
+    {
+      "timestamp": "19:42",
+      "speaker": "Nick",
+      "text": "logical chunk so like as you as you can see the the function it keeps everything in the function together and thus you"
+    },
+    {
+      "timestamp": "19:50",
+      "speaker": "Nick",
+      "text": "have two separate chunks that fully have all the data you need all the context you need for that code um let me move on"
+    },
+    {
+      "timestamp": "19:59",
+      "speaker": "Nick",
+      "text": "to the next one so we also have uh JSON chunking so"
+    },
+    {
+      "timestamp": "20:05",
+      "speaker": "Nick",
+      "text": "very similar premise where we have this JSON document and you want to chunk this"
+    },
+    {
+      "timestamp": "20:12",
+      "speaker": "Nick",
+      "text": "data but you also want to know exactly how um how the tree flows so you want to see"
+    },
+    {
+      "timestamp": "20:18",
+      "speaker": "Nick",
+      "text": "oh I have a config uh object and you have an AI object and a features object inside there but you want to make sure"
+    },
+    {
+      "timestamp": "20:25",
+      "speaker": "Nick",
+      "text": "that you still understand the structure of the JSON object after you chunk it um so what JSON trunking will help do is it"
+    },
+    {
+      "timestamp": "20:33",
+      "speaker": "Nick",
+      "text": "will help um ensure nested data is properly given context so um if we run"
+    },
+    {
+      "timestamp": "20:41",
+      "speaker": "Nick",
+      "text": "this example you'll see that the API uh API"
+    },
+    {
+      "timestamp": "20:46",
+      "speaker": "Nick",
+      "text": "object and the features object are both under the config object so you could still see that the uh context is still"
+    },
+    {
+      "timestamp": "20:53",
+      "speaker": "Nick",
+      "text": "there you still know how the structure of the object looks after trunking it"
+    },
+    {
+      "timestamp": "21:00",
+      "speaker": "Nick",
+      "text": "and uh let me make sure there is okay cool and now our next u example is"
+    },
+    {
+      "timestamp": "21:10",
+      "speaker": "Nick",
+      "text": "markdown now very similar to uh a lot of these chunking strategies are based on"
+    },
+    {
+      "timestamp": "21:17",
+      "speaker": "Nick",
+      "text": "making sure that we keep the logical groups together so that when you chunk even when you want to chunk into smaller"
+    },
+    {
+      "timestamp": "21:23",
+      "speaker": "Nick",
+      "text": "objects you always want to make sure you have the right context you want to chunk"
+    },
+    {
+      "timestamp": "21:29",
+      "speaker": "Nick",
+      "text": "um in a way where the chunks don't make any sense when you give it to an agent"
+    },
+    {
+      "timestamp": "21:35",
+      "speaker": "Nick",
+      "text": "um and basically with these strategies like recursive JSON and"
+    },
+    {
+      "timestamp": "21:40",
+      "speaker": "Nick",
+      "text": "markdown any any kind of document you give it you should you'll be able to properly chunk it in a way that when you"
+    },
+    {
+      "timestamp": "21:47",
+      "speaker": "Nick",
+      "text": "give it to an agent it can process it correctly and give you exactly the details you want so now we'll do"
+    },
+    {
+      "timestamp": "21:54",
+      "speaker": "Nick",
+      "text": "markdown chunking so markdown chunking is interesting in"
+    },
+    {
+      "timestamp": "22:00",
+      "speaker": "Nick",
+      "text": "that we have a uh we can split on different headers that we can specify so"
+    },
+    {
+      "timestamp": "22:06",
+      "speaker": "Nick",
+      "text": "we right now our headers are the uh the the pound sign so we have a pound sign"
+    },
+    {
+      "timestamp": "22:12",
+      "speaker": "Nick",
+      "text": "two pound signs and three pound signs and we can also specify what the those"
+    },
+    {
+      "timestamp": "22:18",
+      "speaker": "Nick",
+      "text": "um relate to in terms of our metadata so for the first example uh we see uh user"
+    },
+    {
+      "timestamp": "22:26",
+      "speaker": "Nick",
+      "text": "guide was the first thing that was split because right now for markdown we split on these headers um so you can see that"
+    },
+    {
+      "timestamp": "22:34",
+      "speaker": "Nick",
+      "text": "uh our first chunk is just the first header and then in our metadata you can see that we set header one and have that"
+    },
+    {
+      "timestamp": "22:41",
+      "speaker": "Nick",
+      "text": "be user guide um and our second one in our second chunk we split on this part"
+    },
+    {
+      "timestamp": "22:49",
+      "speaker": "Nick",
+      "text": "the installation as that's our second header to split on so we'll split on this until we get to basic usage and you can see"
+    },
+    {
+      "timestamp": "22:56",
+      "speaker": "Nick",
+      "text": "here that we we maintain the metadata from the previous trunk as that was a"
+    },
+    {
+      "timestamp": "23:03",
+      "speaker": "Nick",
+      "text": "parent header so we have header one user guide and then header two installation and that maintains that"
+    },
+    {
+      "timestamp": "23:10",
+      "speaker": "Nick",
+      "text": "lets us maintain context again where we know installation was a uh subheader of"
+    },
+    {
+      "timestamp": "23:16",
+      "speaker": "Nick",
+      "text": "user guide so we keep that u metadata in place just so when you retrieve the"
+    },
+    {
+      "timestamp": "23:23",
+      "speaker": "Nick",
+      "text": "chunks you'll know exactly what the format of the document was and the agent can then piece together what it needs to"
+    },
+    {
+      "timestamp": "23:29",
+      "speaker": "Nick",
+      "text": "look for um and then the same thing applies to basic usage where as you see"
+    },
+    {
+      "timestamp": "23:34",
+      "speaker": "Nick",
+      "text": "it's it's under user guide so we have we have the proper metadata for"
+    },
+    {
+      "timestamp": "23:40",
+      "speaker": "Nick",
+      "text": "that and then we can even go farther for configuration where so configuration is split right here um so we have this text"
+    },
+    {
+      "timestamp": "23:49",
+      "speaker": "Nick",
+      "text": "right here but we also have the metadata that tells us oh this was the third"
+    },
+    {
+      "timestamp": "23:54",
+      "speaker": "Nick",
+      "text": "header was header three and it's above it's below basic usage which is below user guide so this helps us keep these"
+    },
+    {
+      "timestamp": "24:03",
+      "speaker": "Nick",
+      "text": "um it basically helps us keep the relationships between different headers in our uh"
+    },
+    {
+      "timestamp": "24:11",
+      "speaker": "Nick",
+      "text": "chunks so that's how that's basically how our different markdown strategies"
+    },
+    {
+      "timestamp": "24:17",
+      "speaker": "Nick",
+      "text": "work um but now I will show you our embedding so for embedding we have"
+    },
+    {
+      "timestamp": "24:26",
+      "speaker": "Unidentified Shane",
+      "text": "Hey Nick yeah there's a kind of chunking related question that maybe is worth worth answering now while while we're going rather than waiting till the very end so I guess two of them is there a rule of"
+    },
+    {
+      "timestamp": "24:37",
+      "speaker": "Unidentified Shane",
+      "text": "thumb for ideal chunk sizes or is finding the right size a matter of trial and error"
+    },
+    {
+      "timestamp": "24:44",
+      "speaker": "Nick",
+      "text": "um yeah I would say it's a matter of trial and error u I would it's more so that it depends"
+    },
+    {
+      "timestamp": "24:53",
+      "speaker": "Nick",
+      "text": "on what your uh embedding model is so you want to the first thing you want to"
+    },
+    {
+      "timestamp": "24:58",
+      "speaker": "Nick",
+      "text": "do is make sure that whatever embedding model you use you chunk properly to fit that fit within that embedding model"
+    },
+    {
+      "timestamp": "25:06",
+      "speaker": "Nick",
+      "text": "um different embedding models will have different token limits and you want to make sure your chunks your chunks do not"
+    },
+    {
+      "timestamp": "25:12",
+      "speaker": "Nick",
+      "text": "exceed that and that's I think that's the first step that you want to do in terms of uh finding the correct chunk"
+    },
+    {
+      "timestamp": "25:18",
+      "speaker": "Nick",
+      "text": "size after that it's mostly um just chunking uh embedding it and then"
+    },
+    {
+      "timestamp": "25:26",
+      "speaker": "Nick",
+      "text": "figuring out what your agent responds to best you don't want to make it too small"
+    },
+    {
+      "timestamp": "25:32",
+      "speaker": "Nick",
+      "text": "then the agent has no proper context to answer any question or retrieve any data"
+    },
+    {
+      "timestamp": "25:37",
+      "speaker": "Nick",
+      "text": "from your DB and answer your question but if you make but um if you make it too big it'll go over"
+    },
+    {
+      "timestamp": "25:44",
+      "speaker": "Nick",
+      "text": "that context limit so you really want to find the the the sweet spot between"
+    },
+    {
+      "timestamp": "25:51",
+      "speaker": "Nick",
+      "text": "getting under the uh the token limit and making sure it's not too small so and"
+    },
+    {
+      "timestamp": "25:56",
+      "speaker": "Nick",
+      "text": "that's a lot of trial and error"
+    },
+    {
+      "timestamp": "26:01",
+      "speaker": "Unidentified Shane",
+      "text": "yeah and I guess another question that's uh I'll try to summarize it a little bit uh when how do you determine whether you should be using character chunker recursive"
+    },
+    {
+      "timestamp": "26:08",
+      "speaker": "Unidentified Shane",
+      "text": "chunker i guess if it's JSON you got to use a JSON chunker if it's markdown you probably should use a markdown chunker"
+    },
+    {
+      "timestamp": "26:14",
+      "speaker": "Unidentified Shane",
+      "text": "is it just if you're using if it's text you should be using like a character recursive chunker and if it's JSON or"
+    },
+    {
+      "timestamp": "26:21",
+      "speaker": "Unidentified Shane",
+      "text": "markdown you should use that that type of chunking strategy"
+    },
+    {
+      "timestamp": "26:29",
+      "speaker": "Nick",
+      "text": "yeah markdown if you have a markdown file you should use markdown and if you have JSON file you should probably use JSON for character and recursive character is I"
+    },
+    {
+      "timestamp": "26:36",
+      "speaker": "Nick",
+      "text": "think is best for simple files where you have you know exactly what your um"
+    },
+    {
+      "timestamp": "26:42",
+      "speaker": "Nick",
+      "text": "character limits are and you know exactly how you want to be splitting it up but cursive is more so for a little"
+    },
+    {
+      "timestamp": "26:48",
+      "speaker": "Nick",
+      "text": "more complicated text files where you want to um you have a limit you want to"
+    },
+    {
+      "timestamp": "26:54",
+      "speaker": "Nick",
+      "text": "do but you want also want to make sure that within that limit or that uh I'll go back to character check now within"
+    },
+    {
+      "timestamp": "27:00",
+      "speaker": "Nick",
+      "text": "that size you want to make sure that oh I want to make sure all this um things that are lot should be grouped"
+    },
+    {
+      "timestamp": "27:08",
+      "speaker": "Nick",
+      "text": "together remained together and that's what recursive is good at um I think"
+    },
+    {
+      "timestamp": "27:13",
+      "speaker": "Nick",
+      "text": "character is for for more simple use cases um"
+    },
+    {
+      "timestamp": "27:18",
+      "speaker": "Nick",
+      "text": "where you you you think character is definitely for more simple use cases and recursive is more for a little more"
+    },
+    {
+      "timestamp": "27:24",
+      "speaker": "Nick",
+      "text": "advanced use cases is what I would say"
+    },
+    {
+      "timestamp": "27:29",
+      "speaker": "Unidentified Shane",
+      "text": "awesome thanks and I see someone if you are raising your hand please drop a note"
+    },
+    {
+      "timestamp": "27:35",
+      "speaker": "Unidentified Shane",
+      "text": "or question in the Q&A section at the end we might have some time for people if you want to raise your hand and come"
+    },
+    {
+      "timestamp": "27:41",
+      "speaker": "Unidentified Shane",
+      "text": "on and ask a question we might have some time for that uh but we'll we'll keep save that those types of questions for"
+    },
+    {
+      "timestamp": "27:46",
+      "speaker": "Unidentified Shane",
+      "text": "the very end"
+    },
+    {
+      "timestamp": "27:56",
+      "speaker": "Nick",
+      "text": "all right so I shall move on to uh embedding so in this in this example I'm"
+    },
+    {
+      "timestamp": "28:04",
+      "speaker": "Nick",
+      "text": "using the same text so we're going to be embedding the same text uh and just trying out different embedding models so"
+    },
+    {
+      "timestamp": "28:11",
+      "speaker": "Nick",
+      "text": "um currently I'm using OpenAI and co here so the first one we have the OpenAI"
+    },
+    {
+      "timestamp": "28:17",
+      "speaker": "Nick",
+      "text": "text embedding 3 small um then we have uh OpenAI's text"
+    },
+    {
+      "timestamp": "28:24",
+      "speaker": "Nick",
+      "text": "embedding 3 large and then we have some coher models like uh embedding embed"
+    },
+    {
+      "timestamp": "28:30",
+      "speaker": "Nick",
+      "text": "English v3 and uh so we can do this with both simple text and with like um batch"
+    },
+    {
+      "timestamp": "28:39",
+      "speaker": "Nick",
+      "text": "embedding so we can batch embedding a multiple text in an array so I'll show"
+    },
+    {
+      "timestamp": "28:44",
+      "speaker": "Nick",
+      "text": "you what that looks like right now"
+    },
+    {
+      "timestamp": "28:52",
+      "speaker": "Nick",
+      "text": "so you can see each each embedding has a different uh dimensional um use has a different dimension which"
+    },
+    {
+      "timestamp": "29:00",
+      "speaker": "Nick",
+      "text": "is basically how many uh uh elements are in its vector and um so you see like"
+    },
+    {
+      "timestamp": "29:06",
+      "speaker": "Nick",
+      "text": "each different um open air model has different crit"
+    },
+    {
+      "timestamp": "29:11",
+      "speaker": "Nick",
+      "text": "trade-offs so um text embedding 3 small is the fastest and it has the smallest"
+    },
+    {
+      "timestamp": "29:17",
+      "speaker": "Nick",
+      "text": "amount of dimensions um so it's good to use for when you're trying to um just to begin"
+    },
+    {
+      "timestamp": "29:25",
+      "speaker": "Nick",
+      "text": "embedding and start using it and it's still good as a way to as a model to use"
+    },
+    {
+      "timestamp": "29:30",
+      "speaker": "Nick",
+      "text": "just in general um uh opening a text embedding 3 large is has the best"
+    },
+    {
+      "timestamp": "29:37",
+      "speaker": "Nick",
+      "text": "quality has the largest amount of dimensions um but it does take some time if you're trying to use it to embed"
+    },
+    {
+      "timestamp": "29:43",
+      "speaker": "Nick",
+      "text": "certain um documents it will take longer just to because of the larger embedding"
+    },
+    {
+      "timestamp": "29:49",
+      "speaker": "Nick",
+      "text": "size um and then we have uh models like coheres embed English support which has"
+    },
+    {
+      "timestamp": "29:55",
+      "speaker": "Nick",
+      "text": "multilingual support that one is the smallest out of the three as the"
+    },
+    {
+      "timestamp": "30:00",
+      "speaker": "Nick",
+      "text": "smallest one of dimensions um and then you can also see here that"
+    },
+    {
+      "timestamp": "30:07",
+      "speaker": "Nick",
+      "text": "uh using OpenAI we can also um embed many um make many embeddings at once"
+    },
+    {
+      "timestamp": "30:13",
+      "speaker": "Nick",
+      "text": "based on our list of uh uh list of"
+    },
+    {
+      "timestamp": "30:20",
+      "speaker": "Nick",
+      "text": "text see if anyone has any questions okay um so now I'm going to"
+    },
+    {
+      "timestamp": "30:27",
+      "speaker": "Nick",
+      "text": "move on to vector upserting"
+    },
+    {
+      "timestamp": "30:33",
+      "speaker": "Nick",
+      "text": "so let me make this better okay so over here actually I'll show"
+    },
+    {
+      "timestamp": "30:39",
+      "speaker": "Nick",
+      "text": "that later um so in for vector up abserting we can take this these documents we've created so this one is a"
+    },
+    {
+      "timestamp": "30:46",
+      "speaker": "Nick",
+      "text": "a markdown document and we have actually several markdown documents so we have this one and then we we store just the"
+    },
+    {
+      "timestamp": "30:55",
+      "speaker": "Nick",
+      "text": "basic uh vector database guide and then we have some metadata as in like the"
+    },
+    {
+      "timestamp": "31:00",
+      "speaker": "Nick",
+      "text": "source the type of uh documentation it is and then the section and then we have a search"
+    },
+    {
+      "timestamp": "31:07",
+      "speaker": "Nick",
+      "text": "implementation guide and then we have again the source documentation implementation of a"
+    },
+    {
+      "timestamp": "31:14",
+      "speaker": "Nick",
+      "text": "um for its metadata and then we can take these"
+    },
+    {
+      "timestamp": "31:19",
+      "speaker": "Nick",
+      "text": "uh documents And we can create a M document instance"
+    },
+    {
+      "timestamp": "31:24",
+      "speaker": "Nick",
+      "text": "um and then chunk it so we take we create these we take these documents put into a M document which is our MRA's"
+    },
+    {
+      "timestamp": "31:33",
+      "speaker": "Nick",
+      "text": "like it's our document object and then we can chunk it using the markdown"
+    },
+    {
+      "timestamp": "31:38",
+      "speaker": "Nick",
+      "text": "strategy and then once we get that once we chunk these documents we can get those chunks we can embed it and the and"
+    },
+    {
+      "timestamp": "31:45",
+      "speaker": "Nick",
+      "text": "the embedding model we're going to be using is text embedding three small um and then we can"
+    },
+    {
+      "timestamp": "31:54",
+      "speaker": "Nick",
+      "text": "um take our uh vector vector DB instance"
+    },
+    {
+      "timestamp": "31:60",
+      "speaker": "Nick",
+      "text": "which I shall show you right here we instantiate a vector DB uh PG vector that's what we're using for"
+    },
+    {
+      "timestamp": "32:06",
+      "speaker": "Nick",
+      "text": "this example um in our MRA instance under under vectors and we can get the"
+    },
+    {
+      "timestamp": "32:13",
+      "speaker": "Nick",
+      "text": "vector and um create the index called search examples under using dimension"
+    },
+    {
+      "timestamp": "32:21",
+      "speaker": "Nick",
+      "text": "1536 then we can upsert all these examples uh upsert all these um chunks"
+    },
+    {
+      "timestamp": "32:27",
+      "speaker": "Nick",
+      "text": "and then include the metadata in the text and I can show you that in action right"
+    },
+    {
+      "timestamp": "32:34",
+      "speaker": "Nick",
+      "text": "now"
+    },
+    {
+      "timestamp": "32:40",
+      "speaker": "Nick",
+      "text": "whoops so you can see that I successfully upserted six embeddings and I can even show you that in our I have a"
+    },
+    {
+      "timestamp": "32:47",
+      "speaker": "Nick",
+      "text": "I'm using posted code to show these embeddings in action um so you can see that each um each embedding was upserted"
+    },
+    {
+      "timestamp": "32:56",
+      "speaker": "Nick",
+      "text": "and we can see here that um they all have a vector ID they have an embedding uh"
+    },
+    {
+      "timestamp": "33:03",
+      "speaker": "Nick",
+      "text": "array that's the dimension of uh that we used and then we have we can we also"
+    },
+    {
+      "timestamp": "33:08",
+      "speaker": "Nick",
+      "text": "contain the metadata so we see the text we have the the type the source and the"
+    },
+    {
+      "timestamp": "33:14",
+      "speaker": "Nick",
+      "text": "section that we included from the uh in the metadata from the document and if"
+    },
+    {
+      "timestamp": "33:19",
+      "speaker": "Nick",
+      "text": "you want to query these um embeddings we have our next example which is our"
+    },
+    {
+      "timestamp": "33:25",
+      "speaker": "Nick",
+      "text": "vector search um so here we were taking a query"
+    },
+    {
+      "timestamp": "33:32",
+      "speaker": "Nick",
+      "text": "of any of some sort so we have what are the main features of vector databases now in order to properly search on a"
+    },
+    {
+      "timestamp": "33:39",
+      "speaker": "Nick",
+      "text": "vector DB we want to take a query and then we want to make an embedding out of that and once we have a basic embedding"
+    },
+    {
+      "timestamp": "33:48",
+      "speaker": "Nick",
+      "text": "then we can use our PG vector again and query the vector using the"
+    },
+    {
+      "timestamp": "33:55",
+      "speaker": "Nick",
+      "text": "query the vector database using that query vector which is the base embedding and we can use a top K of three which"
+    },
+    {
+      "timestamp": "34:02",
+      "speaker": "Nick",
+      "text": "means to get the top three results from the vector DB so we can see"
+    },
+    {
+      "timestamp": "34:08",
+      "speaker": "Nick",
+      "text": "that in our basic search results so I'll run that right now"
+    },
+    {
+      "timestamp": "34:16",
+      "speaker": "Nick",
+      "text": "so from our basic search results you can see that let me make this"
+    },
+    {
+      "timestamp": "34:21",
+      "speaker": "Nick",
+      "text": "bigger we we when we return data back we get a uh the vector ID we get a score"
+    },
+    {
+      "timestamp": "34:29",
+      "speaker": "Nick",
+      "text": "which is a similarity score based on um the how closely semantically it the"
+    },
+    {
+      "timestamp": "34:37",
+      "speaker": "Nick",
+      "text": "the the embedding of the query that we made is to what's in the DB so you can"
+    },
+    {
+      "timestamp": "34:43",
+      "speaker": "Nick",
+      "text": "see that the first the top result is has a 0.71 uh"
+    },
+    {
+      "timestamp": "34:49",
+      "speaker": "Nick",
+      "text": "similarity with the query that we constructed and and the next one has a"
+    },
+    {
+      "timestamp": "34:57",
+      "speaker": "Nick",
+      "text": "0.7 and the last one has a 0.42 which is the means it's the least similar to the"
+    },
+    {
+      "timestamp": "35:03",
+      "speaker": "Nick",
+      "text": "query we constructed um and we could also um for"
+    },
+    {
+      "timestamp": "35:08",
+      "speaker": "Nick",
+      "text": "our next example we can also search through the vector DB with a filter so"
+    },
+    {
+      "timestamp": "35:15",
+      "speaker": "Nick",
+      "text": "we have another uh query right here how to implement vector search we make a"
+    },
+    {
+      "timestamp": "35:20",
+      "speaker": "Nick",
+      "text": "filtered embedding from that uh then we query the vector DB again but this time we have a filter"
+    },
+    {
+      "timestamp": "35:27",
+      "speaker": "Nick",
+      "text": "where we want to check that we want to check for um embeddings that have a"
+    },
+    {
+      "timestamp": "35:33",
+      "speaker": "Nick",
+      "text": "metadata uh of section implementation so as we can see right"
+    },
+    {
+      "timestamp": "35:39",
+      "speaker": "Nick",
+      "text": "here we get a some filtered results right here we get the top three results"
+    },
+    {
+      "timestamp": "35:44",
+      "speaker": "Nick",
+      "text": "and each one of these have a section implementation um metadata that we can"
+    },
+    {
+      "timestamp": "35:50",
+      "speaker": "Nick",
+      "text": "use to that is used to help query and filter on that"
+    },
+    {
+      "timestamp": "35:56",
+      "speaker": "Nick",
+      "text": "data and let me see some uh okay and we do have a few questions yeah if"
+    },
+    {
+      "timestamp": "36:04",
+      "speaker": "Shane",
+      "text": "you want to answer any do we want to answer yeah let's let's answer a couple and then we'll we'll we can keep going"
+    },
+    {
+      "timestamp": "36:10",
+      "speaker": "Nick",
+      "text": "so can you combine different chunking methods markdown for certain sources recursive for others in the same"
+    },
+    {
+      "timestamp": "36:16",
+      "speaker": "Nick",
+      "text": "knowledge base yes so you can um you can definitely use different"
+    },
+    {
+      "timestamp": "36:23",
+      "speaker": "Nick",
+      "text": "chunking methods um depending on your documents so like I believe I have a"
+    },
+    {
+      "timestamp": "36:30",
+      "speaker": "Nick",
+      "text": "um actually I can show you uh a different example right now where we"
+    },
+    {
+      "timestamp": "36:35",
+      "speaker": "Nick",
+      "text": "take different um documents such as move this a little over"
+    },
+    {
+      "timestamp": "36:43",
+      "speaker": "Nick",
+      "text": "um like we have a like we can put a JSON file and markdown files uh together into"
+    },
+    {
+      "timestamp": "36:49",
+      "speaker": "Nick",
+      "text": "one vector DB and then trunk them with different strategies and then use our"
+    },
+    {
+      "timestamp": "36:56",
+      "speaker": "Nick",
+      "text": "um then we can query on those um on those embeddings once we embed them so"
+    },
+    {
+      "timestamp": "37:02",
+      "speaker": "Nick",
+      "text": "like right here we have I have a script to upsert these documents so I have a bunch of markdown"
+    },
+    {
+      "timestamp": "37:09",
+      "speaker": "Nick",
+      "text": "files i can um read the files i can create the create documents out of them"
+    },
+    {
+      "timestamp": "37:15",
+      "speaker": "Nick",
+      "text": "i can chunk them and then um also take a JSON configuration and also chunk that"
+    },
+    {
+      "timestamp": "37:22",
+      "speaker": "Nick",
+      "text": "make a document from that and chunk it and then all of these uh chunks can then be embedded into my vector DB uh"
+    },
+    {
+      "timestamp": "37:30",
+      "speaker": "Nick",
+      "text": "embedded and upserted um so you can definitely use multiple embedding mod uh"
+    },
+    {
+      "timestamp": "37:35",
+      "speaker": "Nick",
+      "text": "diffuse multiple chunking strategies to get all your data so you can have a"
+    },
+    {
+      "timestamp": "37:41",
+      "speaker": "Nick",
+      "text": "bunch of different data types into your vector DB"
+    },
+    {
+      "timestamp": "37:46",
+      "speaker": "Shane",
+      "text": "all right if we upsert without deleting a previous index what is the keying strategy to make sure we both update"
+    },
+    {
+      "timestamp": "37:53",
+      "speaker": "Shane",
+      "text": "insert but also delete chunks that are no longer present"
+    },
+    {
+      "timestamp": "37:59",
+      "speaker": "Nick",
+      "text": "um so right now you can upsert update so we do have actual"
+    },
+    {
+      "timestamp": "38:08",
+      "speaker": "Nick",
+      "text": "um we have functions uh on our uh store vector DB adapters that let you over uh"
+    },
+    {
+      "timestamp": "38:17",
+      "speaker": "Nick",
+      "text": "overwrite or delete certain embeddings that are no longer present so if you want to upsert data and you decide later"
+    },
+    {
+      "timestamp": "38:25",
+      "speaker": "Nick",
+      "text": "that you want to uh if you want to um update a certain"
+    },
+    {
+      "timestamp": "38:31",
+      "speaker": "Nick",
+      "text": "vector at a certain ID so like you have a certain uh embedding that you want to"
+    },
+    {
+      "timestamp": "38:36",
+      "speaker": "Nick",
+      "text": "replace or you have embedding you want to delete then you can"
+    },
+    {
+      "timestamp": "38:41",
+      "speaker": "Nick",
+      "text": "um do that by providing the vector ID and then providing whatever data you want in order to update the that certain"
+    },
+    {
+      "timestamp": "38:49",
+      "speaker": "Nick",
+      "text": "vector or you can just provide the vector ID and then you can delete it from your vector DB"
+    },
+    {
+      "timestamp": "38:56",
+      "speaker": "Shane",
+      "text": "all right two two more if and I'm not exactly sure what what the person means"
+    },
+    {
+      "timestamp": "39:02",
+      "speaker": "Shane",
+      "text": "by this question uh so please provide more context if this if we if we don't answer it is there any agentic flow we"
+    },
+    {
+      "timestamp": "39:08",
+      "speaker": "Shane",
+      "text": "can use to analyze a document and determine the chunking so I'm assuming they're asking you know is there a way"
+    },
+    {
+      "timestamp": "39:15",
+      "speaker": "Shane",
+      "text": "to determine what the best chunking strategy is i don't I don't know if that you know I you could probably ask you"
+    },
+    {
+      "timestamp": "39:22",
+      "speaker": "Shane",
+      "text": "probably ask chat GPT to give what would be best for this document maybe it would give you some opinions but I don't know if there's like a a tool that says \"Oh"
+    },
+    {
+      "timestamp": "39:29",
+      "speaker": "Shane",
+      "text": "this based on this document there's this this type of chunking strategy would be the best.\" Um I think it does vary on"
+    },
+    {
+      "timestamp": "39:35",
+      "speaker": "Shane",
+      "text": "the the content type of the document and then of course you may have to try slightly different chunking sizes but"
+    },
+    {
+      "timestamp": "39:42",
+      "speaker": "Shane",
+      "text": "also depends on the embedding model anything else that you'd add there Nick"
+    },
+    {
+      "timestamp": "39:49",
+      "speaker": "Nick",
+      "text": "um I think if you use Maestra you can also maybe create an agent that lets you that you can give it a document and say"
+    },
+    {
+      "timestamp": "39:55",
+      "speaker": "Nick",
+      "text": "um or you can describe a document to it and have it give you um you know like"
+    },
+    {
+      "timestamp": "40:01",
+      "speaker": "Nick",
+      "text": "the chunking strategy and the size you want to give it um and then it'll give"
+    },
+    {
+      "timestamp": "40:06",
+      "speaker": "Nick",
+      "text": "those parameters and then you can use those to chunk it um that's a possibility if that's what you're trying"
+    },
+    {
+      "timestamp": "40:11",
+      "speaker": "Nick",
+      "text": "to do but yeah yeah your mileage may your mileage may vary i don't know if we"
+    },
+    {
+      "timestamp": "40:17",
+      "speaker": "Nick",
+      "text": "we really tested that but in theory you could do it"
+    },
+    {
+      "timestamp": "40:20",
+      "speaker": "Shane",
+      "text": "i I think you know it might work uh for PG Vector do you always"
+    },
+    {
+      "timestamp": "40:23",
+      "speaker": "Shane",
+      "text": "recommend keeping embeddings in a separate table or are there instances where placing embeddings in a column in"
+    },
+    {
+      "timestamp": "40:28",
+      "speaker": "Shane",
+      "text": "the same table as the source data makes sense same table as the source data"
+    },
+    {
+      "timestamp": "40:37",
+      "speaker": "Nick",
+      "text": "um you can keep it in the same table i don't see it directly an issue with that"
+    },
+    {
+      "timestamp": "40:44",
+      "speaker": "Nick",
+      "text": "um I guess depends on your use case um"
+    },
+    {
+      "timestamp": "40:50",
+      "speaker": "Nick",
+      "text": "yeah it seems like a lot of times people will use the metadata to then if you need to reference other things but yeah"
+    },
+    {
+      "timestamp": "40:58",
+      "speaker": "Nick",
+      "text": "yeah I I really do think it depends on the use case you can definitely set this up however you want um but again yeah I"
+    },
+    {
+      "timestamp": "41:06",
+      "speaker": "Nick",
+      "text": "think your mileage will vary depending on what your use case is"
+    },
+    {
+      "timestamp": "41:13",
+      "speaker": "Shane",
+      "text": "all right we can keep going we have about say 10 minutes or so"
+    },
+    {
+      "timestamp": "41:17",
+      "speaker": "Nick",
+      "text": "okay I'll try to till we till we wrap up with maybe a few final questions"
+    },
+    {
+      "timestamp": "41:21",
+      "speaker": "Shane",
+      "text": "okay great let me click the next one so this next example is our re-ranking um it's very similar to"
+    },
+    {
+      "timestamp": "41:28",
+      "speaker": "Shane",
+      "text": "vector search but the the added element would be our re-rank so we basically as"
+    },
+    {
+      "timestamp": "41:36",
+      "speaker": "Shane",
+      "text": "before we do a a basic vector search we have an embedding we make a well we have a query then we make an embedding from"
+    },
+    {
+      "timestamp": "41:43",
+      "speaker": "Shane",
+      "text": "that and then we get some initial results using that embedding and you have a top give 10"
+    },
+    {
+      "timestamp": "41:49",
+      "speaker": "Shane",
+      "text": "um just run that right now we're going to show it off later so"
+    },
+    {
+      "timestamp": "41:55",
+      "speaker": "Shane",
+      "text": "we have these initial search results and they all have their own similarity scores oops"
+    },
+    {
+      "timestamp": "42:02",
+      "speaker": "Shane",
+      "text": "they have their own similarity scores and then we can get the metadata from that from each um from each result but if you want to"
+    },
+    {
+      "timestamp": "42:11",
+      "speaker": "Shane",
+      "text": "take these results and you decide I want to further refine these results and uh"
+    },
+    {
+      "timestamp": "42:18",
+      "speaker": "Shane",
+      "text": "see what else see what uh further improvements I can make to this then you can use re-ranking now re-ranking helps"
+    },
+    {
+      "timestamp": "42:25",
+      "speaker": "Shane",
+      "text": "to take um these initial results and then you can take the initial results take the"
+    },
+    {
+      "timestamp": "42:31",
+      "speaker": "Shane",
+      "text": "query provide an a ranking model and you could run the you can basically run uh"
+    },
+    {
+      "timestamp": "42:39",
+      "speaker": "Shane",
+      "text": "your reranking through this um these results again and it will provide you a"
+    },
+    {
+      "timestamp": "42:47",
+      "speaker": "Shane",
+      "text": "different it'll basically take the existing results that you have and it will compare to your query"
+    },
+    {
+      "timestamp": "42:53",
+      "speaker": "Shane",
+      "text": "and try to see what um if there's any other further"
+    },
+    {
+      "timestamp": "42:58",
+      "speaker": "Shane",
+      "text": "refinements to be made and we can see here that it'll it'll re-erank based on"
+    },
+    {
+      "timestamp": "43:05",
+      "speaker": "Shane",
+      "text": "a couple of different things it'll rerank based on the semantic similarity so it'll check um how"
+    },
+    {
+      "timestamp": "43:13",
+      "speaker": "Shane",
+      "text": "alike the the text is from your query it'll do a vector similarity so see how"
+    },
+    {
+      "timestamp": "43:19",
+      "speaker": "Shane",
+      "text": "similar the vectors are and then it'll do a position similarity so where is the"
+    },
+    {
+      "timestamp": "43:26",
+      "speaker": "Shane",
+      "text": "where was the initial result in your list of uh results and it'll base it and it'll um"
+    },
+    {
+      "timestamp": "43:33",
+      "speaker": "Shane",
+      "text": "take those three different um calculations and it will um figure out"
+    },
+    {
+      "timestamp": "43:39",
+      "speaker": "Shane",
+      "text": "what the new updated score should be so as you see here we have a rewrit"
+    },
+    {
+      "timestamp": "43:46",
+      "speaker": "Shane",
+      "text": "but after taking all this other um details into consideration it will"
+    },
+    {
+      "timestamp": "43:52",
+      "speaker": "Shane",
+      "text": "provide a new value of 0.59"
+    },
+    {
+      "timestamp": "44:00",
+      "speaker": "Shane",
+      "text": "and it does that for every single initial result so it'll just"
+    },
+    {
+      "timestamp": "44:06",
+      "speaker": "Shane",
+      "text": "calculate these new um um similarities and figure out the new similarity score"
+    },
+    {
+      "timestamp": "44:13",
+      "speaker": "Shane",
+      "text": "based on that and that will help rerank um your results based on what it"
+    },
+    {
+      "timestamp": "44:21",
+      "speaker": "Shane",
+      "text": "calculates and uh you don't have to re-erank with just co here this is just for this example but we can uh you can"
+    },
+    {
+      "timestamp": "44:27",
+      "speaker": "Shane",
+      "text": "re-erank with any re-rank model and you can also re-erank with um we also have"
+    },
+    {
+      "timestamp": "44:33",
+      "speaker": "Shane",
+      "text": "internal MRA reanking which like you just provide a um a um like a a model and then we will"
+    },
+    {
+      "timestamp": "44:42",
+      "speaker": "Shane",
+      "text": "you can just use that to reank it the reason the cohhere is used in this"
+    },
+    {
+      "timestamp": "44:48",
+      "speaker": "Shane",
+      "text": "example is that this is a like a special rebanking model that's specifically for rebanking but you can use a regular"
+    },
+    {
+      "timestamp": "44:55",
+      "speaker": "Shane",
+      "text": "model to help do the rebanking"
+    },
+    {
+      "timestamp": "45:01",
+      "speaker": "Nick",
+      "text": "process so yeah I do think a lot of times if you are using a regular model you typically end up using a light you"
+    },
+    {
+      "timestamp": "45:07",
+      "speaker": "Nick",
+      "text": "know a lighter or mini version that's has low latency yeah but yeah there there are many many different models you"
+    },
+    {
+      "timestamp": "45:13",
+      "speaker": "Nick",
+      "text": "could use to do re-ranking"
+    },
+    {
+      "timestamp": "45:15",
+      "speaker": "Nick",
+      "text": "exactly so now I shall go to our next"
+    },
+    {
+      "timestamp": "45:21",
+      "speaker": "Nick",
+      "text": "uh so I'm going to go to our next um example which is just how to use basic"
+    },
+    {
+      "timestamp": "45:27",
+      "speaker": "Nick",
+      "text": "search in Maestra so for that one I shall show you just how our um just how"
+    },
+    {
+      "timestamp": "45:33",
+      "speaker": "Nick",
+      "text": "our agents are set up to show this off so here's our basic agent we'll show for"
+    },
+    {
+      "timestamp": "45:38",
+      "speaker": "Nick",
+      "text": "the example so this agent really just does a basic search of what's in rag of"
+    },
+    {
+      "timestamp": "45:44",
+      "speaker": "Nick",
+      "text": "what's in our vector DB and it'll use rag to do so so this is our basic agent"
+    },
+    {
+      "timestamp": "45:51",
+      "speaker": "Nick",
+      "text": "and then this is the tool it's going to use a basic search tool so it's just doing a simple uh vector search across"
+    },
+    {
+      "timestamp": "45:56",
+      "speaker": "Nick",
+      "text": "all documents um so it'll it'll get the vector store it'll create an embedding"
+    },
+    {
+      "timestamp": "46:03",
+      "speaker": "Nick",
+      "text": "from your query and then do a simple search um and then return your results so let"
+    },
+    {
+      "timestamp": "46:10",
+      "speaker": "Nick",
+      "text": "me first get some first set this up and then we'll"
+    },
+    {
+      "timestamp": "46:19",
+      "speaker": "Nick",
+      "text": "Okay so now I will show you this file and for those of you that maybe did join"
+    },
+    {
+      "timestamp": "46:24",
+      "speaker": "Nick",
+      "text": "late we there will be a recording to this available on our YouTube account"
+    },
+    {
+      "timestamp": "46:30",
+      "speaker": "Shane",
+      "text": "and we are talking through rag so let's Are you ready Nick"
+    },
+    {
+      "timestamp": "46:33",
+      "speaker": "Nick",
+      "text": "yep I'm ready to set I was going to show in the playground just to make it easy to see the results"
+    },
+    {
+      "timestamp": "46:45",
+      "speaker": "Nick",
+      "text": "um so for example I can go to now that I have this base agent and I have the playground loaded up"
+    },
+    {
+      "timestamp": "46:52",
+      "speaker": "Nick",
+      "text": "i can go to my basic agent and first before I do that let me actually show you the documents we'll be using to ask queries"
+    },
+    {
+      "timestamp": "46:57",
+      "speaker": "Nick",
+      "text": "so right here I have a couple of documents here i have a let's say a markdown file for logging so I have a"
+    },
+    {
+      "timestamp": "47:03",
+      "speaker": "Nick",
+      "text": "logging system guide that will just just an overview and goes through some code examples of how logging works"
+    },
+    {
+      "timestamp": "47:12",
+      "speaker": "Nick",
+      "text": "i have a document for error handling so it goes over just an overview of error handling and then"
+    },
+    {
+      "timestamp": "47:17",
+      "speaker": "Nick",
+      "text": "there's certain uh code examples of how to use it and then I have an"
+    },
+    {
+      "timestamp": "47:24",
+      "speaker": "Nick",
+      "text": "authentication system guide that just goes over various different types of authentication"
+    },
+    {
+      "timestamp": "47:30",
+      "speaker": "Nick",
+      "text": "uh like ooth 2 JWT and then provides some code examples and then for the last one we have the application settings"
+    },
+    {
+      "timestamp": "47:37",
+      "speaker": "Nick",
+      "text": "JSON which is just a JSON object that has different configuration uh settings"
+    },
+    {
+      "timestamp": "47:43",
+      "speaker": "Nick",
+      "text": "so we'll be using this uh to make some queries move this"
+    },
+    {
+      "timestamp": "47:49",
+      "speaker": "Nick",
+      "text": "over here so for example our first one could be like how do we implement"
+    },
+    {
+      "timestamp": "47:57",
+      "speaker": "Nick",
+      "text": "JW authentication in our system"
+    },
+    {
+      "timestamp": "48:05",
+      "speaker": "Nick",
+      "text": "so it's going to use that basic search tool to look into the vector DB"
+    },
+    {
+      "timestamp": "48:10",
+      "speaker": "Nick",
+      "text": "um where all these documents have been chunked and embedded and it will provide some information based on that"
+    },
+    {
+      "timestamp": "48:16",
+      "speaker": "Nick",
+      "text": "so as you can see it's looking at um it'll provide us a response like to"
+    },
+    {
+      "timestamp": "48:22",
+      "speaker": "Nick",
+      "text": "implement JWT authentication your system you can follow the the example provided"
+    },
+    {
+      "timestamp": "48:27",
+      "speaker": "Nick",
+      "text": "and it'll go through all the steps it finds in the documentation that we that we give it and as well as give code"
+    },
+    {
+      "timestamp": "48:32",
+      "speaker": "Nick",
+      "text": "examples um and then this gives us a good response based on that and I can do"
+    },
+    {
+      "timestamp": "48:39",
+      "speaker": "Nick",
+      "text": "another one for our um another one we could do like uh for"
+    },
+    {
+      "timestamp": "48:45",
+      "speaker": "Nick",
+      "text": "our uh monitoring configuration"
+    },
+    {
+      "timestamp": "48:51",
+      "speaker": "Nick",
+      "text": "configuration available in our"
+    },
+    {
+      "timestamp": "48:58",
+      "speaker": "Nick",
+      "text": "system and again it will look use that basic search tool to look through our"
+    },
+    {
+      "timestamp": "49:04",
+      "speaker": "Nick",
+      "text": "application settings JSON configuration file and just give us various uh details"
+    },
+    {
+      "timestamp": "49:09",
+      "speaker": "Nick",
+      "text": "about that so that's how the basic agent works"
+    },
+    {
+      "timestamp": "49:15",
+      "speaker": "Nick",
+      "text": "now I shall show you real quick i guess we're running out of time but I'll try to make this fast now this is our this"
+    },
+    {
+      "timestamp": "49:22",
+      "speaker": "Nick",
+      "text": "is our query vector example so this is um very similar to"
+    },
+    {
+      "timestamp": "49:30",
+      "speaker": "Nick",
+      "text": "um let me see this one so query vector example is very similar to I think"
+    },
+    {
+      "timestamp": "49:36",
+      "speaker": "Nick",
+      "text": "there's some type error right here but we'll worry about that later"
+    },
+    {
+      "timestamp": "49:42",
+      "speaker": "Nick",
+      "text": "um it's basically very similar to a basic agent example except we have a built-in tool for"
+    },
+    {
+      "timestamp": "49:50",
+      "speaker": "Nick",
+      "text": "um uh searching the uh vector DB called the query vector tool and that's in our MRA package"
+    },
+    {
+      "timestamp": "49:57",
+      "speaker": "Nick",
+      "text": "um so I'll just show that off right now"
+    },
+    {
+      "timestamp": "50:06",
+      "speaker": "Nick",
+      "text": "um so like and I'll show you like one one question one query and then we"
+    },
+    {
+      "timestamp": "50:12",
+      "speaker": "Nick",
+      "text": "can I guess wrap up um so I could say like"
+    },
+    {
+      "timestamp": "50:17",
+      "speaker": "Nick",
+      "text": "uh we say find implementations in our"
+    },
+    {
+      "timestamp": "50:23",
+      "speaker": "Nick",
+      "text": "codebase show how we handle database errors and"
+    },
+    {
+      "timestamp": "50:30",
+      "speaker": "Nick",
+      "text": "validation errors i was going to call the query"
+    },
+    {
+      "timestamp": "50:37",
+      "speaker": "Nick",
+      "text": "vector tool and give us just uh it'll query the"
+    },
+    {
+      "timestamp": "50:44",
+      "speaker": "Nick",
+      "text": "DB for error handling and it will return that information from the document and"
+    },
+    {
+      "timestamp": "50:49",
+      "speaker": "Nick",
+      "text": "uh some code examples and just let us know um the info we"
+    },
+    {
+      "timestamp": "50:59",
+      "speaker": "Nick",
+      "text": "need and I think uh yeah I think that's it for example that's it all"
+    },
+    {
+      "timestamp": "51:06",
+      "speaker": "Shane",
+      "text": "right well that was a lot so hopefully you all got some value let's uh I can"
+    },
+    {
+      "timestamp": "51:12",
+      "speaker": "Shane",
+      "text": "take over screen share for a minute if you do have any questions please drop them in the Q&A section appreciate you"
+    },
+    {
+      "timestamp": "51:18",
+      "speaker": "Shane",
+      "text": "all attending we'll answer some more questions we have about five minutes and I'll uh I will share a few more slides"
+    },
+    {
+      "timestamp": "51:24",
+      "speaker": "Shane",
+      "text": "as we kind of wrap up"
+    },
+    {
+      "timestamp": "51:39",
+      "speaker": "Shane",
+      "text": "please make sure to give us a star on GitHub go at master-IMAR on GitHub you can check out"
+    },
+    {
+      "timestamp": "51:46",
+      "speaker": "Shane",
+      "text": "some of our links if you do have questions please uh jump into our Discord we are pretty active there a lot"
+    },
+    {
+      "timestamp": "51:52",
+      "speaker": "Shane",
+      "text": "basically everyone on the team checks Discord quite frequently so we try to get answers to anyone that have"
+    },
+    {
+      "timestamp": "51:58",
+      "speaker": "Shane",
+      "text": "questions along the way or run into problems we have more events like this i think next week we're doing a workflows"
+    },
+    {
+      "timestamp": "52:05",
+      "speaker": "Shane",
+      "text": "workshop so on our new workflows engine that we just released in MRA and we have"
+    },
+    {
+      "timestamp": "52:11",
+      "speaker": "Shane",
+      "text": "one coming up in a couple weeks on eval bunch of other ones that will be you know agent memory is going to be coming"
+    },
+    {
+      "timestamp": "52:16",
+      "speaker": "Shane",
+      "text": "up soon so we try to go pretty deep on specific topics that might be interesting to you all and maybe you"
+    },
+    {
+      "timestamp": "52:23",
+      "speaker": "Shane",
+      "text": "want to learn more about you can connect with us on X you can connect with me on"
+    },
+    {
+      "timestamp": "52:29",
+      "speaker": "Shane",
+      "text": "LinkedIn and I kind of already mentioned this please give us a star on GitHub if you're interested in trying out not just"
+    },
+    {
+      "timestamp": "52:35",
+      "speaker": "Shane",
+      "text": "master the open source product but you actually want to try to deploy this in production you you can try it with our"
+    },
+    {
+      "timestamp": "52:42",
+      "speaker": "Shane",
+      "text": "MRO cloud but you know to answer someone's question you there are many ways to deploy your agents uh your"
+    },
+    {
+      "timestamp": "52:51",
+      "speaker": "Shane",
+      "text": "vector DBs depending on your provider if it's Postgress and PG vector well then you you need to scale that similarly to"
+    },
+    {
+      "timestamp": "52:57",
+      "speaker": "Shane",
+      "text": "how you'd scale your other databases otherwise there's specific vector DB"
+    },
+    {
+      "timestamp": "53:02",
+      "speaker": "Shane",
+      "text": "providers that help you handle that scale you know pine cone and quite a few others uh and then yeah if you want to"
+    },
+    {
+      "timestamp": "53:10",
+      "speaker": "Shane",
+      "text": "get started with MRA try it out npm create mastra we've posted the repo and Nick I I'm assuming there"
+    },
+    {
+      "timestamp": "53:19",
+      "speaker": "Shane",
+      "text": "it's up to date that we I don't know if you have to anything locally that you have to push up but we'll make sure the repo is up to date you will get a"
+    },
+    {
+      "timestamp": "53:25",
+      "speaker": "Shane",
+      "text": "follow-up email from this session where you will then be able to uh get a link"
+    },
+    {
+      "timestamp": "53:32",
+      "speaker": "Shane",
+      "text": "to the repo you can download it you can play around with all the code samples that we went through"
+    },
+    {
+      "timestamp": "53:37",
+      "speaker": "Shane",
+      "text": "today all right and you know what would be your suggested way to parse and chunk"
+    },
+    {
+      "timestamp": "53:43",
+      "speaker": "Shane",
+      "text": "large complex PDF does Monster have anything built in so Nick I don't know"
+    },
+    {
+      "timestamp": "53:49",
+      "speaker": "Shane",
+      "text": "if you have an answer to this but I know what I've seen a lot of people do like PDF parsing in general is very hard"
+    },
+    {
+      "timestamp": "53:56",
+      "speaker": "Shane",
+      "text": "specifically if you have PDFs that aren't just straight text and they have things like tables that span multiple"
+    },
+    {
+      "timestamp": "54:01",
+      "speaker": "Shane",
+      "text": "pages it's really hard to get that context and to chunk things correctly so"
+    },
+    {
+      "timestamp": "54:07",
+      "speaker": "Shane",
+      "text": "there are some very good OCR models for doing uh PDF you know parsing"
+    },
+    {
+      "timestamp": "54:13",
+      "speaker": "Shane",
+      "text": "essentially Mistl I think Mistl is the highest ranked on like recent benchmarks mistl has an OCR model but there's other"
+    },
+    {
+      "timestamp": "54:20",
+      "speaker": "Shane",
+      "text": "types of models that can be used where you basically can pass in the PDF and it will do a better job of like retrieving"
+    },
+    {
+      "timestamp": "54:26",
+      "speaker": "Shane",
+      "text": "that content and then that content can then be chunked and and stored in in your database so that's one strategy"
+    },
+    {
+      "timestamp": "54:34",
+      "speaker": "Shane",
+      "text": "any any other strategies Nick that you know of for parsing PDFs"
+    },
+    {
+      "timestamp": "54:39",
+      "speaker": "Nick",
+      "text": "i think that one is and really is it's probably one of the main uh challenges for PDFs is just that parsing i think once you parse"
+    },
+    {
+      "timestamp": "54:46",
+      "speaker": "Nick",
+      "text": "the PDF using an OCR model then that's most of the difficulty it's it's hard to"
+    },
+    {
+      "timestamp": "54:51",
+      "speaker": "Nick",
+      "text": "parse it's hard to chunk it directly like you will need to get the content first and then do it so I think that's"
+    },
+    {
+      "timestamp": "54:58",
+      "speaker": "Nick",
+      "text": "the best way to that's the best approach for it and that's the approach most people take is parsing it first and then"
+    },
+    {
+      "timestamp": "55:04",
+      "speaker": "Nick",
+      "text": "then chunking it and there are there are definitely some depending on what your needs are there are quite a few services"
+    },
+    {
+      "timestamp": "55:09",
+      "speaker": "Nick",
+      "text": "that do some of this so there's a service you called Raggy raggy.ai they"
+    },
+    {
+      "timestamp": "55:15",
+      "speaker": "Nick",
+      "text": "handle a lot of this stuff kind of you know behind the scenes for you so you don't have to worry about it if you're"
+    },
+    {
+      "timestamp": "55:20",
+      "speaker": "Nick",
+      "text": "looking for more of a you know kind of all-in-one solution there are some other tools that do OCR and so you can use th"
+    },
+    {
+      "timestamp": "55:28",
+      "speaker": "Nick",
+      "text": "you know pass PDFs to those tools they'll return the content for you then you can chunk it and you know embed it"
+    },
+    {
+      "timestamp": "55:35",
+      "speaker": "Nick",
+      "text": "and store it in your vector DB but it is I would say that's one of the most common problems is a lot of people have"
+    },
+    {
+      "timestamp": "55:41",
+      "speaker": "Nick",
+      "text": "complex PDFs with tables that span multiple pages and the headings don't carry over and it's very challenging so"
+    },
+    {
+      "timestamp": "55:48",
+      "speaker": "Nick",
+      "text": "that's not something that there's an easy solution for yet today but with some of these OCR models it's getting better and easier to manage"
+    },
+    {
+      "timestamp": "55:54",
+      "speaker": "Nick",
+      "text": "but I I haven't seen any ways to really use complex PDFs without using some kind of uh OCR model or some kind of process"
+    },
+    {
+      "timestamp": "56:01",
+      "speaker": "Nick",
+      "text": "that gets the text out of that uh that document"
+    },
+    {
+      "timestamp": "56:09",
+      "speaker": "Shane",
+      "text": "all right well we are at time so thank you all for attending today please uh attend some more in the future if you want if you like the topics"
+    },
+    {
+      "timestamp": "56:15",
+      "speaker": "Shane",
+      "text": "please make sure to follow us on X and you can check out the recording on YouTube we appreciate you all joining"
+    },
+    {
+      "timestamp": "56:24",
+      "speaker": "Shane",
+      "text": "any final words Nick"
+    },
+    {
+      "timestamp": "56:29",
+      "speaker": "Nick",
+      "text": "uh no I think I'm good but yeah thanks for joining the session and uh hope to see you guys again"
+    },
+    {
+      "timestamp": "56:32",
+      "speaker": "Shane",
+      "text": "we'll see you all next time goodbye"
+    }
+  ]
+}

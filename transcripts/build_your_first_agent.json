@@ -1,0 +1,2974 @@
+{
+  "metadata": {
+    "episode_title": "Build your first agent",
+    "total_speakers": ["Shane"],
+    "source": "https://www.youtube.com/watch?v=qosSxiCcSqI"
+  },
+  "transcript": [
+    {
+      "timestamp": "00:08",
+      "speaker": "Shane",
+      "text": "and we'll go ahead and get started here in just about a minute for those of you that are still"
+    },
+    {
+      "timestamp": "00:15",
+      "speaker": "Shane",
+      "text": "funneling into the workshop thank you all for being here"
+    },
+    {
+      "timestamp": "00:23",
+      "speaker": "Shane",
+      "text": "all right let's see we got a whole bunch of some some people others in California"
+    },
+    {
+      "timestamp": "00:29",
+      "speaker": "Shane",
+      "text": "buenoseras Florida boulder Colorado London"
+    },
+    {
+      "timestamp": "00:36",
+      "speaker": "Shane",
+      "text": "not directly behind me james that's funny seattle"
+    },
+    {
+      "timestamp": "00:41",
+      "speaker": "Shane",
+      "text": "a whole bunch of places ah David you met Sam last night very"
+    },
+    {
+      "timestamp": "00:47",
+      "speaker": "Shane",
+      "text": "cool yes he was just in this room somewhere around here"
+    },
+    {
+      "timestamp": "00:55",
+      "speaker": "Shane",
+      "text": "all right well there will be more that uh that do continue to come in that's fine uh just as a you know before we get"
+    },
+    {
+      "timestamp": "01:03",
+      "speaker": "Shane",
+      "text": "started this is going to be recorded you we're actually live on you know X"
+    },
+    {
+      "timestamp": "01:09",
+      "speaker": "Shane",
+      "text": "YouTube LinkedIn a few different places so it's available you can go find it on"
+    },
+    {
+      "timestamp": "01:14",
+      "speaker": "Shane",
+      "text": "our YouTube directly following this so if you have to leave if you miss something you can grab it on our YouTube"
+    },
+    {
+      "timestamp": "01:20",
+      "speaker": "Shane",
+      "text": "and you can uh we'll share all the links and the resources as well following this event"
+    },
+    {
+      "timestamp": "01:26",
+      "speaker": "Shane",
+      "text": "so I'm going to go ahead and get started by sharing my screen here"
+    },
+    {
+      "timestamp": "01:34",
+      "speaker": "Shane",
+      "text": "give me one second to get everything pulled up"
+    },
+    {
+      "timestamp": "01:40",
+      "speaker": "Shane",
+      "text": "and we will get started"
+    },
+    {
+      "timestamp": "01:54",
+      "speaker": "Shane",
+      "text": "all right so thank you all for being here today we're going to learn a little bit around how to build our first agent"
+    },
+    {
+      "timestamp": "02:01",
+      "speaker": "Shane",
+      "text": "we're going to use Maestra we're going to talk a little bit about MCP as well"
+    },
+    {
+      "timestamp": "02:06",
+      "speaker": "Shane",
+      "text": "and this is interactive so please use the use the chat there's also I believe"
+    },
+    {
+      "timestamp": "02:13",
+      "speaker": "Shane",
+      "text": "there's a like a Q&A section you can use that if you have very specific questions but for you know basic chitchat the chat"
+    },
+    {
+      "timestamp": "02:20",
+      "speaker": "Shane",
+      "text": "is fine we want it to be interactive we want you to ask questions along the way uh we'll try to save some time at the"
+    },
+    {
+      "timestamp": "02:25",
+      "speaker": "Shane",
+      "text": "end for questions but we do have a lot we're going to cover so we're going to talk through quite a few things but our goal is we're"
+    },
+    {
+      "timestamp": "02:33",
+      "speaker": "Shane",
+      "text": "going to walk through kind of building a a simple personal assistant agent with MRA and we're going to use MCP so if"
+    },
+    {
+      "timestamp": "02:39",
+      "speaker": "Shane",
+      "text": "you're not familiar with MCP we're going to cover what that is as well so the things that we're going to do we're going to talk a little bit about what"
+    },
+    {
+      "timestamp": "02:45",
+      "speaker": "Shane",
+      "text": "are AI agents we're going to talk a little bit about what MCP is and how does that uh what does that matter how"
+    },
+    {
+      "timestamp": "02:51",
+      "speaker": "Shane",
+      "text": "you actually go about finding MCP servers to use with agents that you might be building and then how you can"
+    },
+    {
+      "timestamp": "02:57",
+      "speaker": "Shane",
+      "text": "use MCP and MRA to build this somewhat realistic personal assistant agent that"
+    },
+    {
+      "timestamp": "03:03",
+      "speaker": "Shane",
+      "text": "can do a number of tasks for you it's a good starting point if you're just trying to learn a little bit more about"
+    },
+    {
+      "timestamp": "03:09",
+      "speaker": "Shane",
+      "text": "uh building agents so who am I i'm one of the co-founders of Mastra i lead a"
+    },
+    {
+      "timestamp": "03:16",
+      "speaker": "Shane",
+      "text": "product over here i was previously at Gatsby and Netlefi i built a site called"
+    },
+    {
+      "timestamp": "03:21",
+      "speaker": "Shane",
+      "text": "Audio Feed i spent many many years in open source software dating back to doing a lot with Drupal when I first got"
+    },
+    {
+      "timestamp": "03:28",
+      "speaker": "Shane",
+      "text": "started a lot of web development and yeah please connect with me on LinkedIn"
+    },
+    {
+      "timestamp": "03:33",
+      "speaker": "Shane",
+      "text": "or X so first what is MRA for those of you that you know may be new have not used"
+    },
+    {
+      "timestamp": "03:40",
+      "speaker": "Shane",
+      "text": "MRAA yet it's an open source AI agent framework for TypeScript"
+    },
+    {
+      "timestamp": "03:46",
+      "speaker": "Shane",
+      "text": "it has agents with tools memory tracing it has workflows so you can do the human"
+    },
+    {
+      "timestamp": "03:51",
+      "speaker": "Shane",
+      "text": "in the loop workflows and it's a very simple API to make it really easy to build uh more deterministic workflows we"
+    },
+    {
+      "timestamp": "03:59",
+      "speaker": "Shane",
+      "text": "have eval that allow you to kind of track and measure AI output we allow"
+    },
+    {
+      "timestamp": "04:04",
+      "speaker": "Shane",
+      "text": "storage for rag pipelines for you to get you basically how do you like get the right context into the LLMs"
+    },
+    {
+      "timestamp": "04:11",
+      "speaker": "Shane",
+      "text": "into your agents and then we all package it up into like a local development playground to make it really easy to"
+    },
+    {
+      "timestamp": "04:16",
+      "speaker": "Shane",
+      "text": "iterate and test these things and you'll see that quite a bit today whole idea around Monstrous we want to"
+    },
+    {
+      "timestamp": "04:22",
+      "speaker": "Shane",
+      "text": "be opinionated at the beginning so you can get further faster but it's flexible so you're not"
+    },
+    {
+      "timestamp": "04:28",
+      "speaker": "Shane",
+      "text": "you don't ever feel like you're locked into the doing things the way that the framework tells you it it has to be done"
+    },
+    {
+      "timestamp": "04:33",
+      "speaker": "Shane",
+      "text": "so we really want to make it uh very portable where you can kind of piece in different components as you build out"
+    },
+    {
+      "timestamp": "04:39",
+      "speaker": "Shane",
+      "text": "your application as you grow so you never really get locked in but let's talk first like what are agents there's"
+    },
+    {
+      "timestamp": "04:45",
+      "speaker": "Shane",
+      "text": "a ton of definitions for agents and I don't think there's necessarily a right one a lot of people uh will"
+    },
+    {
+      "timestamp": "04:53",
+      "speaker": "Shane",
+      "text": "you know will have say you shouldn't call workflows agents you shouldn't you know you shouldn't call this an agent"
+    },
+    {
+      "timestamp": "04:60",
+      "speaker": "Shane",
+      "text": "the simplest answer is an agent to me is software with non-deterministic code meaning that you"
+    },
+    {
+      "timestamp": "05:06",
+      "speaker": "Shane",
+      "text": "don't know you can't predict exactly what's going to happen and if you use an LLM you you would if you you know even"
+    },
+    {
+      "timestamp": "05:14",
+      "speaker": "Shane",
+      "text": "if you use chat GBT and you've asked the same question multiple times to chat GBT you know that you're never getting the"
+    },
+    {
+      "timestamp": "05:19",
+      "speaker": "Shane",
+      "text": "same answer right so that is very non-deterministic there is it's hard to predict exactly what you're going to get"
+    },
+    {
+      "timestamp": "05:25",
+      "speaker": "Shane",
+      "text": "out of it and so that's like the very simplest version of agents but I do think there's what what we like to call"
+    },
+    {
+      "timestamp": "05:32",
+      "speaker": "Shane",
+      "text": "like the agentic spectrum and something that's maybe less agentic is it's almost"
+    },
+    {
+      "timestamp": "05:38",
+      "speaker": "Shane",
+      "text": "all deterministic and there's maybe a few calls to an LLM you know maybe like a trip planner where first you find a"
+    },
+    {
+      "timestamp": "05:45",
+      "speaker": "Shane",
+      "text": "hotel then you find a flight or vice versa first you find a flight then you find a hotel and it's very like step by"
+    },
+    {
+      "timestamp": "05:50",
+      "speaker": "Shane",
+      "text": "step there's maybe a few points that are less deterministic that's less agentic something that's more agentic is you"
+    },
+    {
+      "timestamp": "05:57",
+      "speaker": "Shane",
+      "text": "allow LLMs to build and execute their own plans and they have access to different tools so this could be maybe"
+    },
+    {
+      "timestamp": "06:03",
+      "speaker": "Shane",
+      "text": "like an AI customer service assistant with access to your knowledge base it's a little bit more autonomous but um so"
+    },
+    {
+      "timestamp": "06:10",
+      "speaker": "Shane",
+      "text": "it's a little bit more agentic and then something that's even like kind of on the further end of the spectrum would be"
+    },
+    {
+      "timestamp": "06:16",
+      "speaker": "Shane",
+      "text": "you know like the Whimos or the self-driving cars right it's it's mostly autonomous runs with very little human"
+    },
+    {
+      "timestamp": "06:22",
+      "speaker": "Shane",
+      "text": "input and so you have this like spectrum of what is an agent or how agentic is a"
+    },
+    {
+      "timestamp": "06:27",
+      "speaker": "Shane",
+      "text": "system and so in Maestro we do give you kind of primitives that map to some of those things we have workflows which are"
+    },
+    {
+      "timestamp": "06:34",
+      "speaker": "Shane",
+      "text": "more deterministic we have agents which is what we're going to kind of cover today which is kind of somewhere in the middle you can give an agent tools it"
+    },
+    {
+      "timestamp": "06:40",
+      "speaker": "Shane",
+      "text": "can make decisions uh based on what you ask it to do and it can use those tools that it's given and then we also have"
+    },
+    {
+      "timestamp": "06:46",
+      "speaker": "Shane",
+      "text": "this concept which we won't cover today called agent networks which is like a collection of these agents working"
+    },
+    {
+      "timestamp": "06:52",
+      "speaker": "Shane",
+      "text": "together mostly you know potentially autonomously so we are going to talk a little bit"
+    },
+    {
+      "timestamp": "06:58",
+      "speaker": "Shane",
+      "text": "about MCP and you know I I'm curious you know if you have any experience with MCP"
+    },
+    {
+      "timestamp": "07:06",
+      "speaker": "Shane",
+      "text": "but it's essentially a standard that allows LLM to connect to other systems so the"
+    },
+    {
+      "timestamp": "07:14",
+      "speaker": "Shane",
+      "text": "idea was you know there are a lot of APIs a lot of data sources out there and"
+    },
+    {
+      "timestamp": "07:19",
+      "speaker": "Shane",
+      "text": "we want to make it easy there's some kind of standard for the agents that we're building or the LLMs that we're"
+    },
+    {
+      "timestamp": "07:24",
+      "speaker": "Shane",
+      "text": "using to get data from these different systems so it's kind of like a USBC port for AI applications it's it's a standard"
+    },
+    {
+      "timestamp": "07:32",
+      "speaker": "Shane",
+      "text": "i don't think it's necessarily a perfect standard but it is a standard that a lot of people are starting to agree on and"
+    },
+    {
+      "timestamp": "07:38",
+      "speaker": "Shane",
+      "text": "that uh because of that it now unlocks a lot of things"
+    },
+    {
+      "timestamp": "07:43",
+      "speaker": "Shane",
+      "text": "so we are going to talk a little bit about what MCP is"
+    },
+    {
+      "timestamp": "07:49",
+      "speaker": "Shane",
+      "text": "and when we want to talk about exactly how it works there's this MCP client if you've used"
+    },
+    {
+      "timestamp": "07:57",
+      "speaker": "Shane",
+      "text": "Cursor or Windsurf or maybe Cloud Desktop I think Chat GBT was even going to release like MCP support i don't know"
+    },
+    {
+      "timestamp": "08:04",
+      "speaker": "Shane",
+      "text": "if that's officially launched yet or if it's just coming very soon but there you have these this idea of a client and it"
+    },
+    {
+      "timestamp": "08:10",
+      "speaker": "Shane",
+      "text": "uses the protocol to connect to some kind of MCP server now the interesting"
+    },
+    {
+      "timestamp": "08:16",
+      "speaker": "Shane",
+      "text": "thing about an MCP server is this could be a remote MCP server that you're connecting to and maybe it goes out to"
+    },
+    {
+      "timestamp": "08:22",
+      "speaker": "Shane",
+      "text": "GitHub or to Slack or it could be a MCP server that's actually still running on the same machine as the client but it"
+    },
+    {
+      "timestamp": "08:29",
+      "speaker": "Shane",
+      "text": "uses the protocol to know how to actually communicate so the server is essentially a bridge to various pieces"
+    },
+    {
+      "timestamp": "08:35",
+      "speaker": "Shane",
+      "text": "of functionality"
+    },
+    {
+      "timestamp": "08:41",
+      "speaker": "Shane",
+      "text": "we're not going to spend too much time on the MCP spec but there's a couple different things that"
+    },
+    {
+      "timestamp": "08:47",
+      "speaker": "Shane",
+      "text": "are interesting about the spec there has the spec has this idea of tools which is where we're going to spend all of our"
+    },
+    {
+      "timestamp": "08:52",
+      "speaker": "Shane",
+      "text": "time today tools are basically actions the model can call basically they're just think of it like JavaScript"
+    },
+    {
+      "timestamp": "08:58",
+      "speaker": "Shane",
+      "text": "functions that your model can call and run code that is most MCP servers just define"
+    },
+    {
+      "timestamp": "09:05",
+      "speaker": "Shane",
+      "text": "tools today even most MCP clients really only support tools i think VS Code just"
+    },
+    {
+      "timestamp": "09:11",
+      "speaker": "Shane",
+      "text": "announced that they're the first editor to fully support the spec so they support prompts and resources and and"
+    },
+    {
+      "timestamp": "09:16",
+      "speaker": "Shane",
+      "text": "all the other things that come with it as of today the spec is still changing of course but most clients don't support"
+    },
+    {
+      "timestamp": "09:22",
+      "speaker": "Shane",
+      "text": "the entire spec yet i think over time they will but for now uh most of them just really focus on tools there's also"
+    },
+    {
+      "timestamp": "09:29",
+      "speaker": "Shane",
+      "text": "this concept of prompts which are like message templates so you could almost like if you think about you're chatting"
+    },
+    {
+      "timestamp": "09:34",
+      "speaker": "Shane",
+      "text": "with your cursor agent you can get suggestions for what you might want to"
+    },
+    {
+      "timestamp": "09:40",
+      "speaker": "Shane",
+      "text": "prompt your server what kind of prompts that the server can handle resources are like data sources so uh you know could"
+    },
+    {
+      "timestamp": "09:48",
+      "speaker": "Shane",
+      "text": "be a file URL or some kind of uh data source that is going to be you know consistently updated and your your agent"
+    },
+    {
+      "timestamp": "09:55",
+      "speaker": "Shane",
+      "text": "or your LLM your client will have access to and there's a few different kind of"
+    },
+    {
+      "timestamp": "10:01",
+      "speaker": "Shane",
+      "text": "transports the two common ones are standard input output STDIO"
+    },
+    {
+      "timestamp": "10:07",
+      "speaker": "Shane",
+      "text": "or streamable HTTP the easiest way to think about this is like stddio is essentially like a"
+    },
+    {
+      "timestamp": "10:14",
+      "speaker": "Shane",
+      "text": "running locally typically on with alongside your client where streamable HTTP you're going out to some API"
+    },
+    {
+      "timestamp": "10:21",
+      "speaker": "Shane",
+      "text": "somewhere and you're going to stream out uh stream the results back there's also another one called SS"
+    },
+    {
+      "timestamp": "10:28",
+      "speaker": "Shane",
+      "text": "but it's pretty much being replaced by streamable HTTP so we're not going to spend too much time on it solves a lot"
+    },
+    {
+      "timestamp": "10:34",
+      "speaker": "Shane",
+      "text": "of the same problems okay so how are companies trying to use"
+    },
+    {
+      "timestamp": "10:40",
+      "speaker": "Shane",
+      "text": "MCP they're using MCP to connect agents with their internal systems so like"
+    },
+    {
+      "timestamp": "10:45",
+      "speaker": "Shane",
+      "text": "Internally if you have some data sources you can build an MCP server and now your other internal teams can access data if"
+    },
+    {
+      "timestamp": "10:52",
+      "speaker": "Shane",
+      "text": "they're building agents uh with uh from those data sources. There's a lot of dev"
+    },
+    {
+      "timestamp": "10:58",
+      "speaker": "Shane",
+      "text": "platforms that are obviously adopting MCP mostly as clients you can\u2014we mentioned Cursor, WindSurf client, VS"
+    },
+    {
+      "timestamp": "11:04",
+      "speaker": "Shane",
+      "text": "Code\u2014all these different tools. Cloud Desktop supports it, ChatGPT supports it."
+    },
+    {
+      "timestamp": "11:11",
+      "speaker": "Shane",
+      "text": "And there's also like a growing list of connectors or you know servers that allow you to connect to things like"
+    },
+    {
+      "timestamp": "11:16",
+      "speaker": "Shane",
+      "text": "Google Drive or Slack or GitHub\u2014you know, some kind of database. And we see a"
+    },
+    {
+      "timestamp": "11:21",
+      "speaker": "Shane",
+      "text": "lot of people starting to build MCP servers. You know, Linear I think has an officially supported MCP server, so"
+    },
+    {
+      "timestamp": "11:28",
+      "speaker": "Shane",
+      "text": "service providers are building MCP servers to allow you to basically access their API."
+    },
+    {
+      "timestamp": "11:34",
+      "speaker": "Shane",
+      "text": "At Maestra, one of the things that we are doing is we have an MCP doc server, so"
+    },
+    {
+      "timestamp": "11:41",
+      "speaker": "Shane",
+      "text": "we found one of the problems that a lot of people have as they start building AI agents with MRA\u2014they need to"
+    },
+    {
+      "timestamp": "11:48",
+      "speaker": "Shane",
+      "text": "follow specific... you know, using our APIs, right, to build these agents. And the typical way you would do that is you go"
+    },
+    {
+      "timestamp": "11:54",
+      "speaker": "Shane",
+      "text": "to the docs, you read about it, you copy and paste code snippets in. But with these new code editors you want to be"
+    },
+    {
+      "timestamp": "12:00",
+      "speaker": "Shane",
+      "text": "able to just ask Cursor or WindSurf or whatever you're using to write some of the code for you or to teach you how to"
+    },
+    {
+      "timestamp": "12:06",
+      "speaker": "Shane",
+      "text": "do it. But it wasn't aware of Maestra, right? Maestra is still relatively new and the models are trained on data that is in"
+    },
+    {
+      "timestamp": "12:13",
+      "speaker": "Shane",
+      "text": "the past. So we created an MCP doc server that always has up-to-date information. So if you install it inside"
+    },
+    {
+      "timestamp": "12:20",
+      "speaker": "Shane",
+      "text": "Cursor or whatever your editor is and you ask questions about MRA, it now has access to all the documentation so it"
+    },
+    {
+      "timestamp": "12:27",
+      "speaker": "Shane",
+      "text": "can write Maestra code for you. And within that MCP server we also offered this which we\u2014we believe is the"
+    },
+    {
+      "timestamp": "12:33",
+      "speaker": "Shane",
+      "text": "first time anyone's done this, I'm not exactly sure\u2014but this idea of a course. So you can essentially inside Cursor"
+    },
+    {
+      "timestamp": "12:41",
+      "speaker": "Shane",
+      "text": "tell it to start the Maestra course, and then your Cursor agent will actually walk you through how to implement\u2014you"
+    },
+    {
+      "timestamp": "12:50",
+      "speaker": "Shane",
+      "text": "know, a lot of what we're going through today. Like, a similar type of example where it'll actually teach you"
+    },
+    {
+      "timestamp": "12:57",
+      "speaker": "Shane",
+      "text": "how to build an agent, how to add memory, how to add tools\u2014all those things\u2014but it walks it through in the chat interface."
+    },
+    {
+      "timestamp": "13:03",
+      "speaker": "Shane",
+      "text": "So it's very interactive. So there's a lot of different use cases for how you could actually use MCP within"
+    },
+    {
+      "timestamp": "13:13",
+      "speaker": "Shane",
+      "text": "these different MCP servers."
+    },
+    {
+      "timestamp": "13:19",
+      "speaker": "Shane",
+      "text": "So are there any examples of MCP implementations using OAuth?"
+    },
+    {
+      "timestamp": "13:24",
+      "speaker": "Shane",
+      "text": "Yes, there are some. So"
+    },
+    {
+      "timestamp": "13:24",
+      "speaker": "Shane",
+      "text": "some of these, and we'll use Zapier\u2019s MCP, and there is like an"
+    },
+    {
+      "timestamp": "13:31",
+      "speaker": "Shane",
+      "text": "OAuth component to that\u2014but that happens outside. If you want your users to go through OAuth, that is a little less"
+    },
+    {
+      "timestamp": "13:37",
+      "speaker": "Shane",
+      "text": "defined. So it's very easy for me to OAuth myself and give that access to an agent\u2014"
+    },
+    {
+      "timestamp": "13:42",
+      "speaker": "Shane",
+      "text": "that is easy. If you're building an application where you want your users to then OAuth and then the agent that you"
+    },
+    {
+      "timestamp": "13:48",
+      "speaker": "Shane",
+      "text": "build can access that user's data, there is more complexity to that. There's a proposal in the MCP spec\u2014I think it's in"
+    },
+    {
+      "timestamp": "13:55",
+      "speaker": "Shane",
+      "text": "draft state still, at least last time I checked\u2014more around more specific"
+    },
+    {
+      "timestamp": "14:02",
+      "speaker": "Shane",
+      "text": "ways of implementing OAuth. I think this, you know, very much kind of piggybacked on the idea of OAuth, but there is some stuff"
+    },
+    {
+      "timestamp": "14:09",
+      "speaker": "Shane",
+      "text": "coming in the MCP spec around how to facilitate this OAuth and make that a little bit better."
+    },
+    {
+      "timestamp": "14:15",
+      "speaker": "Daniel",
+      "text": "Um let's see, when I tried to use a tool with Prisma my agent was hallucinating"
+    },
+    {
+      "timestamp": "14:20",
+      "speaker": "Daniel",
+      "text": "the response and selecting a random reply."
+    },
+    {
+      "timestamp": "14:26",
+      "speaker": "Shane",
+      "text": "Uh Daniel, it's hard to know for"
+    },
+    {
+      "timestamp": "14:26",
+      "speaker": "Shane",
+      "text": "sure. I wouldn't be surprised if your agent is hallucinating. It's actually one of the"
+    },
+    {
+      "timestamp": "14:32",
+      "speaker": "Shane",
+      "text": "challenges with working with some of this stuff. As we go through today maybe I'll highlight a"
+    },
+    {
+      "timestamp": "14:38",
+      "speaker": "Shane",
+      "text": "few things that could be the case of where that could be going kind of going off the rails\u2014but it's hard to know"
+    },
+    {
+      "timestamp": "14:44",
+      "speaker": "Shane",
+      "text": "for sure."
+    },
+    {
+      "timestamp": "14:50",
+      "speaker": "Daniel",
+      "text": "The ApolloQL MCP server is amazing\u2014you can turn your GraphQL backend into an MCP server and get access to queries and mutations."
+    },
+    {
+      "timestamp": "14:56",
+      "speaker": "Shane",
+      "text": "Yeah that's really cool. So yeah, there's a number of these MCP servers. I still see it mostly with"
+    },
+    {
+      "timestamp": "15:04",
+      "speaker": "Shane",
+      "text": "helping developers\u2014that's where the most adoption is. But it's starting\u2014I think"
+    },
+    {
+      "timestamp": "15:10",
+      "speaker": "Shane",
+      "text": "there are more and more implementations that are starting to get a little bit more mainstream. Not just helping us as, you know, developers or engineers"
+    },
+    {
+      "timestamp": "15:16",
+      "speaker": "Shane",
+      "text": "day-to-day, but you know, potentially getting\u2014and especially now that ChatGPT is going to be implementing MCP"
+    },
+    {
+      "timestamp": "15:22",
+      "speaker": "Shane",
+      "text": "within their app, right? That'll make it a little bit more mainstream. But yes, it still is very"
+    },
+    {
+      "timestamp": "15:28",
+      "speaker": "Shane",
+      "text": "there's a lot of really cool developer tool implementations."
+    },
+    {
+      "timestamp": "15:33",
+      "speaker": "Shane",
+      "text": "One of the things\u2014challenges\u2014is there's a ton of MCP servers. How do you find them? You need like a package manager\u2014"
+    },
+    {
+      "timestamp": "15:39",
+      "speaker": "Shane",
+      "text": "what's called an MCP registry. There's ones like Zapier, Composio, Smithery, MCP Run,"
+    },
+    {
+      "timestamp": "15:45",
+      "speaker": "Shane",
+      "text": "Graphlit, Open Tools. There's way more than this. There's so many that we actually created an MCP registry."
+    },
+    {
+      "timestamp": "15:51",
+      "speaker": "Shane",
+      "text": "So on the MRA website you can find our registry, which just lists a whole bunch of different"
+    },
+    {
+      "timestamp": "15:57",
+      "speaker": "Shane",
+      "text": "registries that are available to try to help people search through the various options so they can find one that"
+    },
+    {
+      "timestamp": "16:03",
+      "speaker": "Shane",
+      "text": "helps them get started fast. And if there's any that are missing you can definitely, in our open source repo,"
+    },
+    {
+      "timestamp": "16:10",
+      "speaker": "Shane",
+      "text": "PR this and it'll get updated on our website."
+    },
+    {
+      "timestamp": "16:18",
+      "speaker": "Daniel",
+      "text": "Question here\u2014MCP seems to have won. Wondering what we think about AAA?"
+    },
+    {
+      "timestamp": "16:25",
+      "speaker": "Shane",
+      "text": "I think there\u2019s two"
+    },
+    {
+      "timestamp": "16:25",
+      "speaker": "Shane",
+      "text": "ways to look at it. You can look at them as competing standards, in which case I would say MCP has won in that regard."
+    },
+    {
+      "timestamp": "16:31",
+      "speaker": "Shane",
+      "text": "I don't think MCP was originally designed to be agents-to-agents talking, but it can work that way. So it can solve some"
+    },
+    {
+      "timestamp": "16:37",
+      "speaker": "Shane",
+      "text": "of the same problems that AAA solves. AAA was much more designed for just agent-to-agent communication."
+    },
+    {
+      "timestamp": "16:44",
+      "speaker": "Shane",
+      "text": "We, at Maestra, we support both because ultimately we don't know what standard is going to win. So we want"
+    },
+    {
+      "timestamp": "16:50",
+      "speaker": "Shane",
+      "text": "to make sure that you can use whatever standard. And if AAA gains more popularity, your agents\u2014if you build"
+    },
+    {
+      "timestamp": "16:57",
+      "speaker": "Shane",
+      "text": "an agent with MRA\u2014you can expose it as an MCP server very easily, and it"
+    },
+    {
+      "timestamp": "17:02",
+      "speaker": "Shane",
+      "text": "also supports AAA. So the idea is to make it very interoperable."
+    },
+    {
+      "timestamp": "17:07",
+      "speaker": "Shane",
+      "text": "But I would say AAA hasn't quite picked up the way that MCP has."
+    },
+    {
+      "timestamp": "17:13",
+      "speaker": "Shane",
+      "text": "But we do support both."
+    },
+    {
+      "timestamp": "17:19",
+      "speaker": "Shane",
+      "text": "And then there's AGUI\u2014yes, also supported by Maestra. AGUI is"
+    },
+    {
+      "timestamp": "17:19",
+      "speaker": "Shane",
+      "text": "much more tuned toward connecting frontends to agents. But yes, there's a whole\u2014there's a whole bunch of these new"
+    },
+    {
+      "timestamp": "17:25",
+      "speaker": "Shane",
+      "text": "standards. The ongoing joke is, you know, there's too many"
+    },
+    {
+      "timestamp": "17:30",
+      "speaker": "Shane",
+      "text": "standards. We need to invent a new standard to solve this problem of too many standards. And then you have"
+    },
+    {
+      "timestamp": "17:35",
+      "speaker": "Shane",
+      "text": "one more standard. So I think, you know, the space is still very new. We're still going to figure out over time"
+    },
+    {
+      "timestamp": "17:41",
+      "speaker": "Shane",
+      "text": "what really wins."
+    },
+    {
+      "timestamp": "17:47",
+      "speaker": "Shane",
+      "text": "But let's actually\u2014what we're here for\u2014let's write some code. So I'm going to go through a"
+    },
+    {
+      "timestamp": "17:54",
+      "speaker": "Shane",
+      "text": "very simple example of creating a Maestra agent. And we're just going to go from the beginning to like getting"
+    },
+    {
+      "timestamp": "18:00",
+      "speaker": "Shane",
+      "text": "something working with MRA. And then we're going to look at a more built-out agent, give that agent access to our"
+    },
+    {
+      "timestamp": "18:07",
+      "speaker": "Shane",
+      "text": "email and social media, allow it to access GitHub. And then we should have time to hopefully show how, if we wanted"
+    },
+    {
+      "timestamp": "18:14",
+      "speaker": "Shane",
+      "text": "to wire up a different frontend\u2014in this case I'll show you how we use like Telegram bot to talk to the agent. And"
+    },
+    {
+      "timestamp": "18:19",
+      "speaker": "Shane",
+      "text": "if we have some time, I'll also show you some ways you could deploy this agent."
+    },
+    {
+      "timestamp": "18:26",
+      "speaker": "Daniel",
+      "text": "One question\u2014what are the benefits of Maestra when compared with LangChain, especially LangGraph? Is it at feature parity generally speaking?"
+    },
+    {
+      "timestamp": "18:31",
+      "speaker": "Shane",
+      "text": "Yeah, it's often compared to\u2014like we like to think"
+    },
+    {
+      "timestamp": "18:38",
+      "speaker": "Shane",
+      "text": "of MRA as like if you took LangChain and LangGraph, put them together, you'd get a lot of the same things with"
+    },
+    {
+      "timestamp": "18:44",
+      "speaker": "Shane",
+      "text": "Maestra. I don't know that we\u2014you know, they have everything we have or we have everything they have\u2014but there's"
+    },
+    {
+      "timestamp": "18:50",
+      "speaker": "Shane",
+      "text": "quite a bit of feature parity between the two. I think our workflows are very closely aligned with what you can"
+    },
+    {
+      "timestamp": "18:55",
+      "speaker": "Shane",
+      "text": "accomplish with LangGraph. And then we have some other things that are kind of built on top of it that give you a"
+    },
+    {
+      "timestamp": "19:01",
+      "speaker": "Shane",
+      "text": "little bit more structure, I believe. But you know, we often get compared to LangChain and LangGraph."
+    },
+    {
+      "timestamp": "19:06",
+      "speaker": "Shane",
+      "text": "I think one of the"
+    },
+    {
+      "timestamp": "19:06",
+      "speaker": "Shane",
+      "text": "biggest challenges that we hear from our customers is that\u2014you know, maybe the"
+    },
+    {
+      "timestamp": "19:12",
+      "speaker": "Shane",
+      "text": "LangGraph docs... I think LangGraph was very good when it started in Python, and then it also now has JavaScript"
+    },
+    {
+      "timestamp": "19:19",
+      "speaker": "Shane",
+      "text": "implementations. And sometimes we actually in the past had used LangGraph and often find that it was hard to find"
+    },
+    {
+      "timestamp": "19:25",
+      "speaker": "Shane",
+      "text": "the right docs. You often would end up on the Python docs if you're using JavaScript. Or if you wanted to use"
+    },
+    {
+      "timestamp": "19:31",
+      "speaker": "Shane",
+      "text": "Python, sometimes you'd end up on the JavaScript docs. So I do think that our opinion is frameworks should stick with"
+    },
+    {
+      "timestamp": "19:36",
+      "speaker": "Shane",
+      "text": "one language. And so we're just TypeScript/JavaScript first and only."
+    },
+    {
+      "timestamp": "19:42",
+      "speaker": "Shane",
+      "text": "But we do accomplish a lot of the same things. So there is quite a bit of feature parity between the two."
+    },
+    {
+      "timestamp": "19:52",
+      "speaker": "Daniel",
+      "text": "All right\u2014so why TypeScript?"
+    },
+    {
+      "timestamp": "19:59",
+      "speaker": "Shane",
+      "text": "Good question. I think the idea"
+    },
+    {
+      "timestamp": "20:05",
+      "speaker": "Shane",
+      "text": "that AI\u2014you know, you should build AI with Python\u2014made sense at the beginning,"
+    },
+    {
+      "timestamp": "20:10",
+      "speaker": "Shane",
+      "text": "because it all came back from the machine learning/data science world, which is very Python-centric. And if"
+    },
+    {
+      "timestamp": "20:18",
+      "speaker": "Shane",
+      "text": "you're going to train models, if you're going to do reinforcement fine-tuning, you're probably going to be writing some Python. But most of what"
+    },
+    {
+      "timestamp": "20:24",
+      "speaker": "Shane",
+      "text": "we do day-to-day is not fine-tuning, right? We have these LLMs that are just available through APIs. And if there's"
+    },
+    {
+      "timestamp": "20:30",
+      "speaker": "Shane",
+      "text": "one thing that JavaScript and TypeScript developers are good at, it's interacting with APIs. If you come"
+    },
+    {
+      "timestamp": "20:35",
+      "speaker": "Shane",
+      "text": "from a background in the web world\u2014writing a lot of JavaScript and TypeScript like I do\u2014then interacting"
+    },
+    {
+      "timestamp": "20:41",
+      "speaker": "Shane",
+      "text": "with APIs is pretty second nature. And so I think the type safety out of the box is really nice, especially when you're"
+    },
+    {
+      "timestamp": "20:47",
+      "speaker": "Shane",
+      "text": "writing code. You don't have to add any extra libraries to get type safety. So TypeScript does help with that."
+    },
+    {
+      "timestamp": "20:54",
+      "speaker": "Shane",
+      "text": "It kind of enforces a little bit more structure and a little bit more of a standard."
+    },
+    {
+      "timestamp": "21:02",
+      "speaker": "Shane",
+      "text": "Again\u2014we're a TypeScript team, so we're a little bit biased."
+    },
+    {
+      "timestamp": "21:08",
+      "speaker": "Shane",
+      "text": "All right, so we're going to go ahead and get going because there's a lot of questions. Hopefully we'll answer some more as we go."
+    },
+    {
+      "timestamp": "21:14",
+      "speaker": "Shane",
+      "text": "But let's actually share some code."
+    },
+    {
+      "timestamp": "21:16",
+      "speaker": "Shane",
+      "text": "so I'm going to just go to the Maestro website and"
+    },
+    {
+      "timestamp": "21:22",
+      "speaker": "Shane",
+      "text": "I'm going to copy just this we're just going to run this from the beginning so we can see what building a really simple"
+    },
+    {
+      "timestamp": "21:28",
+      "speaker": "Shane",
+      "text": "example agent looks like in Ma so this is going to say what do I want to name my project and just call it June 18th"
+    },
+    {
+      "timestamp": "21:37",
+      "speaker": "Shane",
+      "text": "and this is going to go out it's going to install all the npm packages that are required for MRA and it's going to ask"
+    },
+    {
+      "timestamp": "21:44",
+      "speaker": "Shane",
+      "text": "me a few more questions"
+    },
+    {
+      "timestamp": "21:50",
+      "speaker": "Shane",
+      "text": "um plans to expand the client SDK to other languages it's a good idea we we"
+    },
+    {
+      "timestamp": "21:56",
+      "speaker": "Shane",
+      "text": "don't have any immediate plans to do it though so right now it's just the Java"
+    },
+    {
+      "timestamp": "22:01",
+      "speaker": "Shane",
+      "text": "or client so you have the client that can interact with your master agents right now that is just in uh TypeScript"
+    },
+    {
+      "timestamp": "22:09",
+      "speaker": "Shane",
+      "text": "where should we create the master files let's just keep the defaults we we'll use OpenAI but we could use you know any"
+    },
+    {
+      "timestamp": "22:15",
+      "speaker": "Shane",
+      "text": "provider i will paste in my key separately so I'm going to skip that and while we're"
+    },
+    {
+      "timestamp": "22:21",
+      "speaker": "Shane",
+      "text": "setting up this agent it asks if we want to install the Master Docs MCP server in"
+    },
+    {
+      "timestamp": "22:26",
+      "speaker": "Shane",
+      "text": "our editor that way we can ask questions and have it help us write the code so I'll go ahead and do this just we'll use"
+    },
+    {
+      "timestamp": "22:31",
+      "speaker": "Shane",
+      "text": "cursor and so if I go into this project"
+    },
+    {
+      "timestamp": "22:39",
+      "speaker": "Shane",
+      "text": "and I am going to just copy in my environment file"
+    },
+    {
+      "timestamp": "22:47",
+      "speaker": "Shane",
+      "text": "remove the one that came with it and now I can go ahead and just run npm rundev"
+    },
+    {
+      "timestamp": "22:55",
+      "speaker": "Shane",
+      "text": "and this should this will fire up our local development playground so out of the box when you create you go through"
+    },
+    {
+      "timestamp": "23:02",
+      "speaker": "Shane",
+      "text": "this kind of getting started experience it does give you an example agent so you can see the code see how it works so you"
+    },
+    {
+      "timestamp": "23:08",
+      "speaker": "Shane",
+      "text": "can see I have an API I could hit with an with some kind of API client or I can"
+    },
+    {
+      "timestamp": "23:14",
+      "speaker": "Shane",
+      "text": "go to our playground so we're going to go to the playground"
+    },
+    {
+      "timestamp": "23:21",
+      "speaker": "Shane",
+      "text": "and there's a whole bunch of things here we're not going to cover all of it but I"
+    },
+    {
+      "timestamp": "23:26",
+      "speaker": "Shane",
+      "text": "encourage you to check it out the important thing is we have this weather agent so if we click into this weather agent you'll see there's a kind of a lot"
+    },
+    {
+      "timestamp": "23:32",
+      "speaker": "Shane",
+      "text": "going on but we have a history of chat like a chat history of this agent we can"
+    },
+    {
+      "timestamp": "23:38",
+      "speaker": "Shane",
+      "text": "actually live chat with this so we can test it we can iterate on it quickly it tells us here's the system prompt or the"
+    },
+    {
+      "timestamp": "23:45",
+      "speaker": "Shane",
+      "text": "instructions for this agent so you can see you're a weather assistant you can do a few things it has access to this"
+    },
+    {
+      "timestamp": "23:51",
+      "speaker": "Shane",
+      "text": "weather tool and you know I can configure model settings as I'm testing this and do a"
+    },
+    {
+      "timestamp": "23:57",
+      "speaker": "Shane",
+      "text": "bunch of other things but just to test this as I mentioned at the beginning of this I haven't been outside yet today so"
+    },
+    {
+      "timestamp": "24:03",
+      "speaker": "Shane",
+      "text": "what is the weather in San Francisco"
+    },
+    {
+      "timestamp": "24:08",
+      "speaker": "Shane",
+      "text": "you can see it calls the weather tool and then it gives me the weather"
+    },
+    {
+      "timestamp": "24:14",
+      "speaker": "Shane",
+      "text": "what is that what's that in Fahrenheit"
+    },
+    {
+      "timestamp": "24:21",
+      "speaker": "Shane",
+      "text": "so a little cool uh a little cool today but I'm assuming it'll get a little warmer pretty soon so"
+    },
+    {
+      "timestamp": "24:29",
+      "speaker": "Shane",
+      "text": "you can see I can chat with this agent i can test it i can now go and see traces"
+    },
+    {
+      "timestamp": "24:35",
+      "speaker": "Shane",
+      "text": "you can see anytime I chat with the agent I have this trace so I can look at this you can see that the types of tools"
+    },
+    {
+      "timestamp": "24:42",
+      "speaker": "Shane",
+      "text": "that it calls it made this tool call and got this result so you can see it it"
+    },
+    {
+      "timestamp": "24:49",
+      "speaker": "Shane",
+      "text": "called a tool and here's the actual system prompt the response all the messages that"
+    },
+    {
+      "timestamp": "24:56",
+      "speaker": "Shane",
+      "text": "basically all the data that's passed back and forth between the LLM and the user so you can actually dig in and see"
+    },
+    {
+      "timestamp": "25:02",
+      "speaker": "Shane",
+      "text": "quite a bit of information about what happened in this request"
+    },
+    {
+      "timestamp": "25:08",
+      "speaker": "Shane",
+      "text": "and um let's actually look at the code and see how this works because I think"
+    },
+    {
+      "timestamp": "25:13",
+      "speaker": "Shane",
+      "text": "that is kind of the most interesting piece like what what code did we have to"
+    },
+    {
+      "timestamp": "25:18",
+      "speaker": "Shane",
+      "text": "write in order to accomplish this so if we look at this and I'll make this"
+    },
+    {
+      "timestamp": "25:24",
+      "speaker": "Shane",
+      "text": "just a touch bigger in this source folder which is where we told it to put all the code there's this"
+    },
+    {
+      "timestamp": "25:31",
+      "speaker": "Shane",
+      "text": "agents tools and workflows subfolders so you can probably guess how that corresponds because it it kind of ties"
+    },
+    {
+      "timestamp": "25:37",
+      "speaker": "Shane",
+      "text": "to the playground UI that we saw if we look at this weather agent it's pretty"
+    },
+    {
+      "timestamp": "25:42",
+      "speaker": "Shane",
+      "text": "simple there's really not too much to it"
+    },
+    {
+      "timestamp": "25:48",
+      "speaker": "Shane",
+      "text": "we are exporting a new agent it's called weather agent we gave it the"
+    },
+    {
+      "timestamp": "25:53",
+      "speaker": "Shane",
+      "text": "instructions which we saw in that playground UI we tell it what model we want to use most is built on top of AI"
+    },
+    {
+      "timestamp": "26:01",
+      "speaker": "Shane",
+      "text": "SDK so you can bring any model that AI SDK supports which is most of almost all"
+    },
+    {
+      "timestamp": "26:06",
+      "speaker": "Shane",
+      "text": "of them and you can even support any other model that has the open AI"
+    },
+    {
+      "timestamp": "26:12",
+      "speaker": "Shane",
+      "text": "compatible APIs which are most of almost all of them we are adding this tool called the"
+    },
+    {
+      "timestamp": "26:18",
+      "speaker": "Shane",
+      "text": "weather tool we'll look at what the code is for that and then we are adding just"
+    },
+    {
+      "timestamp": "26:23",
+      "speaker": "Shane",
+      "text": "a simple like local livql memory so the memory the idea of memory"
+    },
+    {
+      "timestamp": "26:28",
+      "speaker": "Shane",
+      "text": "is I can continue to chat with my agent and it knows the past conversations that I had right so I can I could ask the"
+    },
+    {
+      "timestamp": "26:34",
+      "speaker": "Shane",
+      "text": "second question of what is you know what is that in Fahrenheit and it knows what the previous conversation was so it could answer that"
+    },
+    {
+      "timestamp": "26:41",
+      "speaker": "Shane",
+      "text": "and if we want to actually look at what the tool is a lot of these are just uh TypeScript"
+    },
+    {
+      "timestamp": "26:48",
+      "speaker": "Shane",
+      "text": "types so we're not going to spend too much time on that in this section here"
+    },
+    {
+      "timestamp": "26:53",
+      "speaker": "Shane",
+      "text": "we're creating a tool called get weather the tool description if you if you are"
+    },
+    {
+      "timestamp": "26:59",
+      "speaker": "Shane",
+      "text": "building agents and you're having trouble with your agent not calling the right tools the description and the ID"
+    },
+    {
+      "timestamp": "27:05",
+      "speaker": "Shane",
+      "text": "and the description are the most important parts the reason being is that the LLM can only see that they it sees"
+    },
+    {
+      "timestamp": "27:11",
+      "speaker": "Shane",
+      "text": "that description it needs to know based on that description should I use this tool or should I use a different tool so"
+    },
+    {
+      "timestamp": "27:17",
+      "speaker": "Shane",
+      "text": "especially as you add more tools the descriptions become very important you should be able to hand these tools over"
+    },
+    {
+      "timestamp": "27:24",
+      "speaker": "Shane",
+      "text": "to an average human and know that that person could based on your request"
+    },
+    {
+      "timestamp": "27:29",
+      "speaker": "Shane",
+      "text": "answer the question with the or call the right tools if if an average person would struggle an LLM is definitely"
+    },
+    {
+      "timestamp": "27:35",
+      "speaker": "Shane",
+      "text": "going to struggle to call the tools in the right instance so tool descriptions are very important this one's very short"
+    },
+    {
+      "timestamp": "27:40",
+      "speaker": "Shane",
+      "text": "i would you know if you have more complicated tools you may need to increase that description add even like"
+    },
+    {
+      "timestamp": "27:46",
+      "speaker": "Shane",
+      "text": "small examples there is a limit I think on the size but you'll likely have much longer descriptions"
+    },
+    {
+      "timestamp": "27:53",
+      "speaker": "Shane",
+      "text": "this tool has an execute function which just calls get weather and if we look at what get weather does it's basically"
+    },
+    {
+      "timestamp": "28:00",
+      "speaker": "Shane",
+      "text": "making two API calls the first is it takes the location and it geocodes it so"
+    },
+    {
+      "timestamp": "28:06",
+      "speaker": "Shane",
+      "text": "it goes out to this geocoding API gets the latitude and longitude and then it calls another fetch call to this weather"
+    },
+    {
+      "timestamp": "28:14",
+      "speaker": "Shane",
+      "text": "API with that latitude and longitude to return the weather and we just return it in this structured format so the the"
+    },
+    {
+      "timestamp": "28:23",
+      "speaker": "Shane",
+      "text": "tool basically has this definition of this wants this exact output here's what"
+    },
+    {
+      "timestamp": "28:29",
+      "speaker": "Shane",
+      "text": "the input here's the output and that way the LLM your agent when it's calling it it knows what output it's going to get"
+    },
+    {
+      "timestamp": "28:36",
+      "speaker": "Shane",
+      "text": "back so then it can process that output and then formulate a response all right so we got a couple questions"
+    },
+    {
+      "timestamp": "28:41",
+      "speaker": "Shane",
+      "text": "here uh let's see"
+    },
+    {
+      "timestamp": "28:52",
+      "speaker": "Shane",
+      "text": "is it okay to use uh ppm or pmppm yes in my other example I use pmppm but you can"
+    },
+    {
+      "timestamp": "28:59",
+      "speaker": "Shane",
+      "text": "use any yarn npm whatever it all works"
+    },
+    {
+      "timestamp": "29:04",
+      "speaker": "Shane",
+      "text": "so are the API endpoints part of the playground or they part of the actual app when deployed so that's actually a"
+    },
+    {
+      "timestamp": "29:10",
+      "speaker": "Shane",
+      "text": "very there's a a lot to that question so Terry that's a great question so when"
+    },
+    {
+      "timestamp": "29:16",
+      "speaker": "Shane",
+      "text": "you're running dev you have those API endpoints you can deploy Maestra as a standalone application and then you have"
+    },
+    {
+      "timestamp": "29:22",
+      "speaker": "Shane",
+      "text": "access to those API endpoints you can then use the master client or just you know plain fetch or curl or postman or"
+    },
+    {
+      "timestamp": "29:29",
+      "speaker": "Shane",
+      "text": "whatever and you could hit your uh deployed agents so yes when you actually deploy it you have access to those"
+    },
+    {
+      "timestamp": "29:36",
+      "speaker": "Shane",
+      "text": "endpoints but it doesn't have to be deployed as a standalone application at the end of the"
+    },
+    {
+      "timestamp": "29:42",
+      "speaker": "Shane",
+      "text": "day this is just uh you know JavaScript and TypeScript so if you have a NexJS"
+    },
+    {
+      "timestamp": "29:47",
+      "speaker": "Shane",
+      "text": "app you can bundle MRA in your Nex.js app so you don't have to necessarily deploy them separately so you have a lot"
+    },
+    {
+      "timestamp": "29:53",
+      "speaker": "Shane",
+      "text": "of flexibility in how you want to deploy this we see that a lot of people do like separation of concerns where their API"
+    },
+    {
+      "timestamp": "30:00",
+      "speaker": "Shane",
+      "text": "or their AI application is deployed separately they interact with a front end whether that's a mobile app a"
+    },
+    {
+      "timestamp": "30:06",
+      "speaker": "Shane",
+      "text": "desktop app a web app whatever uh through just through the API but in some"
+    },
+    {
+      "timestamp": "30:11",
+      "speaker": "Shane",
+      "text": "instances you want to just bundle it together into a single application and you want to deploy it um in one in one"
+    },
+    {
+      "timestamp": "30:18",
+      "speaker": "Shane",
+      "text": "place and so then maybe if you're building let's say it's an X.js JS app you're calling directly to these master"
+    },
+    {
+      "timestamp": "30:24",
+      "speaker": "Shane",
+      "text": "agents in your server functions something like that is possible"
+    },
+    {
+      "timestamp": "30:29",
+      "speaker": "Shane",
+      "text": "um and do you have to put in your own API key to use the models from OpenAI"
+    },
+    {
+      "timestamp": "30:35",
+      "speaker": "Shane",
+      "text": "yes so I'm not going to show it but I have thisv file it created an example i"
+    },
+    {
+      "timestamp": "30:41",
+      "speaker": "Shane",
+      "text": "just had to paste in my key so I could paste in my key during the when I was creating the agent through the command"
+    },
+    {
+      "timestamp": "30:47",
+      "speaker": "Shane",
+      "text": "line or I could um I could just go in later and just copy in the right with"
+    },
+    {
+      "timestamp": "30:52",
+      "speaker": "Shane",
+      "text": "the right environment variable key so yes you do have to provide your own key if you're using Enthropic you'll need a"
+    },
+    {
+      "timestamp": "30:58",
+      "speaker": "Shane",
+      "text": "key from Enthropic if you're using OpenAI you'll need an OpenAI key gemini or Google you need Gemini key"
+    },
+    {
+      "timestamp": "31:05",
+      "speaker": "Shane",
+      "text": "is there a way to use AWS Bedrock yes uh AI SDK supports that so you could use that"
+    },
+    {
+      "timestamp": "31:13",
+      "speaker": "Shane",
+      "text": "uh is there a guey to tinker with those agents tools etc well we have the playground i think that's what you mean"
+    },
+    {
+      "timestamp": "31:19",
+      "speaker": "Shane",
+      "text": "in the playground itself you can actually one of the things that I like uh we're not running it so"
+    },
+    {
+      "timestamp": "31:28",
+      "speaker": "Shane",
+      "text": "need to turn it back on one of the things I like in once it's"
+    },
+    {
+      "timestamp": "31:34",
+      "speaker": "Shane",
+      "text": "ready takes a few seconds"
+    },
+    {
+      "timestamp": "31:40",
+      "speaker": "Shane",
+      "text": "there it is you can test the tools in isolation so"
+    },
+    {
+      "timestamp": "31:45",
+      "speaker": "Shane",
+      "text": "any tools you create I can just test this this tool oops I didn't want to"
+    },
+    {
+      "timestamp": "31:50",
+      "speaker": "Shane",
+      "text": "click on that let's just test the tool and I can type in a city in this case"
+    },
+    {
+      "timestamp": "31:56",
+      "speaker": "Shane",
+      "text": "I'm from Sou Falls i can see what the weather is there and it returns the structured response so"
+    },
+    {
+      "timestamp": "32:03",
+      "speaker": "Shane",
+      "text": "the pattern is often build the tool test the tool in isolation make sure the tool gives you the results hand the tool to"
+    },
+    {
+      "timestamp": "32:09",
+      "speaker": "Shane",
+      "text": "the agent and then make sure that with your instructions that you give the agent so in this case it tells it how to"
+    },
+    {
+      "timestamp": "32:15",
+      "speaker": "Shane",
+      "text": "call the tool and when it should call the tool um it knows how to use that tool so that's often the pattern"
+    },
+    {
+      "timestamp": "32:24",
+      "speaker": "Shane",
+      "text": "uh do you need to use mastercloud to use the guey on a deployed server"
+    },
+    {
+      "timestamp": "32:29",
+      "speaker": "Shane",
+      "text": "Carlos, if you use Monster Cloud you get basically this playground on your deployed agents"
+    },
+    {
+      "timestamp": "32:34",
+      "speaker": "Shane",
+      "text": "you some people have tried to like the the playground's open source so you could try to wire it up yourself you'd"
+    },
+    {
+      "timestamp": "32:40",
+      "speaker": "Shane",
+      "text": "have to figure out like how do you deploy it how do you point it at your running agents but it is possible but it is there's quite a bit of like manual"
+    },
+    {
+      "timestamp": "32:46",
+      "speaker": "Shane",
+      "text": "setup if you want to run your own deployed version of Playground um"
+    },
+    {
+      "timestamp": "32:53",
+      "speaker": "Shane",
+      "text": "is it possible to load things dynamically i think the answer to that is yes but we might need to unpack that"
+    },
+    {
+      "timestamp": "32:58",
+      "speaker": "Shane",
+      "text": "and is it possible to use local models yes you can use local models too so um we're actually talking with LM Studio"
+    },
+    {
+      "timestamp": "33:05",
+      "speaker": "Shane",
+      "text": "which is a popular way to run local models but they have an AI SDK provider"
+    },
+    {
+      "timestamp": "33:11",
+      "speaker": "Shane",
+      "text": "you can run and route through a local model and yes you can run this whole thing locally where you don't even have"
+    },
+    {
+      "timestamp": "33:16",
+      "speaker": "Shane",
+      "text": "to go out through an API all right so we are about we have about 25 minutes which"
+    },
+    {
+      "timestamp": "33:22",
+      "speaker": "Shane",
+      "text": "is great that gives us enough time to dig into a little bit more complicated example this was a good like very basic"
+    },
+    {
+      "timestamp": "33:29",
+      "speaker": "Shane",
+      "text": "example of an agent that has an access to memory and has a single tool with"
+    },
+    {
+      "timestamp": "33:35",
+      "speaker": "Shane",
+      "text": "pretty basic pretty simple uh instructions now let's look at a little"
+    },
+    {
+      "timestamp": "33:41",
+      "speaker": "Shane",
+      "text": "bit more of a detailed example so in the code for this personal assistant agent"
+    },
+    {
+      "timestamp": "33:47",
+      "speaker": "Shane",
+      "text": "is available so I'll you know it's on GitHub we could you could find it if you go to the MRA AI GitHub but we can"
+    },
+    {
+      "timestamp": "33:54",
+      "speaker": "Shane",
+      "text": "actually dig through this so let's run this thing"
+    },
+    {
+      "timestamp": "34:02",
+      "speaker": "Shane",
+      "text": "so we can see what it can do we'll actually do the demo of it and then we'll we'll spend you know 15 minutes"
+    },
+    {
+      "timestamp": "34:08",
+      "speaker": "Shane",
+      "text": "digging through the code i don't think we'll really be able to dig into everything around the code so we you"
+    },
+    {
+      "timestamp": "34:14",
+      "speaker": "Shane",
+      "text": "know I would encourage you to explore the the actual GitHub repo if you want to like figure out because we might have"
+    },
+    {
+      "timestamp": "34:20",
+      "speaker": "Shane",
+      "text": "to breeze over some of it just for time sake"
+    },
+    {
+      "timestamp": "34:27",
+      "speaker": "Shane",
+      "text": "yep thank you for sharing the link yes"
+    },
+    {
+      "timestamp": "34:32",
+      "speaker": "Shane",
+      "text": "open router is also supported"
+    },
+    {
+      "timestamp": "34:39",
+      "speaker": "Shane",
+      "text": "yep and should should master choose which tool to call"
+    },
+    {
+      "timestamp": "34:39",
+      "speaker": "Shane",
+      "text": "So Ramiro, that's a great question we will I'll try to touch on workflows briefly if you you have two options when you're"
+    },
+    {
+      "timestamp": "34:46",
+      "speaker": "Shane",
+      "text": "using when you want to make decisions on how to call these tools if you have a very specific set of instructions where"
+    },
+    {
+      "timestamp": "34:53",
+      "speaker": "Shane",
+      "text": "you know that first do this and then do this and then maybe you do one or these other two things but it's always in this"
+    },
+    {
+      "timestamp": "34:58",
+      "speaker": "Shane",
+      "text": "very specific order I would encourage you to use workflows because you're going to get the most accurate results because it's much more deterministic"
+    },
+    {
+      "timestamp": "35:05",
+      "speaker": "Shane",
+      "text": "if you need to handle more maybe obscure tasks that are a little bit more open-ended having an agent that can have"
+    },
+    {
+      "timestamp": "35:11",
+      "speaker": "Shane",
+      "text": "a selection of tools and then choose between those is the way you can go to kind of accomplish that so you have a a"
+    },
+    {
+      "timestamp": "35:17",
+      "speaker": "Shane",
+      "text": "few different possibilities and honestly like you could have an agent that actually calls into a workflow or"
+    },
+    {
+      "timestamp": "35:23",
+      "speaker": "Shane",
+      "text": "your workflow could actually call out to an agent for one specific step so there's these are pretty composable that"
+    },
+    {
+      "timestamp": "35:28",
+      "speaker": "Shane",
+      "text": "you can kind of intermix these to come up with some pretty complicated examples"
+    },
+    {
+      "timestamp": "35:34",
+      "speaker": "Shane",
+      "text": "all right so let's go to this one this one again is a little bit more built out so we have their weather agent that we"
+    },
+    {
+      "timestamp": "35:39",
+      "speaker": "Shane",
+      "text": "showed in the last example i have this one I'm just calling MCP agent because it has access to just a few things"
+    },
+    {
+      "timestamp": "35:46",
+      "speaker": "Shane",
+      "text": "and if you look at the instructions it has access to Gmail to GitHub and to Typefully"
+    },
+    {
+      "timestamp": "35:52",
+      "speaker": "Shane",
+      "text": "so in this case we're using two different um different types of MCP servers i'll"
+    },
+    {
+      "timestamp": "35:57",
+      "speaker": "Shane",
+      "text": "show the code for how this works but to start let's just say draft me a tweet"
+    },
+    {
+      "timestamp": "36:05",
+      "speaker": "Shane",
+      "text": "that says \"Hello from the workshop.\""
+    },
+    {
+      "timestamp": "36:12",
+      "speaker": "Shane",
+      "text": "So we're going to let this thing run for a second and it's going to do this through we use"
+    },
+    {
+      "timestamp": "36:19",
+      "speaker": "Shane",
+      "text": "uh Typefully and we're using Zapier i'll show you how I set all this up here in just a second and if I go to my"
+    },
+    {
+      "timestamp": "36:25",
+      "speaker": "Shane",
+      "text": "typefully you can see I just got this says \"Hello from the workshop.\" So great"
+    },
+    {
+      "timestamp": "36:30",
+      "speaker": "Shane",
+      "text": "that worked it's it drafted that tweet for me i could of course come in here and I could just publish this thing not"
+    },
+    {
+      "timestamp": "36:36",
+      "speaker": "Shane",
+      "text": "going to do that though uh where are we at here let's also say send an email"
+    },
+    {
+      "timestamp": "36:57",
+      "speaker": "Shane",
+      "text": "we're going to say I want it to send an email for me and let's see if this works i have it"
+    },
+    {
+      "timestamp": "37:04",
+      "speaker": "Shane",
+      "text": "connected to one of my my Gmail account so hopefully it'll send me an email from or to my actual master email we'll see"
+    },
+    {
+      "timestamp": "37:12",
+      "speaker": "Shane",
+      "text": "so it says it's been sent i'm gonna you know share it on the camera for those to"
+    },
+    {
+      "timestamp": "37:18",
+      "speaker": "Shane",
+      "text": "see hello from the workshop it worked just got it on my phone so sent the email great that works the last thing uh"
+    },
+    {
+      "timestamp": "37:26",
+      "speaker": "Shane",
+      "text": "also you can see it has access to a whole bunch of GitHub tools so let's say how many stars"
+    },
+    {
+      "timestamp": "37:32",
+      "speaker": "Shane",
+      "text": "does the Monster AI Monster repo have"
+    },
+    {
+      "timestamp": "37:40",
+      "speaker": "Shane",
+      "text": "so this is going to go out to GitHub it's going to pull out how many stars let's uh we'll we'll test how well"
+    },
+    {
+      "timestamp": "37:45",
+      "speaker": "Shane",
+      "text": "GitHub caches so if you want to go to the MRAA-IM repo if you haven't already and give us"
+    },
+    {
+      "timestamp": "37:51",
+      "speaker": "Shane",
+      "text": "a star we'll run this thing again here in a few minutes and maybe we can you know get that bumped up a few more so"
+    },
+    {
+      "timestamp": "37:57",
+      "speaker": "Shane",
+      "text": "please go give us a star but you can see it had access to all these different tools right i can do these different"
+    },
+    {
+      "timestamp": "38:03",
+      "speaker": "Shane",
+      "text": "things i can see all the different tools i could test any of these tools in isolation if I wanted to i can actually"
+    },
+    {
+      "timestamp": "38:10",
+      "speaker": "Shane",
+      "text": "see what tool it called so it called the search repository tool it passed in this query and then it returned the"
+    },
+    {
+      "timestamp": "38:16",
+      "speaker": "Shane",
+      "text": "content it then took that content and respond it formulated the response uh and gave me the right answer"
+    },
+    {
+      "timestamp": "38:23",
+      "speaker": "Shane",
+      "text": "so you can see how you can pretty easily wire this stuff up obviously we we need"
+    },
+    {
+      "timestamp": "38:29",
+      "speaker": "Shane",
+      "text": "to figure out how did we give our agent access to all these tools because we just added a whole bunch of functionality it probably required a lot"
+    },
+    {
+      "timestamp": "38:36",
+      "speaker": "Shane",
+      "text": "of code to do that right well let's take a look at it because it actually is relatively simple so if we go to this"
+    },
+    {
+      "timestamp": "38:42",
+      "speaker": "Shane",
+      "text": "agent and we go to this MCP agent you can see the whole thing is 60 lines of"
+    },
+    {
+      "timestamp": "38:47",
+      "speaker": "Shane",
+      "text": "code so it's not too bad"
+    },
+    {
+      "timestamp": "38:54",
+      "speaker": "Shane",
+      "text": "there's actually a few lines in here that don't even need it so we don't even need those"
+    },
+    {
+      "timestamp": "39:02",
+      "speaker": "Shane",
+      "text": "so what we're doing first is we're creating an MCP client and we"
+    },
+    {
+      "timestamp": "39:07",
+      "speaker": "Shane",
+      "text": "are connecting to Zapier which I'll show you what that does so again I have this"
+    },
+    {
+      "timestamp": "39:14",
+      "speaker": "Shane",
+      "text": "in my environment file i got this URL from Zapier i'll show you how I built that and then we're connecting to"
+    },
+    {
+      "timestamp": "39:21",
+      "speaker": "Shane",
+      "text": "GitHub's official MCP so if you if you just search if you Google search uh GitHub MCP you you'll get information"
+    },
+    {
+      "timestamp": "39:26",
+      "speaker": "Shane",
+      "text": "and again I just have to pass in my GitHub token which is in this you know in my environment file so I have my"
+    },
+    {
+      "timestamp": "39:35",
+      "speaker": "Shane",
+      "text": "GitHub token there and that's how it knows what repos I have access to so"
+    },
+    {
+      "timestamp": "39:35",
+      "speaker": "Shane",
+      "text": "because if we look there's a whole bunch of different tools down here zapier Gmail"
+    },
+    {
+      "timestamp": "39:41",
+      "speaker": "Shane",
+      "text": "and there's some typefully Zapier typefully so inside Zapier if you go to"
+    },
+    {
+      "timestamp": "39:46",
+      "speaker": "Shane",
+      "text": "Zapier MCP you log in you can create a new MCP server so I created an MCP"
+    },
+    {
+      "timestamp": "39:52",
+      "speaker": "Shane",
+      "text": "server and if I were to click on here it would give you that URL i had to copy out i'm not going to show you because it"
+    },
+    {
+      "timestamp": "39:58",
+      "speaker": "Shane",
+      "text": "is a secure URL you need to know that in order to access this specific MCP server"
+    },
+    {
+      "timestamp": "40:03",
+      "speaker": "Shane",
+      "text": "but I was able to just add tools right and I just owe to my goo my Gmail i owe to my Typefully account and now through"
+    },
+    {
+      "timestamp": "40:11",
+      "speaker": "Shane",
+      "text": "that you know uniquely defined URL my agent has access to be authenticated as"
+    },
+    {
+      "timestamp": "40:16",
+      "speaker": "Shane",
+      "text": "me in these tools so that is how again if I were to remove one of these and"
+    },
+    {
+      "timestamp": "40:21",
+      "speaker": "Shane",
+      "text": "then I were to refresh you know or I probably have to rerun the development server then that tool would be gone"
+    },
+    {
+      "timestamp": "40:27",
+      "speaker": "Shane",
+      "text": "right in the playground so"
+    },
+    {
+      "timestamp": "40:32",
+      "speaker": "Shane",
+      "text": "let me get rid of that one so that's how it gets access and you can see that it lines up with exactly those tools and"
+    },
+    {
+      "timestamp": "40:38",
+      "speaker": "Shane",
+      "text": "then the GitHub ones come from the official GitHub MCP so we just gave our agent a whole bunch of functionality"
+    },
+    {
+      "timestamp": "40:47",
+      "speaker": "Shane",
+      "text": "with basically a few lines of code so we create the MCP client we get the tools"
+    },
+    {
+      "timestamp": "40:53",
+      "speaker": "Shane",
+      "text": "from that MCP client and then I'm going to scroll down we'll come back in a second and we just then pass in all"
+    },
+    {
+      "timestamp": "40:59",
+      "speaker": "Shane",
+      "text": "those tools i could be more selective in only you know I could specifically pick out which tools if I didn't want to give"
+    },
+    {
+      "timestamp": "41:04",
+      "speaker": "Shane",
+      "text": "it every tool but for now I just gave it all the tools from those MCP clients we"
+    },
+    {
+      "timestamp": "41:10",
+      "speaker": "Shane",
+      "text": "do set up you know kind of basic memory which we just pass in here we're using"
+    },
+    {
+      "timestamp": "41:16",
+      "speaker": "Shane",
+      "text": "GPT40 in this model and you can see my system prompt my or my instructions I guess are a little bit longer i tell it"
+    },
+    {
+      "timestamp": "41:23",
+      "speaker": "Shane",
+      "text": "it's I always find that you have the best results if you both give the tool with a good description and you guide it"
+    },
+    {
+      "timestamp": "41:30",
+      "speaker": "Shane",
+      "text": "in the system prompt of when it should use certain tools so I tell it how it can use Gmail how it can use GitHub and"
+    },
+    {
+      "timestamp": "41:37",
+      "speaker": "Shane",
+      "text": "then how it can use Typley when you're building agents you will spend a lot of time iterating on this prompt i know"
+    },
+    {
+      "timestamp": "41:44",
+      "speaker": "Shane",
+      "text": "this is this seems like pretty basic in this example it is but if you're"
+    },
+    {
+      "timestamp": "41:49",
+      "speaker": "Shane",
+      "text": "actually productionizing an agent a lot of times these system prompts will be hundreds of lines of written text which"
+    },
+    {
+      "timestamp": "41:55",
+      "speaker": "Shane",
+      "text": "is kind of challenging in a way because you're you need to speak to the models in a way that it's going to give the"
+    },
+    {
+      "timestamp": "42:01",
+      "speaker": "Shane",
+      "text": "right responses and how you structure this does sometimes give you different results and depending on what models"
+    },
+    {
+      "timestamp": "42:07",
+      "speaker": "Shane",
+      "text": "you're using so let's there's a few questions here let's see if we can answer those"
+    },
+    {
+      "timestamp": "42:13",
+      "speaker": "Shane",
+      "text": "um is the agent a React agent yes it it does like basically do the React agent"
+    },
+    {
+      "timestamp": "42:20",
+      "speaker": "Shane",
+      "text": "loop that you uh that you'd expect if you look up what a what an actual React agent is"
+    },
+    {
+      "timestamp": "42:28",
+      "speaker": "Shane",
+      "text": "um can we upgrade the MCP example yes you you could do that we Monster has a"
+    },
+    {
+      "timestamp": "42:35",
+      "speaker": "Shane",
+      "text": "bunch of voice primitives i I don't know if this will actually work in here but let's just test this um"
+    },
+    {
+      "timestamp": "42:43",
+      "speaker": "Shane",
+      "text": "let's try it let's allow"
+    },
+    {
+      "timestamp": "42:51",
+      "speaker": "Shane",
+      "text": "allow how many stars does the master--ey"
+    },
+    {
+      "timestamp": "42:56",
+      "speaker": "Shane",
+      "text": "monster repo have so obviously I didn't know exactly you"
+    },
+    {
+      "timestamp": "43:04",
+      "speaker": "Shane",
+      "text": "know what it is but and it doesn't have uh"
+    },
+    {
+      "timestamp": "43:09",
+      "speaker": "Shane",
+      "text": "it doesn't have the voice back in this case but we have those capabilities in Nostra you can build you can use like"
+    },
+    {
+      "timestamp": "43:15",
+      "speaker": "Shane",
+      "text": "OpenAI's real-time voice you can h you can you fire up like 11 Labs or some other text to speech provider um I'm"
+    },
+    {
+      "timestamp": "43:22",
+      "speaker": "Shane",
+      "text": "gonna assume this is cached because I know at least one of you went out and started this i hope so we we're getting a cache response"
+    },
+    {
+      "timestamp": "43:29",
+      "speaker": "Shane",
+      "text": "oh and said my sound got a bit muted yeah I do wonder can you all hear it now or not"
+    },
+    {
+      "timestamp": "43:35",
+      "speaker": "Shane",
+      "text": "here okay how about now no"
+    },
+    {
+      "timestamp": "43:44",
+      "speaker": "Shane",
+      "text": "no maybe"
+    },
+    {
+      "timestamp": "43:56",
+      "speaker": "Shane",
+      "text": "yeah i wonder can you you still can't hear me i don't think now is better okay all right had to"
+    },
+    {
+      "timestamp": "44:03",
+      "speaker": "Shane",
+      "text": "close the browser tab so live demo we We broke it okay so let's look at another"
+    },
+    {
+      "timestamp": "44:09",
+      "speaker": "Shane",
+      "text": "example this was a little bit more of a complicated agent but it's still it just builds on the previous example a bit"
+    },
+    {
+      "timestamp": "44:15",
+      "speaker": "Shane",
+      "text": "more so this one you can see"
+    },
+    {
+      "timestamp": "44:21",
+      "speaker": "Shane",
+      "text": "we we have those original Gmail GitHub typefully"
+    },
+    {
+      "timestamp": "44:27",
+      "speaker": "Shane",
+      "text": "we also gave it access to the weather tool i gave it access to a hacker news mcp i gave it access to a master"
+    },
+    {
+      "timestamp": "44:33",
+      "speaker": "Shane",
+      "text": "workflow and I gave it access to the file system so it can actually write notes for me so"
+    },
+    {
+      "timestamp": "44:41",
+      "speaker": "Shane",
+      "text": "add a to-do note to call my mom today"
+    },
+    {
+      "timestamp": "44:52",
+      "speaker": "Shane",
+      "text": "so we'll see this one it's going to read and write to my local file system so take a second for it to like process"
+    },
+    {
+      "timestamp": "44:57",
+      "speaker": "Shane",
+      "text": "that so the interesting thing is when you think about this this is going out to you know OpenAI open AAI is telling"
+    },
+    {
+      "timestamp": "45:03",
+      "speaker": "Shane",
+      "text": "my system what it should do and then it's going to write it should write this note for me assuming it all I didn't"
+    },
+    {
+      "timestamp": "45:08",
+      "speaker": "Shane",
+      "text": "break something in the live demo and it actually works it's taking a little longer than normal but you can see it"
+    },
+    {
+      "timestamp": "45:14",
+      "speaker": "Shane",
+      "text": "has this access to text editor to read files read multiple files write files edit files so it has access to those"
+    },
+    {
+      "timestamp": "45:21",
+      "speaker": "Shane",
+      "text": "tools has access to our GitHub tools that we had before so honestly this"
+    },
+    {
+      "timestamp": "45:26",
+      "speaker": "Shane",
+      "text": "scares me a little bit this has access to way more tools than I would typically give an agent the more tools you give it"
+    },
+    {
+      "timestamp": "45:31",
+      "speaker": "Shane",
+      "text": "the more likely it's going to make a mistake in calling the correct tool has access to hacker news and then our"
+    },
+    {
+      "timestamp": "45:38",
+      "speaker": "Shane",
+      "text": "weather tool but you can see it wrote a file if I open this I I think there's a"
+    },
+    {
+      "timestamp": "45:44",
+      "speaker": "Shane",
+      "text": "notes directory it has access to here's a to-do call my mom today so it just"
+    },
+    {
+      "timestamp": "45:49",
+      "speaker": "Shane",
+      "text": "wrote that file so great we now have the ability to read and write files to the"
+    },
+    {
+      "timestamp": "45:55",
+      "speaker": "Shane",
+      "text": "local file system um tell me about the hacker news article called"
+    },
+    {
+      "timestamp": "46:04",
+      "speaker": "Shane",
+      "text": "a course as an MCP server there's Obby"
+    },
+    {
+      "timestamp": "46:09",
+      "speaker": "Shane",
+      "text": "he's he's he's actually in the Zoom if you've seen him uh chatting around"
+    },
+    {
+      "timestamp": "46:15",
+      "speaker": "Shane",
+      "text": "all right tell me about the Hacker News article called the course as an MCP server so this should go out to hacker"
+    },
+    {
+      "timestamp": "46:20",
+      "speaker": "Shane",
+      "text": "news use and this one's using uh this is interesting because it's using a little bit different transport for MCP before"
+    },
+    {
+      "timestamp": "46:27",
+      "speaker": "Shane",
+      "text": "we were showing going out to remote MCP server this is actually an MCP server that's running locally that then goes"
+    },
+    {
+      "timestamp": "46:32",
+      "speaker": "Shane",
+      "text": "out to the Hacker News API so it's a little bit different but we posted this on Hacker News it got"
+    },
+    {
+      "timestamp": "46:39",
+      "speaker": "Shane",
+      "text": "quite a bit of traction so you can see it gives me how many points you know my"
+    },
+    {
+      "timestamp": "46:44",
+      "speaker": "Shane",
+      "text": "username all that so it actually went out to Hacker News so let's look at one more thing and then we'll show the code"
+    },
+    {
+      "timestamp": "46:50",
+      "speaker": "Shane",
+      "text": "of how this works we also wired up a Telegram bot so I can"
+    },
+    {
+      "timestamp": "46:56",
+      "speaker": "Shane",
+      "text": "chat with this this local agent the nice thing about this Telegram bot is I could chat with this now on my phone on the go"
+    },
+    {
+      "timestamp": "47:02",
+      "speaker": "Shane",
+      "text": "if I had this I'd have to have this running on my computer because it does like pull in locally into this uh this"
+    },
+    {
+      "timestamp": "47:09",
+      "speaker": "Shane",
+      "text": "agent that's running so let's just ask it you know how many stars"
+    },
+    {
+      "timestamp": "47:16",
+      "speaker": "Shane",
+      "text": "does the actually we'll ask the weather what is the weather"
+    },
+    {
+      "timestamp": "47:22",
+      "speaker": "Shane",
+      "text": "in let's we'll do San Francisco again"
+    },
+    {
+      "timestamp": "47:28",
+      "speaker": "Shane",
+      "text": "and so it's it's going to think it's going to call this it gets the weather"
+    },
+    {
+      "timestamp": "47:34",
+      "speaker": "Shane",
+      "text": "and so this should actually show up here I believe we'll See what's the weather"
+    },
+    {
+      "timestamp": "47:42",
+      "speaker": "Shane",
+      "text": "in San Francisco you can see it comes from Telegram so I can see that this is running locally i can see what it actually"
+    },
+    {
+      "timestamp": "47:50",
+      "speaker": "Shane",
+      "text": "resulted in and you can see the value that it got and it says this is the response gusting"
+    },
+    {
+      "timestamp": "47:56",
+      "speaker": "Shane",
+      "text": "up to 8.6 kilometers an hour that's exactly what the text is right there so"
+    },
+    {
+      "timestamp": "48:02",
+      "speaker": "Shane",
+      "text": "you can see I I'm using Telegram as an example but this could be any front end right this could be some kind of mobile"
+    },
+    {
+      "timestamp": "48:08",
+      "speaker": "Shane",
+      "text": "application that calls into your agent it doesn't have to be a chatbot the chatbot is just like the easiest way to"
+    },
+    {
+      "timestamp": "48:14",
+      "speaker": "Shane",
+      "text": "visualize how an agent can work but a lot of people wire this up to uh"
+    },
+    {
+      "timestamp": "48:19",
+      "speaker": "Shane",
+      "text": "different types of SAS applications where maybe they click a button in the application and it triggers a workflow"
+    },
+    {
+      "timestamp": "48:25",
+      "speaker": "Shane",
+      "text": "or a call to an agent and so it doesn't have to be a chat interface"
+    },
+    {
+      "timestamp": "48:31",
+      "speaker": "Shane",
+      "text": "all right so looks like thank you all for uh answering some of those questions along"
+    },
+    {
+      "timestamp": "48:37",
+      "speaker": "Shane",
+      "text": "the way that's great let's look at the code for how this works we'll spend like two or three minutes and then we'll open"
+    },
+    {
+      "timestamp": "48:42",
+      "speaker": "Shane",
+      "text": "it up for a few more questions i I did see I think there's a couple other questions that have come in"
+    },
+    {
+      "timestamp": "48:50",
+      "speaker": "Shane",
+      "text": "um all right so I'm going to answer these real quick and then we will we'll look"
+    },
+    {
+      "timestamp": "48:56",
+      "speaker": "Shane",
+      "text": "at the code how does Verscell AI SDK and Maestra compare"
+    },
+    {
+      "timestamp": "49:02",
+      "speaker": "Shane",
+      "text": "at what complexity does a switch to Ma make sense so MRA is built on top of AI SDK we do have a blog post to show you"
+    },
+    {
+      "timestamp": "49:09",
+      "speaker": "Shane",
+      "text": "like what like how our features build on top of AI SDK so if you use Maestra you are using AI SDK so if you've already"
+    },
+    {
+      "timestamp": "49:16",
+      "speaker": "Shane",
+      "text": "used AI SDK in a project you can kind of add MRA on top and then use pieces of it"
+    },
+    {
+      "timestamp": "49:21",
+      "speaker": "Shane",
+      "text": "ma gives you like more defined primitives for workflows and for agents and for agent networks so it uses the"
+    },
+    {
+      "timestamp": "49:27",
+      "speaker": "Shane",
+      "text": "model routing and the tool calling of Verscell's AI SDK and it kind of gives"
+    },
+    {
+      "timestamp": "49:33",
+      "speaker": "Shane",
+      "text": "you more structure so if you're just making a simple single LLM call in an"
+    },
+    {
+      "timestamp": "49:38",
+      "speaker": "Shane",
+      "text": "application maybe MaR is a little bit you know you don't necessarily need Maestro for that but if you do want to"
+    },
+    {
+      "timestamp": "49:44",
+      "speaker": "Shane",
+      "text": "build more dynamic agents or more complex systems and you want the observability that comes with you know"
+    },
+    {
+      "timestamp": "49:50",
+      "speaker": "Shane",
+      "text": "with having like something like this playground you want the local testing environment if you're building something"
+    },
+    {
+      "timestamp": "49:56",
+      "speaker": "Shane",
+      "text": "that's a little bit more complex that's where Ma starts to make a bit more sense"
+    },
+    {
+      "timestamp": "50:02",
+      "speaker": "Shane",
+      "text": "does Ma have lama adapters again it's built on AI SDK so you can use a llama"
+    },
+    {
+      "timestamp": "50:07",
+      "speaker": "Shane",
+      "text": "in other local models can you say that MCP is a collection of multiple APIs uh it could be it doesn't"
+    },
+    {
+      "timestamp": "50:15",
+      "speaker": "Shane",
+      "text": "have to be because I again we'll show like this local file system writing is actually an MCP server as well so it"
+    },
+    {
+      "timestamp": "50:21",
+      "speaker": "Shane",
+      "text": "doesn't always have to be but I think that's the most common use case um is there a way to tie copilot kit to"
+    },
+    {
+      "timestamp": "50:28",
+      "speaker": "Shane",
+      "text": "master workflows yes there there are ways to do that and you can do like streaming workflows with"
+    },
+    {
+      "timestamp": "50:35",
+      "speaker": "Shane",
+      "text": "uh copilot kit and agui we do have um"
+    },
+    {
+      "timestamp": "50:41",
+      "speaker": "Shane",
+      "text": "we do have some examples and I think in the copilot kit docs there's some master"
+    },
+    {
+      "timestamp": "50:47",
+      "speaker": "Shane",
+      "text": "examples for how to do that we're still improving it though we're working pretty closely with the co-pilot kit team because this idea of like connecting"
+    },
+    {
+      "timestamp": "50:54",
+      "speaker": "Shane",
+      "text": "rich user experiences to like longunning agent tasks like workflows is still a"
+    },
+    {
+      "timestamp": "51:00",
+      "speaker": "Shane",
+      "text": "little bit uh uncharted territory so we want to make we want to enable people to build richer UI and UX experiences you"
+    },
+    {
+      "timestamp": "51:08",
+      "speaker": "Shane",
+      "text": "can do it today but there's still in my opinion more manual work than we want it to be long term so that's getting better"
+    },
+    {
+      "timestamp": "51:15",
+      "speaker": "Shane",
+      "text": "does the local LLM SDK you mentioned give you MCB tool access through any of the models"
+    },
+    {
+      "timestamp": "51:21",
+      "speaker": "Shane",
+      "text": "um a lot of local models actually don't do very good with tool calling mra has like"
+    },
+    {
+      "timestamp": "51:27",
+      "speaker": "Shane",
+      "text": "a tool compatibility layer that helps some like Llama llama's kind of notoriously bad at calling tools but we"
+    },
+    {
+      "timestamp": "51:36",
+      "speaker": "Shane",
+      "text": "have a compatibility layer so MRA will actually like help make sure it can call tools correctly more often it's still"
+    },
+    {
+      "timestamp": "51:42",
+      "speaker": "Shane",
+      "text": "not perfect but with Maestra and local models you can access tools in MCP"
+    },
+    {
+      "timestamp": "51:49",
+      "speaker": "Shane",
+      "text": "depending as long as the model supports it wow we had a lot of questions"
+    },
+    {
+      "timestamp": "51:55",
+      "speaker": "Shane",
+      "text": "all right I'm I'm try to leave a few minutes to answer some more but let's dig into some code so we I don't want to"
+    },
+    {
+      "timestamp": "52:01",
+      "speaker": "Shane",
+      "text": "completely skip over seeing some of the code so we got a question asking about"
+    },
+    {
+      "timestamp": "52:07",
+      "speaker": "Shane",
+      "text": "the workflow so we'll maybe take a look at that so let's look at this person but first let's look at the personal"
+    },
+    {
+      "timestamp": "52:13",
+      "speaker": "Shane",
+      "text": "assistant agent so in this case we're still creating the MCP client we are giving it access to Zapier to GitHub so"
+    },
+    {
+      "timestamp": "52:21",
+      "speaker": "Shane",
+      "text": "this hacker news you notice how these are passing in a URL these are remote MCP servers either using streamable HTTP"
+    },
+    {
+      "timestamp": "52:29",
+      "speaker": "Shane",
+      "text": "or SSE those are the two kind of transports that allow like remote access"
+    },
+    {
+      "timestamp": "52:34",
+      "speaker": "Shane",
+      "text": "this one's using command what this means is this is running this local command it's running what is just like an npm"
+    },
+    {
+      "timestamp": "52:40",
+      "speaker": "Shane",
+      "text": "package so it essentially is downloading this local code running it on my system"
+    },
+    {
+      "timestamp": "52:45",
+      "speaker": "Shane",
+      "text": "in this case it just so happens that this code is calling some JavaScript that goes out to HackerN's API but I"
+    },
+    {
+      "timestamp": "52:52",
+      "speaker": "Shane",
+      "text": "could actually like look at what this package does there's another one I guess you know file system so it gives you basically"
+    },
+    {
+      "timestamp": "53:00",
+      "speaker": "Shane",
+      "text": "CLI or command line tools that are actually running on my system right it downloads this package it has tools that"
+    },
+    {
+      "timestamp": "53:06",
+      "speaker": "Shane",
+      "text": "have access to my file system and that's how it was able to write this node so it doesn't have to be something that"
+    },
+    {
+      "timestamp": "53:12",
+      "speaker": "Shane",
+      "text": "executes to some remote API somewhere it could be something that just runs locally and you want to give your agent"
+    },
+    {
+      "timestamp": "53:18",
+      "speaker": "Shane",
+      "text": "access to command line tools on your system or on your server right often I would you know caution you that you"
+    },
+    {
+      "timestamp": "53:25",
+      "speaker": "Shane",
+      "text": "might want to run this stuff in sandbox environments not on your local system we do a little bit more advanced memory so"
+    },
+    {
+      "timestamp": "53:31",
+      "speaker": "Shane",
+      "text": "we tell it how many of the last messages to use we give it working memory which means it it tries to remember specific"
+    },
+    {
+      "timestamp": "53:37",
+      "speaker": "Shane",
+      "text": "things if I tell it my name and then I have 500 messages but I ask it again it will still like keep track of that I"
+    },
+    {
+      "timestamp": "53:43",
+      "speaker": "Shane",
+      "text": "think this is important information this user information these could be anything that your application deems important"
+    },
+    {
+      "timestamp": "53:50",
+      "speaker": "Shane",
+      "text": "we have a little bit longer of a system prompt here where we tell it about hacker news file system we have this"
+    },
+    {
+      "timestamp": "53:56",
+      "speaker": "Shane",
+      "text": "daily workflow i'll show you what that does and we're passing in all the tools"
+    },
+    {
+      "timestamp": "54:02",
+      "speaker": "Shane",
+      "text": "again and we're passing in this Maestro workflow so let's look at what this Maestro workflow does"
+    },
+    {
+      "timestamp": "54:10",
+      "speaker": "Shane",
+      "text": "i always like to start at the bottom of workflows so this workflow"
+    },
+    {
+      "timestamp": "54:15",
+      "speaker": "Shane",
+      "text": "doesn't need any input or output and it's just called daily workflow and"
+    },
+    {
+      "timestamp": "54:21",
+      "speaker": "Shane",
+      "text": "it calls first it does get hacker news articles then it summarizes master PRs then it"
+    },
+    {
+      "timestamp": "54:28",
+      "speaker": "Shane",
+      "text": "combines the messages and it that's what it does so if we look this is going to be pretty simple this first step that it"
+    },
+    {
+      "timestamp": "54:35",
+      "speaker": "Shane",
+      "text": "calls i'm just getting the master agent and I'm t passing in this prompt of"
+    },
+    {
+      "timestamp": "54:41",
+      "speaker": "Shane",
+      "text": "fetch these articles and then I call generate if I were actually building this I wanted it to be more reliable i"
+    },
+    {
+      "timestamp": "54:47",
+      "speaker": "Shane",
+      "text": "probably would just call the tool directly i could get the I could use this exact Hacker News MCP tool and just"
+    },
+    {
+      "timestamp": "54:54",
+      "speaker": "Shane",
+      "text": "call it rather than just having my agent do it i was just kind of lazy and I wanted I knew my agent could do a pretty good job but there's extra latency here"
+    },
+    {
+      "timestamp": "55:01",
+      "speaker": "Shane",
+      "text": "right if I just call the tool and pass the response I could save uh I could make this a lot more efficient and same"
+    },
+    {
+      "timestamp": "55:07",
+      "speaker": "Shane",
+      "text": "with um summarizing master PRs i'm using the agent to go out and do this so it's"
+    },
+    {
+      "timestamp": "55:12",
+      "speaker": "Shane",
+      "text": "telling my agent my agent decides to go call the GitHub tools for me i should just more deterministically call those"
+    },
+    {
+      "timestamp": "55:19",
+      "speaker": "Shane",
+      "text": "specific tools but you can kind of wire this up you have some flexibility and then the combined messages just concat"
+    },
+    {
+      "timestamp": "55:26",
+      "speaker": "Shane",
+      "text": "basically concatenates the messages and gives us one response so if I go to the"
+    },
+    {
+      "timestamp": "55:32",
+      "speaker": "Shane",
+      "text": "playground still have that running i think I do i can go to my personal assistant and"
+    },
+    {
+      "timestamp": "55:39",
+      "speaker": "Shane",
+      "text": "say run my daily workflow"
+    },
+    {
+      "timestamp": "55:45",
+      "speaker": "Shane",
+      "text": "and it's going to call this workflow and"
+    },
+    {
+      "timestamp": "55:50",
+      "speaker": "Shane",
+      "text": "this is going to take a little while so while this is running let's um I'll try to answer a couple questions"
+    },
+    {
+      "timestamp": "55:57",
+      "speaker": "Shane",
+      "text": "can you dynamically build what tools are available you can"
+    },
+    {
+      "timestamp": "56:03",
+      "speaker": "Shane",
+      "text": "the the answer to that is yes there's different techniques for doing that you can kind of pass in um you can actually"
+    },
+    {
+      "timestamp": "56:10",
+      "speaker": "Shane",
+      "text": "have a tool that can do dynamic things you can pass in what in master we call runtime context so maybe like certain"
+    },
+    {
+      "timestamp": "56:16",
+      "speaker": "Shane",
+      "text": "users of your application will have the tool will respond differently maybe you have a tool that gets content from a"
+    },
+    {
+      "timestamp": "56:22",
+      "speaker": "Shane",
+      "text": "database depending on the user you would retrieve different content right um and"
+    },
+    {
+      "timestamp": "56:28",
+      "speaker": "Shane",
+      "text": "then you can dynamically control to some extent like what tools you actually want the agent to have so you can have this"
+    },
+    {
+      "timestamp": "56:34",
+      "speaker": "Shane",
+      "text": "idea of dynamic agents all right so we can see the top hacker"
+    },
+    {
+      "timestamp": "56:39",
+      "speaker": "Shane",
+      "text": "news articles we can see oh there looks like there was some kind of authentication issue we're not going to"
+    },
+    {
+      "timestamp": "56:44",
+      "speaker": "Shane",
+      "text": "worry about it but you saw that I could get access to GitHub before so I don't know why that didn't work this time but"
+    },
+    {
+      "timestamp": "56:49",
+      "speaker": "Shane",
+      "text": "maybe if I reran it it would work all right so a few So we went through a"
+    },
+    {
+      "timestamp": "56:55",
+      "speaker": "Shane",
+      "text": "lot uh I will say like deploying this is pretty simple you can deploy to"
+    },
+    {
+      "timestamp": "57:01",
+      "speaker": "Shane",
+      "text": "Cloudflare Verscell um Netlefi a lot of different places you can also deploy to Maestro Cloud you can"
+    },
+    {
+      "timestamp": "57:07",
+      "speaker": "Shane",
+      "text": "get to MRACloud by going to cloud.mstra.ai we're in beta right now but it's very"
+    },
+    {
+      "timestamp": "57:13",
+      "speaker": "Shane",
+      "text": "similar to if you use any of those other tools you can commit your code to Git you can connect your GitHub to uh to a"
+    },
+    {
+      "timestamp": "57:22",
+      "speaker": "Shane",
+      "text": "project and you get in this example this is like a weather agent you can see I can see the weather agent and chat with"
+    },
+    {
+      "timestamp": "57:29",
+      "speaker": "Shane",
+      "text": "it just like I could locally so I have basically the same playground experience in a"
+    },
+    {
+      "timestamp": "57:35",
+      "speaker": "Shane",
+      "text": "in a cloud environment and now I can access this through the you know through the API so I can talk to these agents"
+    },
+    {
+      "timestamp": "57:43",
+      "speaker": "Shane",
+      "text": "and there was a question on how to deploy longunning agents there's you"
+    },
+    {
+      "timestamp": "57:48",
+      "speaker": "Shane",
+      "text": "start to if you especially if you're using serverless deployment platforms you can run into timeouts so you need to"
+    },
+    {
+      "timestamp": "57:54",
+      "speaker": "Shane",
+      "text": "be thoughtful around where you're deploying make sure that depending on how long these agents actually run that"
+    },
+    {
+      "timestamp": "57:59",
+      "speaker": "Shane",
+      "text": "whatever you're wherever you're running can support that long running of a task um you can do it you just kind of have"
+    },
+    {
+      "timestamp": "58:07",
+      "speaker": "Shane",
+      "text": "to uh make sure you evaluate your platform uh where you're going to be deploying"
+    },
+    {
+      "timestamp": "58:14",
+      "speaker": "Shane",
+      "text": "uh okay so I don't know we're going to be able to answer all these questions so these are really great questions if you"
+    },
+    {
+      "timestamp": "58:19",
+      "speaker": "Shane",
+      "text": "if we don't get your question answered please go to our Discord we'll try to answer some in there we have a very active master Discord if you go to the"
+    },
+    {
+      "timestamp": "58:26",
+      "speaker": "Shane",
+      "text": "Maestro website find the Discord link you can join there all right"
+    },
+    {
+      "timestamp": "58:35",
+      "speaker": "Shane",
+      "text": "so let me go ahead and finish up a few things we'll go through these last few slides and I will stick around for another maybe two minutes if you do want"
+    },
+    {
+      "timestamp": "58:41",
+      "speaker": "Shane",
+      "text": "to stick around and get some questions answered so here is the master GitHub please give us a star if you haven't"
+    },
+    {
+      "timestamp": "58:47",
+      "speaker": "Shane",
+      "text": "already here's the access to this personal assistant agent that we just showed today you can see how we wired up"
+    },
+    {
+      "timestamp": "58:53",
+      "speaker": "Shane",
+      "text": "Telegram all the stuff that we didn't have a chance to cover please connect with me on X or LinkedIn"
+    },
+    {
+      "timestamp": "58:60",
+      "speaker": "Shane",
+      "text": "and as I said if you want to join Monstercloud you can get into our beta you can give us a star on GitHub and"
+    },
+    {
+      "timestamp": "59:06",
+      "speaker": "Shane",
+      "text": "that is it all right i'll I'll stick around for a few more minutes and try to answer some questions thank you all for"
+    },
+    {
+      "timestamp": "59:12",
+      "speaker": "Shane",
+      "text": "coming i know some of you have to run but I will try to get through some of these can you touch on what the state of"
+    },
+    {
+      "timestamp": "59:18",
+      "speaker": "Shane",
+      "text": "the world is regarding agents with tool calling"
+    },
+    {
+      "timestamp": "59:23",
+      "speaker": "Shane",
+      "text": "i ran into a bit of an impass when I was trying to mess around with things the other day"
+    },
+    {
+      "timestamp": "59:29",
+      "speaker": "Shane",
+      "text": "and it wasn't clear if this was a MRA AI SDK limitation or Gemini but it didn't seem possible to do both"
+    },
+    {
+      "timestamp": "59:38",
+      "speaker": "Shane",
+      "text": "so yes if you want it there's if you want to be able to make a call to"
+    },
+    {
+      "timestamp": "59:43",
+      "speaker": "Shane",
+      "text": "an agent have it return structured output and then respond to that you do potentially need to use experimental"
+    },
+    {
+      "timestamp": "59:48",
+      "speaker": "Shane",
+      "text": "output matt I'm curious on what errors you have if you can come to our Discord we can help you get that sorted it"
+    },
+    {
+      "timestamp": "59:55",
+      "speaker": "Shane",
+      "text": "should be possible um but there are some tricks to getting structured output to get returned with"
+    },
+    {
+      "timestamp": "60:03",
+      "speaker": "Shane",
+      "text": "tools it but it is possible to do like I said there's just a few things you need to potentially think about or you know"
+    },
+    {
+      "timestamp": "60:10",
+      "speaker": "Shane",
+      "text": "maybe maybe there's some bugs too it is possible if you have a routing agent to other agents do you also use that agent"
+    },
+    {
+      "timestamp": "60:16",
+      "speaker": "Shane",
+      "text": "to generate the final response or do you pass it to a separate agent"
+    },
+    {
+      "timestamp": "60:21",
+      "speaker": "Shane",
+      "text": "this typically you would if you have like a if you're building a multi- aent"
+    },
+    {
+      "timestamp": "60:26",
+      "speaker": "Shane",
+      "text": "system and you want to have you want to have some kind of supervisor or manager agent that typically receives a first"
+    },
+    {
+      "timestamp": "60:32",
+      "speaker": "Shane",
+      "text": "response routes to others and then formulates a final response that's the most common pattern doesn't mean you"
+    },
+    {
+      "timestamp": "60:39",
+      "speaker": "Shane",
+      "text": "have to do it that way though like there you could wire it up in many different ways um is Azour OpenAI and AI search"
+    },
+    {
+      "timestamp": "60:46",
+      "speaker": "Shane",
+      "text": "supported i believe if it's supported by AI SDK which I I think Azour is it should be supported"
+    },
+    {
+      "timestamp": "60:54",
+      "speaker": "Shane",
+      "text": "is master looking at expanding the tooling of the playground such as tracing into something more offered like"
+    },
+    {
+      "timestamp": "61:01",
+      "speaker": "Shane",
+      "text": "link views remote prompt management the answer to that Matt is yes we are working on it that is more to come on"
+    },
+    {
+      "timestamp": "61:08",
+      "speaker": "Shane",
+      "text": "that soon how hard would it be to deploy a master playground with some authentication like"
+    },
+    {
+      "timestamp": "61:14",
+      "speaker": "Shane",
+      "text": "clerk or other providers daniel I don't know the exact answer there's a few steps you have to do in order to get"
+    },
+    {
+      "timestamp": "61:21",
+      "speaker": "Shane",
+      "text": "master playground deployed if you do go through that process we're happy to kind of provide some guidance and help and"
+    },
+    {
+      "timestamp": "61:27",
+      "speaker": "Shane",
+      "text": "then eventually we can provide some documentation so people in the community can figure out how to deploy the playground on their own you can of"
+    },
+    {
+      "timestamp": "61:34",
+      "speaker": "Shane",
+      "text": "course use master cloud as well so you don't have to worry about deployment and you can kind of have authentication and"
+    },
+    {
+      "timestamp": "61:39",
+      "speaker": "Shane",
+      "text": "all that kind of baked in can I run any MCP server like Linear's"
+    },
+    {
+      "timestamp": "61:45",
+      "speaker": "Shane",
+      "text": "MCP server with agents yes yeah any MCP server should work you can wire it up to agents"
+    },
+    {
+      "timestamp": "61:52",
+      "speaker": "Shane",
+      "text": "all right so last thing couple thank yous thank you all for attending thanks for pasting the Discord link"
+    },
+    {
+      "timestamp": "61:59",
+      "speaker": "Shane",
+      "text": "um yeah appreciate you all for sticking around a little late and we will see you"
+    },
+    {
+      "timestamp": "62:05",
+      "speaker": "Shane",
+      "text": "all hopefully at future events future workshops come talk to us on Discord and we will see you later"
+    }
+  ]
+}
