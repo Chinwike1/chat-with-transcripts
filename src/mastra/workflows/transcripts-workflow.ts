@@ -142,9 +142,138 @@ const chunkTranscriptStep = createStep({
   },
 })
 
-const embedTranscriptChunks = createStep({
-  id: 'embed-transcript-chunks',
-  description: 'Embed the transcript chunks with their metadata',
+const processMultipleTranscriptsStep = createStep({
+  id: 'process-multiple-transcripts',
+  description: 'Process multiple transcript URLs and combine their chunks',
+  inputSchema: z.object({
+    urls: z.array(z.string()),
+  }),
+  outputSchema: z.object({
+    allChunks: z.array(
+      z.object({
+        text: z.string(),
+        metadata: z.object({
+          episode_title: z.string(),
+          total_speakers: z.array(z.string()),
+          source: z.string(),
+          source_type: z.string(),
+          timestamp_start: z.string(),
+          timestamp_end: z.string(),
+          speakers_in_chunk: z.array(z.string()),
+          entries_count: z.number(),
+          chunk_id: z.string(),
+        }),
+      })
+    ),
+    processedUrls: z.array(z.string()),
+  }),
+  execute: async ({ inputData }) => {
+    const allChunks: any[] = []
+    const processedUrls: string[] = []
+
+    for (const url of inputData.urls) {
+      try {
+        console.log(`Processing transcript: ${url}`)
+
+        // Fetch transcript
+        const response = await fetch(url)
+        const text = await response.text()
+
+        // Parse transcript
+        const parsed = JSON.parse(text)
+
+        // Chunk transcript (reusing the logic from chunkTranscriptStep)
+        const transcriptLines: string[] = []
+        const entryMap: { [lineId: string]: TranscriptEntry } = {}
+
+        parsed.transcript.forEach((entry: any, index: number) => {
+          if (entry.text && entry.text.trim()) {
+            const lineId = `[[${index}]]`
+            const lineText = `${lineId} ${entry.text.trim()}`
+            transcriptLines.push(lineText)
+            entryMap[lineId] = entry
+          }
+        })
+
+        const fullTranscriptText = transcriptLines.join('\n')
+
+        const doc = new MDocument({
+          docs: [
+            {
+              text: fullTranscriptText,
+              metadata: {
+                episode_title: parsed.metadata.episode_title,
+                total_speakers: parsed.metadata.total_speakers,
+                source: parsed.metadata.source,
+              },
+            },
+          ],
+          type: 'transcript',
+        })
+
+        // chunk document
+        const chunks = await doc.chunk({
+          strategy: 'sentence',
+          maxSize: 600,
+          overlap: 60,
+        })
+
+        // enrich each chunk with metadata
+        const result: ChunkWithMetadata[] = chunks.map((chunk, index) => {
+          const entryIndices = Array.from(
+            chunk.text.matchAll(/\[\[(\d+)\]\]/g)
+          ).map((match) => parseInt(match[1], 10))
+          const uniqueIndices = Array.from(new Set(entryIndices)).sort(
+            (a, b) => a - b
+          )
+          const matchedEntries = uniqueIndices.map((i) => parsed.transcript[i])
+
+          const firstEntry = matchedEntries[0]
+          const lastEntry = matchedEntries[matchedEntries.length - 1]
+          const uniqueSpeakers = [
+            ...new Set(matchedEntries.map((e: any) => e.speaker)),
+          ]
+
+          return {
+            text: chunk.text.replace(/\[\[\d+\]\]/g, '').trim(),
+            metadata: {
+              episode_title: parsed.metadata.episode_title,
+              total_speakers: parsed.metadata.total_speakers,
+              source: parsed.metadata.source,
+              source_type: 'transcript',
+              timestamp_start: firstEntry?.timestamp ?? '',
+              timestamp_end: lastEntry?.timestamp ?? '',
+              speakers_in_chunk: uniqueSpeakers,
+              entries_count: matchedEntries.length,
+              chunk_id: `${parsed.metadata.episode_title}_chunk_${index}_${firstEntry?.timestamp}_${lastEntry?.timestamp}`,
+            },
+          }
+        })
+
+        // Add chunks to collection
+        allChunks.push(...result)
+        processedUrls.push(url)
+
+        console.log(
+          `Successfully processed transcript: ${url} (${result.length} chunks)`
+        )
+      } catch (error) {
+        console.error(`Failed to process transcript ${url}:`, error)
+        // Continue processing other transcripts even if one fails
+      }
+    }
+
+    console.log(
+      `Total chunks processed: ${allChunks.length} from ${processedUrls.length} transcripts`
+    )
+    return { allChunks, processedUrls }
+  },
+})
+
+// embed step for single transcript (legacy)
+const embedSingleTranscriptChunks = createStep({
+  id: 'embed-single-transcript-chunks',
+  description: 'Embed a single transcript chunks with their metadata',
   inputSchema: z.object({
     chunks: z.array(
       z.object({
@@ -196,8 +325,88 @@ const embedTranscriptChunks = createStep({
   },
 })
 
-const transcriptsWorkflow = createWorkflow({
-  id: 'transcripts-workflow',
+// Embed step for multiple transcripts
+const embedMultipleTranscriptChunks = createStep({
+  id: 'embed-multiple-transcript-chunks',
+  description: 'Embed multiple transcript chunks with their metadata',
+  inputSchema: z.object({
+    allChunks: z.array(
+      z.object({
+        text: z.string(),
+        metadata: z.object({
+          episode_title: z.string(),
+          total_speakers: z.array(z.string()),
+          source: z.string(),
+          source_type: z.string(),
+          timestamp_start: z.string(),
+          timestamp_end: z.string(),
+          speakers_in_chunk: z.array(z.string()),
+          entries_count: z.number(),
+          chunk_id: z.string(),
+        }),
+      })
+    ),
+    processedUrls: z.array(z.string()),
+  }),
+  outputSchema: z.object({
+    success: z.boolean(),
+    totalChunks: z.number(),
+    processedUrls: z.array(z.string()),
+  }),
+  async execute({ inputData, mastra }) {
+    if (inputData.allChunks.length === 0) {
+      console.log('No chunks to embed')
+      return {
+        success: true,
+        totalChunks: 0,
+        processedUrls: inputData.processedUrls,
+      }
+    }
+
+    const { embeddings: batchEmbeddings } = await embedMany({
+      model: openai.embedding('text-embedding-3-small'),
+      values: inputData.allChunks.map((chunk) => chunk.text),
+    })
+
+    const vectorStore = mastra.getVector('pg')
+
+    // Check if index exists, if not create it
+    try {
+      await vectorStore.createIndex({
+        indexName: 'transcripts',
+        dimension: 1536,
+      })
+      console.log('Created new transcripts index')
+    } catch (error) {
+      // Index already exists, continue
+      console.log('Using existing transcripts index')
+    }
+
+    // upsert embedded vectors with full metadata including text
+    await vectorStore.upsert({
+      indexName: 'transcripts',
+      vectors: batchEmbeddings,
+      metadata: inputData.allChunks.map((chunk) => ({
+        ...chunk.metadata,
+        text: chunk.text,
+      })),
+    })
+
+    console.log(
+      `Successfully embedded ${inputData.allChunks.length} chunks with metadata`
+    )
+
+    return {
+      success: true,
+      totalChunks: inputData.allChunks.length,
+      processedUrls: inputData.processedUrls,
+    }
+  },
+})
+
+// Legacy single transcript workflow (for backward compatibility)
+const singleTranscriptWorkflow = createWorkflow({
+  id: 'single-transcript-workflow',
   inputSchema: z.object({
     url: z.string(),
   }),
@@ -208,13 +417,30 @@ const transcriptsWorkflow = createWorkflow({
     fetchTranscriptStep,
     parseTranscriptStep,
     chunkTranscriptStep,
-    embedTranscriptChunks,
+    embedSingleTranscriptChunks,
   ],
 })
   .then(fetchTranscriptStep)
   .then(parseTranscriptStep)
   .then(chunkTranscriptStep)
-  .then(embedTranscriptChunks)
+  .then(embedSingleTranscriptChunks)
   .commit()
 
-export { transcriptsWorkflow }
+// New multi-transcript workflow
+const transcriptsWorkflow = createWorkflow({
+  id: 'transcripts-workflow',
+  inputSchema: z.object({
+    urls: z.array(z.string()).describe('Array of transcript URLs to process'),
+  }),
+  outputSchema: z.object({
+    success: z.boolean(),
+    totalChunks: z.number(),
+    processedUrls: z.array(z.string()),
+  }),
+  steps: [processMultipleTranscriptsStep, embedMultipleTranscriptChunks],
+})
+  .then(processMultipleTranscriptsStep)
+  .then(embedMultipleTranscriptChunks)
+  .commit()
+
+export { transcriptsWorkflow, singleTranscriptWorkflow }

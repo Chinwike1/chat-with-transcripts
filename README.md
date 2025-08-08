@@ -4,12 +4,14 @@ A RAG (Retrieval-Augmented Generation) application built with Mastra that allows
 
 ## 🚀 Features
 
+- **Multi-Transcript Processing**: Process multiple transcript files simultaneously with batch processing
 - **Transcript Processing**: Automatically chunks and embeds transcript data for efficient retrieval
 - **Vector Search**: Semantic search through transcript content using OpenAI embeddings
 - **Multi-Modal Queries**: Search by content, speaker, timestamp, or episode
 - **Intelligent Agent**: GPT-4 powered agent that provides contextual answers with source attribution
 - **Memory**: Conversation memory for contextual follow-up questions
 - **PostgreSQL Integration**: Robust vector storage with PostgreSQL and pgvector
+- **Incremental Updates**: Add new transcripts without deleting existing data
 
 ## 📋 Prerequisites
 
@@ -100,23 +102,44 @@ The recommended testing approach follows this sequence:
 
 ### 1. Run the Workflow (Data Processing)
 
-First, process your transcript data to create the vector embeddings:
+First, process your transcript data to create the vector embeddings. The system supports both single and multiple transcript processing:
+
+#### Option A: Process Multiple Transcripts (Recommended)
 
 ```bash
 # Start the Mastra development server
 pnpm dev
 
-# Then enter your transcript from the Mastra Workflow UI
-https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json
+# In another terminal, trigger the multi-transcript workflow
+curl -X POST http://localhost:3000/api/workflows/transcripts-workflow \
+  -H "Content-Type: application/json" \
+  -d '{
+    "urls": [
+      "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json",
+      "https://your-second-transcript-url.json",
+      "https://your-third-transcript-url.json"
+    ]
+  }'
+```
+
+#### Option B: Process Single Transcript (Legacy)
+
+```bash
+# For backward compatibility, you can still process a single transcript
+curl -X POST http://localhost:3000/api/workflows/single-transcript-workflow \
+  -H "Content-Type: application/json" \
+  -d '{
+    "url": "https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json"
+  }'
 ```
 
 **Expected Output**: The workflow will:
 
-- Fetch the transcript from the URL
-- Parse the JSON structure
+- Fetch all transcripts from the provided URLs
+- Parse the JSON structure for each transcript
 - Chunk the content into searchable segments
-- Create embeddings and store them in PostgreSQL
-- Return a success message
+- Create embeddings and store them in PostgreSQL (without deleting existing data)
+- Return success status with total chunks processed and URLs processed
 
 ### 2. Query the Agent
 
@@ -223,6 +246,25 @@ pnpm tsc --noEmit
    - Check the transcript URL is accessible
    - Verify the JSON format matches the expected schema
    - Review the console logs for detailed error messages
+
+## 📝 API Reference
+
+### Workflow Endpoints
+
+#### Multi-Transcript Workflow (Recommended)
+
+- **POST** `/api/workflows/transcripts-workflow`
+- **Body**: `{ "urls": ["url1", "url2", "url3"] }`
+
+#### Single Transcript Workflow (Legacy)
+
+- **POST** `/api/workflows/single-transcript-workflow`
+- **Body**: `{ "url": "transcript_url" }`
+
+### Agent Endpoint
+
+- **POST** `/api/agents/chat-with-transcripts-agent`
+- **Body**: `{ "message": "your_question" }`
 
 ## 🆘 Support
 
