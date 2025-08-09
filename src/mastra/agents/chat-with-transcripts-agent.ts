@@ -1,4 +1,6 @@
 import { Agent } from '@mastra/core/agent'
+import { Memory } from '@mastra/memory'
+import { LibSQLStore } from '@mastra/libsql'
 import { openai } from '@ai-sdk/openai'
 import {
   transcriptSearchTool,
@@ -51,4 +53,9 @@ export const chatWithTranscriptsAgent = new Agent({
   `,
   model: openai('gpt-4o-mini'),
   tools: { transcriptSearchTool, speakerSearchTool },
+  memory: new Memory({
+    storage: new LibSQLStore({
+      url: 'file:../mastra.db',
+    }),
+  }),
 })
