@@ -2,7 +2,7 @@
 
 A RAG (Retrieval-Augmented Generation) application built with Mastra that allows users to query and chat with video transcript collections. The system processes transcript data, chunks it into searchable segments, and provides an intelligent agent for answering questions about the content.
 
-![Chat with Transcripts Agent Demo](https://www.dropbox.com/paper/ep/redirect/image?url=https%3A%2F%2Fpaper-attachments.dropboxusercontent.com%2Fs_ABA110A11EEDC30AD5A9F813D196B222C40EE0BE02A835886D6CEF8966404F96_1754752712891_chrome_LO653ENfdR.gif&hmac=SAcRqkBIZfxJOn0UCzYAA6YF5QBs0Yjxo9R99Ipy5PE%3D&width=1490)
+![chrome_LO653ENfdR](https://github.com/user-attachments/assets/3bae304c-401b-4f99-ae4c-e55ffeb2cd3b)
 
 ## 🚀 Features
 
