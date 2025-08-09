@@ -2,6 +2,8 @@
 
 A RAG (Retrieval-Augmented Generation) application built with Mastra that allows users to query and chat with video transcript collections. The system processes transcript data, chunks it into searchable segments, and provides an intelligent agent for answering questions about the content.
 
+![Chat with Transcripts Agent Demo](https://jumpshare.com/s/fmXKKYbHtw5m2tsYsCXS)
+
 ## 🚀 Features
 
 - **Two Workflow Options**: Choose between single transcript processing or multiple transcript batch processing
@@ -24,9 +26,7 @@ The system offers two workflow options for processing transcripts:
 
 ### 2. Run the Workflow (Data Processing)
 
-First, process your transcript data to create the vector embeddings. Go to the Mastra Workflow UI and use any of these prepared transcripts from the Mastra Workshops playlist:
-
-The project includes three sample transcripts in the `transcripts/` directory. They are also hosted here:
+First, process your transcript data to create the vector embeddings. Go to the Mastra Workflow UI and use any of the three sample transcripts in the `transcripts/` directory. They are also hosted here:
 
 - [**Production Ready RAG Workshop**](https://gist.githubusercontent.com/Chinwike1/a745c2bcecd053915b8f8f0f38c8c63d/raw/c30ea27ef03c807969cf7fd2594364902359dc64/production_ready_rag_workshop_transcript.json)
 - [**Evals with Mastra Workshop**](https://gist.githubusercontent.com/Chinwike1/558e517bf7bde5015926657c033790a8/raw/6970c2d48cd181c9b3dd760779a33c814fad8f8c/evals_with_mastra_workshop_transcript.json)
@@ -52,6 +52,7 @@ Example prompts related to the transcripts provided earlier:
 * What are some fun facts Abhi has shared about himself on the show?
 * Which episode talks about RAG and who are the speakers?
 * What did Shane say about the AI.Engineer conference?
+* What is the Mastra.ai course?
 ```
 
 **Expected Output**: The agent will:
