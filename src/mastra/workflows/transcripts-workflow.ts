@@ -3,11 +3,15 @@ import { embedMany } from 'ai'
 import { createStep, createWorkflow } from '@mastra/core/workflows'
 import { z } from 'zod'
 import { chunkSingleTranscript, fetchAndParseTranscript } from '../../lib/utils'
+import { ChunkWithMetadata, TranscriptData } from '../../types'
+import { db, transcripts } from '../../db/schema'
+import { eq } from 'drizzle-orm'
 
-const chunkInputSchema = z.object({
+const parsedTranscriptSchema = z.object({
   metadata: z.object({
     episode_title: z.string(),
-    total_speakers: z.array(z.string()),
+    speakers: z.array(z.string()),
+    summary: z.string().nullable(),
     source: z.string(),
   }),
   transcript: z.array(
@@ -19,177 +23,165 @@ const chunkInputSchema = z.object({
   ),
 })
 
-const chunksWithMetadataSchema = z.array(
-  z.object({
-    text: z.string(),
-    metadata: z.object({
-      episode_title: z.string(),
-      total_speakers: z.array(z.string()),
-      source: z.string(),
-      source_type: z.string(),
-      timestamp_start: z.string(),
-      timestamp_end: z.string(),
-      speakers_in_chunk: z.array(z.string()),
-      entries_count: z.number(),
-      chunk_id: z.string(),
-    }),
-  })
-)
+const chunksWithMetadataSchema = z.object({
+  text: z.string(),
+  metadata: z.object({
+    // transcript_id: z.number(),
+    chunk_id: z.string(),
+    episode_title: z.string(),
+    speakers: z.array(z.string()),
+    source: z.string(),
+    timestamp_start: z.string(),
+    timestamp_end: z.string(),
+    speakers_in_chunk: z.array(z.string()),
+    entries_count: z.number(),
+  }),
+})
+
+const embeddingResultSchema = z.object({
+  success: z.boolean(),
+  totalChunks: z.number(),
+})
 
 const fetchAndParseTranscriptStep = createStep({
   id: 'fetch-and-parse-transcript',
   description: 'Fetch and parse the transcript content from a URL',
   inputSchema: z.object({
-    url: z.string(),
-  }),
-  outputSchema: chunkInputSchema,
-  execute: async ({ inputData }) => {
-    return await fetchAndParseTranscript(inputData.url)
-  },
-})
-
-const chunkTranscriptStep = createStep({
-  id: 'chunk-transcript',
-  description:
-    'Chunks the JSON transcript content into smaller chunks and attaches relevant metadata',
-  inputSchema: chunkInputSchema,
-  outputSchema: z.object({
-    chunks: chunksWithMetadataSchema,
-  }),
-  execute: async ({ inputData }) => {
-    const result = await chunkSingleTranscript(inputData)
-    return { chunks: result }
-  },
-})
-
-const embedSingleTranscriptChunks = createStep({
-  id: 'embed-single-transcript-chunks',
-  description: 'Embed a single transcript chunks with their metadata',
-  inputSchema: z.object({
-    chunks: chunksWithMetadataSchema,
-  }),
-  outputSchema: z.object({ success: z.boolean() }),
-  async execute({ inputData, mastra }) {
-    const { embeddings: batchEmbeddings } = await embedMany({
-      model: openai.embedding('text-embedding-3-small'),
-      values: inputData.chunks.map((chunk) => chunk.text),
-    })
-
-    const vectorStore = mastra.getVector('pg')
-
-    // delete existing index (if exists)
-    await vectorStore.deleteIndex({ indexName: 'transcripts' })
-
-    await vectorStore.createIndex({
-      indexName: 'transcripts',
-      dimension: 1536,
-    })
-
-    // upsert embedded vectors with full metadata including text
-    await vectorStore.upsert({
-      indexName: 'transcripts',
-      vectors: batchEmbeddings,
-      metadata: inputData.chunks.map((chunk) => ({
-        ...chunk.metadata,
-        text: chunk.text,
-      })),
-    })
-
-    console.log('Chunks embedded with metadata')
-
-    return { success: true }
-  },
-})
-
-// Single Transcript Workflow
-const singleTranscriptWorkflow = createWorkflow({
-  id: 'single-transcript-workflow',
-  inputSchema: z.object({
-    url: z.string(),
-  }),
-  outputSchema: z.object({
-    text: z.string(),
-  }),
-  steps: [
-    fetchAndParseTranscriptStep,
-    chunkTranscriptStep,
-    embedSingleTranscriptChunks,
-  ],
-})
-  .then(fetchAndParseTranscriptStep)
-  .then(chunkTranscriptStep)
-  .then(embedSingleTranscriptChunks)
-  .commit()
-
-const parseAndChunkMultipleTranscriptsStep = createStep({
-  id: 'process-and-chunk-multiple-transcripts',
-  description: 'Process multiple transcript URLs and combine their chunks',
-  inputSchema: z.object({
     urls: z.array(z.string()),
   }),
-  outputSchema: z.object({
-    allChunks: chunksWithMetadataSchema,
-    processedUrls: z.array(z.string()),
-  }),
+  outputSchema: parsedTranscriptSchema.array(),
   execute: async ({ inputData }) => {
-    const allChunks: any[] = []
-    const processedUrls: string[] = []
-
-    console.log('Starting chunking process')
-
-    // loop through transcript urls to fetch, parse and chunk them
+    // loop through transcript urls to fetch and parse
+    let parsedTranscripts: TranscriptData[] = []
     for (const url of inputData.urls) {
       try {
-        console.log(`Processing transcript: ${url}`)
-
         const parsed = await fetchAndParseTranscript(url)
-
-        const result = await chunkSingleTranscript(parsed)
-
-        // add chunks to collection
-        allChunks.push(...result)
-        processedUrls.push(url)
-
-        console.log(
-          `Successfully processed transcript: ${url} (${result.length} chunks)`
-        )
+        parsedTranscripts.push(parsed)
       } catch (error) {
         console.error(`Failed to process transcript ${url}:`, error)
       }
     }
-
-    console.log(
-      `Total chunks processed: ${allChunks.length} from ${processedUrls.length} transcripts`
-    )
-    return { allChunks, processedUrls }
+    console.log(`Parsed ${parsedTranscripts.length} transcripts`)
+    return parsedTranscripts
   },
 })
 
-const embedMultipleTranscriptChunks = createStep({
-  id: 'embed-multiple-transcript-chunks',
-  description: 'Embed multiple transcript chunks with their metadata',
-  inputSchema: z.object({
-    allChunks: chunksWithMetadataSchema,
-    processedUrls: z.array(z.string()),
-  }),
+export const summarizeAndStoreTranscripts = createStep({
+  id: 'summarize-and-store-transcripts',
+  description:
+    'Summarizes transcript content and stores it in the database. Summary only generated if missing.',
+  inputSchema: parsedTranscriptSchema.array(),
+  outputSchema: parsedTranscriptSchema.array(),
+  execute: async ({ inputData, mastra }) => {
+    console.log('Starting transcript summarization')
+    const results: typeof inputData = []
+
+    for (const transcript of inputData) {
+      // 1. check if transcript exists
+      const existing = await db
+        .select()
+        .from(transcripts)
+        .where(eq(transcripts.episode_title, transcript.metadata.episode_title))
+        .limit(1)
+
+      if (existing.length > 0) {
+        console.log(
+          `Transcript for "${transcript.metadata.episode_title}" already exists, skipping.`
+        )
+        results.push(transcript)
+        continue
+      }
+
+      console.log('exisiting summary?: ', existing[0]?.summary)
+
+      // 2. use the summary from transcript metadata if available, otherwise, generate a new summary
+      let summaryToStore = existing[0]?.summary
+        ? existing[0]?.summary
+        : transcript.metadata.summary
+      if (!summaryToStore || summaryToStore.trim() === '') {
+        // merge full transcript text
+        const fullText = transcript.transcript.map((t) => t.text).join(' ')
+
+        // summarize with summarizer agent
+        const transcriptSummarizationAgent = mastra?.getAgent(
+          'transcriptSummarizationAgent'
+        )
+        const summaryResult = await transcriptSummarizationAgent.generate([
+          {
+            role: 'user',
+            content: `Provide a SHORT summary of this transcript text:\n\n${fullText}`,
+          },
+        ])
+
+        console.log('generated summary: ', summaryResult.text)
+        summaryToStore = summaryResult.text
+      }
+
+      // 3. Insert into DB
+      try {
+        await db.insert(transcripts).values({
+          episode_title: transcript.metadata.episode_title,
+          speakers: transcript.metadata.speakers,
+          source: transcript.metadata.source,
+          summary: summaryToStore,
+        })
+      } catch (error) {
+        console.log('Error inserting summary')
+      }
+
+      results.push(transcript)
+    }
+    return inputData
+  },
+})
+
+const chunkTranscriptsStep = createStep({
+  id: 'chunk-transcripts',
+  description:
+    'Chunks the JSON transcript content into smaller chunks and attaches relevant metadata',
+  inputSchema: parsedTranscriptSchema.array(),
   outputSchema: z.object({
-    success: z.boolean(),
-    totalChunks: z.number(),
-    processedUrls: z.array(z.string()),
+    chunks: chunksWithMetadataSchema.array(),
   }),
+  execute: async ({ inputData }) => {
+    console.log('Starting chunking process')
+    const chunks: ChunkWithMetadata[] = []
+    // loop through transcripts and chunk them
+    for (const transcript of inputData) {
+      try {
+        const result = await chunkSingleTranscript(transcript)
+        // add chunks to collection
+        chunks.push(...result)
+      } catch (error) {
+        console.error('Failed to chunk transcripts:', error)
+      }
+    }
+    console.log(`Chunked ${inputData.length} transcripts into ${chunks.length}`)
+    return { chunks }
+  },
+})
+
+const embedTranscriptChunks = createStep({
+  id: 'embed-transcript-chunks',
+  description: 'Embed transcript chunks with their metadata',
+  inputSchema: z.object({
+    chunks: chunksWithMetadataSchema.array(),
+  }),
+  outputSchema: embeddingResultSchema,
   async execute({ inputData, mastra }) {
-    if (inputData.allChunks.length === 0) {
+    const chunks = inputData.chunks
+
+    if (chunks.length === 0) {
       console.log('No chunks to embed')
       return {
         success: true,
         totalChunks: 0,
-        processedUrls: inputData.processedUrls,
       }
     }
 
-    const { embeddings: batchEmbeddings } = await embedMany({
+    const { embeddings } = await embedMany({
       model: openai.embedding('text-embedding-3-small'),
-      values: inputData.allChunks.map((chunk) => chunk.text),
+      values: chunks.map((chunk) => chunk.text),
     })
 
     const vectorStore = mastra.getVector('pg')
@@ -197,39 +189,35 @@ const embedMultipleTranscriptChunks = createStep({
     // check if index exists, if not create it
     try {
       await vectorStore.createIndex({
-        indexName: 'transcripts',
+        indexName: 'transcript_embeddings',
         dimension: 1536,
       })
-      console.log('Created new transcripts index')
+      console.log('Created new _embeddings index')
     } catch (error) {
       console.log('Using existing transcripts index')
     }
 
     // upsert embedded vectors with full metadata including text
     await vectorStore.upsert({
-      indexName: 'transcripts',
-      vectors: batchEmbeddings,
-      metadata: inputData.allChunks.map((chunk) => ({
+      indexName: 'transcript_embeddings',
+      vectors: embeddings,
+      metadata: chunks.map((chunk) => ({
         ...chunk.metadata,
         text: chunk.text,
       })),
     })
 
-    console.log(
-      `Successfully embedded ${inputData.allChunks.length} chunks with metadata`
-    )
+    console.log(`Successfully embedded ${chunks.length} chunks with metadata`)
 
     return {
       success: true,
-      totalChunks: inputData.allChunks.length,
-      processedUrls: inputData.processedUrls,
+      totalChunks: chunks.length,
     }
   },
 })
 
-// Multiple Transcript Workflow
-const multipleTranscriptsWorkflow = createWorkflow({
-  id: 'multi-transcripts-workflow',
+const processTranscriptsWorkflow = createWorkflow({
+  id: 'process-transcripts-workflow',
   inputSchema: z.object({
     urls: z.array(z.string()).describe('Array of transcript URLs to process'),
   }),
@@ -238,10 +226,17 @@ const multipleTranscriptsWorkflow = createWorkflow({
     totalChunks: z.number(),
     processedUrls: z.array(z.string()),
   }),
-  steps: [parseAndChunkMultipleTranscriptsStep, embedMultipleTranscriptChunks],
+  steps: [
+    fetchAndParseTranscriptStep,
+    summarizeAndStoreTranscripts,
+    chunkTranscriptsStep,
+    embedTranscriptChunks,
+  ],
 })
-  .then(parseAndChunkMultipleTranscriptsStep)
-  .then(embedMultipleTranscriptChunks)
+  .then(fetchAndParseTranscriptStep)
+  .then(summarizeAndStoreTranscripts)
+  .then(chunkTranscriptsStep)
+  .then(embedTranscriptChunks)
   .commit()
 
-export { singleTranscriptWorkflow, multipleTranscriptsWorkflow }
+export { processTranscriptsWorkflow }
