@@ -1,15 +1,17 @@
 import { MDocument } from '@mastra/rag'
-import { ChunkWithMetadata, TranscriptData, TranscriptEntry } from 'types'
+import { ChunkWithMetadata, TranscriptData, TranscriptEntry } from '../types'
 
 /**
  * Helper function to fetch and parse a transcript.
  */
-export const fetchAndParseTranscript = async (url: string) => {
+export const fetchAndParseTranscript = async (
+  url: string
+): Promise<TranscriptData> => {
   console.log('Fetching transcript from', url)
   const response = await fetch(url)
   const text = await response.text()
   const parsed = JSON.parse(text)
-  return parsed
+  return parsed as TranscriptData
 }
 
 /**
@@ -39,7 +41,7 @@ export const chunkSingleTranscript = async (
         text: fullTranscriptText,
         metadata: {
           episode_title: transcriptData.metadata.episode_title,
-          total_speakers: transcriptData.metadata.total_speakers,
+          speakers: transcriptData.metadata.speakers,
           source: transcriptData.metadata.source,
         },
       },
@@ -76,7 +78,7 @@ export const chunkSingleTranscript = async (
       text: chunk.text.replace(/\[\[\d+\]\]/g, '').trim(),
       metadata: {
         episode_title: transcriptData.metadata.episode_title,
-        total_speakers: transcriptData.metadata.total_speakers,
+        speakers: transcriptData.metadata.speakers,
         source: transcriptData.metadata.source,
         source_type: 'transcript',
         timestamp_start: firstEntry?.timestamp ?? '',

@@ -6,13 +6,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "mastra dev",
     "build": "mastra build",
-    "start": "mastra start"
+    "start": "mastra start",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "type": "module",
+  "imports": {
+    "@/*": "./src/*"
+  },
   "engines": {
     "node": ">=20.9.0"
   },
@@ -24,12 +31,15 @@
     "@mastra/memory": "^0.12.1",
     "@mastra/pg": "^0.13.3",
     "@mastra/rag": "^1.0.7",
+    "@types/pg": "^8.15.5",
     "ai": "^3.3.0",
-    "ollama-ai-provider": "^1.2.0",
+    "drizzle-orm": "^0.44.4",
+    "pg": "^8.16.3",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^24.2.0",
+    "drizzle-kit": "^0.31.4",
     "mastra": "^0.10.20",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2"

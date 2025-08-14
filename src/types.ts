@@ -6,7 +6,8 @@ export interface TranscriptEntry {
 
 export interface TranscriptMetadata {
   episode_title: string
-  total_speakers: string[]
+  speakers: string[]
+  summary: string | null
   source: string
 }
 
@@ -19,7 +20,7 @@ export interface ChunkWithMetadata {
   text: string
   metadata: {
     episode_title: string
-    total_speakers: string[]
+    speakers: string[]
     source: string
     source_type: string
     timestamp_start: string
