@@ -1,13 +1,13 @@
 # Chat with Transcripts
 
-A Retrieval-Augmented Generation (RAG) application powered by Mastra, designed for interactive querying and conversation over collections of video transcripts. The agent is equipped with tools to perform both semantic searches (vector search) and PostgreSQL's full-text search (`ts_vector`), enabling efficient exploration, summarization, and extraction of insights from large sets of transcript data.
+A Mastra Retrieval-Augmented Generation (RAG) agent template, designed for interactive querying and conversation over collections of video transcripts. The agent is equipped with tools to perform both semantic searches (vector search) and Postgres' full-text search, enabling efficient retreival, summarization, and extraction of insights from large sets of transcript data.
 
-![Chat with Transcripts Agent Demo](https://www.dropbox.com/paper/ep/redirect/image?url=https%3A%2F%2Fpaper-attachments.dropboxusercontent.com%2Fs_ABA110A11EEDC30AD5A9F813D196B222C40EE0BE02A835886D6CEF8966404F96_1754753039864_image.png&hmac=Zu%2BNAv3Kjp9xlk4TAjOk8M9hCz%2BBM9%2FYGj50FukHYas%3D&width=1490)
+![Chat with Transcripts Agent Demo](https://github.com/user-attachments/assets/02dcb240-f534-4031-96cf-5dc94507a5a1)
 
 ## 🚀 Features
 
-- **Transcript Processing**: Transcript data is fetched, chunked and stored into a Postgres database.
-- **Retrieval Process**: The agent is provided with tools to perform both semantic searches (vector search) and PG's full text search (`ts_vector`).
+- **Data Processing**: Transcript data is fetched, chunked and stored into a Postgres database.
+- **Retrieval Process**: The agent is provided with tools to perform both semantic searches (vector search) and PG's full text search (using `ts_vector`).
 - **Vector Search**: Semantic search through transcript content using OpenAI embeddings and PG Vector.
 - **Multi-Modal Queries**: Search transcript data by content, speaker, or episode.
 - **Intelligent Agent**: GPT-4 powered agent that provides contextual answers with source attribution
@@ -61,18 +61,18 @@ Example prompts related to the transcripts provided earlier:
 
 ```txt
 * What are some fun facts Abhi has shared about himself on the show?
-* What are Shane's comments about RAG?
+* How many episodes talk about RAG?
 * What episode talked about the AI.Engineer conference?
-* What is the Mastra.ai course?
+* How many episodes has Shane hosted?
 ```
 
 **Expected Output**: The agent will:
 
 - Search through transcript data with full text search and fall back to semantic (vector) search
 - Return relevant excerpts with metadata
+- Provide timestamp 
 - Provide speaker names, timestamps, and episode information
 - Format the response with proper attribution
--
 
 ### Tools Overview
 
