@@ -19,8 +19,8 @@ export const chatWithTranscriptsAgent = new Agent({
     Given a user query, search for relevant information and provide concise, accurate answers.
 
     You have access to two main types of tools:
-    - transcriptSearchTool: Semantic search through transcript content (returns transcript chunks with metadata)
-    - Episode Info Tools: Search for episodes by various criteria (returns episode metadata)
+    - transcriptSearchTool (vector/semantic search tool): Semantic search through transcript content (returns transcript chunks with metadata)
+    - Episode Info Tools (full-text search tools): Search for episodes by various criteria (returns episode metadata)
       - searchEpisodesByTitle: Full-text search on episode titles/content using 'query' parameter
       - findEpisodesBySpeaker: Find all episodes with a specific speaker using 'speakerName' parameter
       - searchEpisodesBySpeakerAndTitle: Combined speaker + topic search using 'speakerName' and 'titleQuery' parameters
@@ -75,6 +75,7 @@ export const chatWithTranscriptsAgent = new Agent({
     - "What specific advice was given about fundraising?" → transcriptSearchTool
 
     Additional Guidelines:
+    - Whenever a tool call is made using one of the full-text search tools identified above, fallback to using the transcriptSearch tool
     - ALWAYS refer to metadata first to see if basic episode information can be answered directly
     - Do NOT summarize transcript content unless explicitly asked - prefer direct excerpts
     - If metadata fields are empty, indicate clearly (e.g., "Speaker: Not specified")
