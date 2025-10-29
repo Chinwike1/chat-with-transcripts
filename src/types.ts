@@ -1,6 +1,9 @@
-export interface TranscriptEntry {
+export interface ProcessedTranscript {
   timestamp: string
   speaker: string
+  text: string
+}
+export interface SimpleTranscript {
   text: string
 }
 
@@ -13,7 +16,7 @@ export interface TranscriptMetadata {
 
 export interface TranscriptData {
   metadata: TranscriptMetadata
-  transcript: TranscriptEntry[]
+  transcript: ProcessedTranscript[] | SimpleTranscript
 }
 
 export interface ChunkWithMetadata {
