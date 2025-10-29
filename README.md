@@ -122,8 +122,8 @@ Each tool is designed for a specific type of query, enabling both deep semantic 
    POSTGRES_CONNECTION_STRING=postgresql://username:password@localhost:5432/database_name
    ```
 
-4. **Set up the database schema and triggers**
-   To Run the following commands to initialize your database schema and enable full text search with the `/src/db/migrations/0000_setup_migration.sql` file:
+4. **Set up the Postgres schema and triggers**
+   Run the following commands to initialize to prepare the database by installing PG vector and setting up triggers to auto update full-text search vectors on each transcript. See `/src/db/migrations/0000_setup_migration.sql` file:
 
    ```bash
    pnpm db:push
